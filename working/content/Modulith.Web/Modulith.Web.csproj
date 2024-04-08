@@ -11,4 +11,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Module 1\Modulith.Module1\Modulith.Module1.csproj" />
+  </ItemGroup>
+
 </Project>

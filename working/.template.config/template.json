@@ -32,8 +32,8 @@
   },
   "sources": [
     {
-      "source": "./Modulith.Web",
-      "target": "./Modulith.Web"
+      "source": "./content",
+      "target": "./"
     }
   ]
 }
