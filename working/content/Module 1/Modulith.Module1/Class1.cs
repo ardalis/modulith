@@ -1,6 +1,6 @@
-﻿namespace Modulith.Module1;
+namespace Modulith.Module1;
 
-public class Class1
+internal class Class1
 {
-
+  
 }
