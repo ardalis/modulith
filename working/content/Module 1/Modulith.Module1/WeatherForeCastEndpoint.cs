@@ -11,13 +11,14 @@ internal class WeatherForeCastEndpoint : EndpointWithoutRequest<WeatherForecastR
   public override void Configure()
   {
     AllowAnonymous();
-    Get("/weatherforecast");
+    Get("/Module1/weatherforecast");
   }
 
   public override async Task HandleAsync(CancellationToken ct)
   {
     string[] summaries =
-      ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
+      ["Freezing", "Bracing", "Chilly", "Cool", "Mild", 
+        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
 
     await SendOkAsync(Enumerable.Range(1, 5)
       .Select(random =>
