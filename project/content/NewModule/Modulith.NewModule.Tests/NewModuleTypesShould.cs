@@ -3,9 +3,9 @@ using ArchUnitNET.Loader;
 using ArchUnitNET.xUnit;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
-namespace Modulith.Module1.Tests;
+namespace Modulith.NewModule.Tests;
 
-public class Module1TypesShould
+public class NewModuleTypesShould
 {
   private static readonly Architecture Architecture =
     new ArchLoader()
@@ -17,8 +17,8 @@ public class Module1TypesShould
   {
     var domainTypes = Types()
       .That()
-      .ResideInNamespace("Modulith.Module1.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(Module1ModuleHostApplicationBuilderExtensions)])
+      .ResideInNamespace("Modulith.NewModule.*", useRegularExpressions: true)
+      .And().AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleHostApplicationBuilderExtensions)])
       .As("Module types");
 
     var rule = domainTypes.Should().BeInternal();

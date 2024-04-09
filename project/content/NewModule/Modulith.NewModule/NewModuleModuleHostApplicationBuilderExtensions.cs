@@ -3,17 +3,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Modulith.Module1;
+namespace Modulith.NewModule;
 
-public static class Module1ModuleHostApplicationBuilderExtensions
+public static class NewModuleModuleHostApplicationBuilderExtensions
 {
-  public static void AddModule1Services(this IHostApplicationBuilder builder)
+  public static void AddNewModuleServices(this IHostApplicationBuilder builder)
   {
     var logger = GetLogger(builder);
     builder.Services.AddMediatR(
       c => c.RegisterServicesFromAssemblies(typeof(AssemblyInfo).Assembly));
     
-    logger.LogInformation("⚙️ Module1 module services registered");
+    logger.LogInformation("⚙️ NewModule module services registered");
   }
   
   private static ILogger<WebApplicationBuilder> GetLogger(IHostApplicationBuilder builder) 

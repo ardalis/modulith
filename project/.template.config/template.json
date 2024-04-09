@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "$comment": "See https://aka.ms/template-json-reference for complete configuration description. Complete TODOs below and remove the $comment properties. It is recommended to use the JSON editor that supports schema hints to get more information about defined JSON properties and their description.",
+  "author": "David Chaparro",
+  "classifications": [
+    "Web",
+    "Web API",
+    "API",
+    "Service",
+    "Modular",
+    "Monolith"
+  ],
+  "name": "modulith-proj",
+  "description": "A project template for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
+  "precedence": "0",
+  "identity": "Davidc.Modulith.Project.1.0",
+  "shortName": "modulith-proj",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sourceName": "Modulith",
+  "preferNameDirectory": true,
+  "symbols": {
+    "ModuleName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MyModule",
+      "fileRename": "NewModule",
+      "replaces": "NewModule",
+      "isEnabled": true,
+      "isRequired": true
+    }
+  },
+  "sources": [
+    {
+      "source": "./content",
+      "target": "."
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Add projects to solution",
+      "manualInstructions": [
+        {
+          "text": "Add generated project to solution manually."
+        }
+      ],
+      "args": {
+        "solutionFolder": "NewModule"
+      },
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "continueOnError": true
+    },{
+      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+      "args": {
+        "executable": "setup.cmd",
+        "args": "",
+        "redirectStandardOutput": true,
+        "redirectStandardError": true
+      },
+      "manualInstructions": [{
+         "text": "Run 'setup.cmd'"
+      }],
+      "continueOnError": false,
+      "description ": "setups the project by calling setup.cmd"
+    }
+  ]
+}
