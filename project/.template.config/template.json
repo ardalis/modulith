@@ -30,7 +30,15 @@
       "replaces": "NewModule",
       "isEnabled": true,
       "isRequired": true
-    }
+    },
+    "existingProject": {
+      "displayName": "Existing project relative path",
+      "description": "Path relative to the working directory",
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "ExistingProject/ExistingProject.csproj",
+      "fileRename": "ExistingProjectPath"
+  }
   },
   "sources": [
     {
@@ -41,6 +49,12 @@
   "primaryOutputs": [
     {
       "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+    },
+    {
+      "path": "NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj"
+    },
+    {
+      "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
   ],
   "postActions": [
@@ -48,27 +62,32 @@
       "description": "Add projects to solution",
       "manualInstructions": [
         {
-          "text": "Add generated project to solution manually."
+          "text": "Add generated project(s) to solution manually."
         }
       ],
-      "args": {
-        "solutionFolder": "NewModule"
-      },
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
       "continueOnError": true
-    },{
-      "actionId": "3A7C4B45-1F5D-4A30-959A-51B88E82B5D2",
+    },
+    {
+      "description": "Adding a reference to another project",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Manually add the reference to SomeDependency to MyProjectFile"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
       "args": {
-        "executable": "setup.cmd",
-        "args": "",
-        "redirectStandardOutput": true,
-        "redirectStandardError": true
-      },
-      "manualInstructions": [{
-         "text": "Run 'setup.cmd'"
-      }],
-      "continueOnError": false,
-      "description ": "setups the project by calling setup.cmd"
+        "targetFiles": [
+          "ExistingProjectPath"
+        ],
+        "referenceType": "project",
+        "reference": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+      }
     }
   ]
 }
