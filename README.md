@@ -20,8 +20,7 @@ nuget install
 Or, by cloning the repo and installing it locally running:
 
 ``` pwsh
-dotnet new install solution/
-dotnet new install project/
+dotnet new install .
 ```
 
 # Creating new modular solutions
