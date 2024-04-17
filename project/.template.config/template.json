@@ -37,7 +37,7 @@
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "ExistingProject/ExistingProject.csproj",
-      "fileRename": "ExistingProjectPath"
+      "fileRename": "ExistingProject"
   }
   },
   "sources": [
@@ -73,7 +73,7 @@
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference to SomeDependency to MyProjectFile"
+          "text": "Manually add the reference to SomeDependency to ExistingProject"
         }
       ],
       "applyFileRenamesToArgs": [
@@ -82,7 +82,7 @@
       ],
       "args": {
         "targetFiles": [
-          "ExistingProjectPath"
+          "ExistingProject.Web/ExistingProject.Web.csproj"
         ],
         "referenceType": "project",
         "reference": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"

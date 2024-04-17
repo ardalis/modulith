@@ -64,7 +64,7 @@ Since this is a Modular Monolith, there are a few rules that are enforced to gua
 ⚠️ `cd` into the solution folder. I.e. `eShop/`, then run:
 
 ``` pwsh
-dotnet new modulith-proj --add-module Shipments --to eShop.Web/eShop.Web.csproj
+dotnet new modulith-proj --add-module Shipments --to eShop
 ```
 
 Here, `Shipments` is the name of your new module. This will create a new module folder with the same three projects as in `Users/`. 
