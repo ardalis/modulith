@@ -22,7 +22,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      working-directory: working/content/modulith
+      working-directory: working/content/modulith/Modulith.sln
       run: dotnet restore
     - name: Build
       working-directory: working/content/modulith
