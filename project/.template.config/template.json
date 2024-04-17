@@ -22,7 +22,7 @@
   "sourceName": "Modulith",
   "preferNameDirectory": true,
   "symbols": {
-    "ModuleName": {
+    "add-module": {
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "MyModule",
@@ -31,7 +31,7 @@
       "isEnabled": true,
       "isRequired": true
     },
-    "existingProject": {
+    "to": {
       "displayName": "Existing project relative path",
       "description": "Path relative to the working directory",
       "type": "parameter",
@@ -42,8 +42,7 @@
   },
   "sources": [
     {
-      "source": "./content",
-      "target": "."
+      "source": "./content"
     }
   ],
   "primaryOutputs": [
