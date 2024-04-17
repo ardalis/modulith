@@ -1,5 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <ItemGroup>
-    <ProjectReference Include="..\Modulith.Module1\Modulith.Module1.csproj" />
-  </ItemGroup>
-</Project>

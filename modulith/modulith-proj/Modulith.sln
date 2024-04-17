@@ -5,13 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.Web", "Modulith.Web\Modulith.Web.csproj", "{D0A276EF-1E37-4957-BBAB-6765FF804CCC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Module1", "Module1", "{A3EF1564-343E-4543-B052-4B917E4447FD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewModule", "NewModule", "{A3EF1564-343E-4543-B052-4B917E4447FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.Module1", "Module1\Modulith.Module1\Modulith.Module1.csproj", "{7F15FFAA-822B-437A-B6F4-BCC2C31FB660}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule", "NewModule\Modulith.NewModule\Modulith.NewModule.csproj", "{7F15FFAA-822B-437A-B6F4-BCC2C31FB660}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.Module1.Contracts", "Module1\Modulith.Module1.Contracts\Modulith.Module1.Contracts.csproj", "{15EACFA3-099A-4AAB-931A-602509346105}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Contracts", "NewModule\Modulith.NewModule.Contracts\Modulith.NewModule.Contracts.csproj", "{15EACFA3-099A-4AAB-931A-602509346105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.Module1.Tests", "Module1\Modulith.Module1.Tests\Modulith.Module1.Tests.csproj", "{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Tests", "NewModule\Modulith.NewModule.Tests\Modulith.NewModule.Tests.csproj", "{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -28,15 +28,18 @@
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "FirstModule",
-      "fileRename": "Module1",
-      "replaces": "Module1",
+      "fileRename": "NewModule",
+      "replaces": "NewModule",
       "isEnabled": true,
       "isRequired": false
     }
   },
   "sources": [
     {
-      "source": "./content",
+      "source": "./modulith-proj",
+      "exclude": [
+        ".template.config/*"
+      ],
       "target": "./"
     }
   ]

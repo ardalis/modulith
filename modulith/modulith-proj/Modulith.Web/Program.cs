@@ -1,5 +1,5 @@
 using FastEndpoints;
-using Modulith.Module1;
+using Modulith.NewModule;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 
@@ -20,7 +20,7 @@ builder.Services
   .AddFastEndpoints();
 
 // Add module services
-builder.AddModule1Services();
+builder.AddNewModuleServices();
 
 var app = builder.Build();
 

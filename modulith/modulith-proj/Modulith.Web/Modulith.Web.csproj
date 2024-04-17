@@ -8,7 +8,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Module1\Modulith.Module1\Modulith.Module1.csproj" />
+    <ProjectReference Include="..\NewModule\Modulith.NewModule\Modulith.NewModule.csproj" />
   </ItemGroup>
 
 </Project>

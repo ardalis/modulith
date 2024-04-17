@@ -42,7 +42,11 @@
   },
   "sources": [
     {
-      "source": "./content"
+      "source": ".",
+      "include": [
+        "NewModule/**"
+      ],
+      "target": "./"
     }
   ],
   "primaryOutputs": [
@@ -55,7 +59,8 @@
     {
       "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
-  ],
+  ]
+  ,
   "postActions": [
     {
       "description": "Add projects to solution",
