@@ -31,10 +31,7 @@ jobs:
         run: dotnet pack
           
       - name: Push Package to NuGet.org
-        env:
-          NUGET_URL: https://api.nuget.org/v3/index.json
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push *.nupkg
+        run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.2
