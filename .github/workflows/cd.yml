@@ -27,4 +27,5 @@ jobs:
         with:
           # NuGet API Key to configure.
           nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+      - name: Push
         run: nuget push Productive.Modulith.1.0.0.nupkg
