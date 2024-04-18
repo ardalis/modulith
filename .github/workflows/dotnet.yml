@@ -65,3 +65,14 @@ jobs:
         working-directory: test/eShop
         run: dotnet new modulith -n eShop --with-module Payments 
         
+      - name: Restore
+        working-directory: test/eShop
+        run: dotnet restore
+
+      - name: Build
+        working-directory: test/eShop
+        run: dotnet build --no-restore
+
+      - name: Test
+        working-directory: test/eShop
+        run: dotnet test --no-build --verbosity normal
