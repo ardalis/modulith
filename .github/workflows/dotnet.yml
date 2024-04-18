@@ -13,9 +13,13 @@ jobs:
   build:
     strategy:
       matrix:
-        template: [modulith, modulith-proj/NewModule]
+        project: [
+          modulith,
+          modulith-proj/NewModule/Modulith.NewModule,
+          modulith-proj/NewModule/Modulith.NewModule.Contracts,
+          modulith-proj/NewModule/Modulith.NewModule.Tests]
   
-    name: 'Build template source: ${{ matrix.template }}'
+    name: 'Build project source: ${{ matrix.project }}'
     runs-on: ubuntu-latest
     
     steps:
@@ -25,12 +29,12 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      working-directory: working/content/${{ matrix.template }}
+      working-directory: working/content/${{ matrix.project }}
       run: dotnet restore
     - name: Build
-      working-directory: working/content/${{ matrix.template }}
+      working-directory: working/content/${{ matrix.project }}
       run: dotnet build --no-restore
     - name: Test
-      working-directory: working/content/${{ matrix.template }}
+      working-directory: working/content/${{ matrix.project }}
       run: dotnet test --no-build --verbosity normal
       
