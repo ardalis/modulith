@@ -9,6 +9,9 @@ on:
       run-id:
         required: true
         description: 'The run-id of the ci pipeline to download the nuget package from'
+  push:
+    tags:
+    - '*.*.*'
    
 jobs:
   download:
@@ -17,7 +20,6 @@ jobs:
       - name: Download nuget package
         uses: actions/download-artifact@v4.1.5
         with:
-          # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
           name: Productive.Modulith.1.0.1.nupkg
           github-token: ${{ secrets.modulith_actions }}
           run-id: ${{ inputs.run-id }}
@@ -28,4 +30,7 @@ jobs:
           dotnet-version: 8.0.x
           
       - name: Push Package to NuGet.org
-        run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+        env:
+          NUGET_URL: https://api.nuget.org/v3/index.json
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push *.nupkg
