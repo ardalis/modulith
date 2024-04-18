@@ -99,7 +99,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.2
         with:
           name: Productive.Modulith.1.0.0.nupkg
-          path: Productive.Modulith.*.nupkg
+          path: working/bin/Release/Productive.Modulith.*.nupkg
           error: Could not upload Nuget Package
           if-no-files-found: error
         
