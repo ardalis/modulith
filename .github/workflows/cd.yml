@@ -18,7 +18,7 @@ jobs:
         uses: actions/download-artifact@v4.1.5
         with:
           # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
-          name: Productive.Modulith.*.nupkg
+          name: Productive.Modulith.1.0.1.nupkg
           github-token: ${{ secrets.modulith_actions }}
           run-id: ${{ inputs.run-id }}
           
