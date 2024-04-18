@@ -22,10 +22,10 @@ jobs:
           github-token: ${{ secrets.modulith_actions }}
           run-id: ${{ inputs.run-id }}
           
-      - name: Setup NuGet.exe for use with actions
-        uses: NuGet/setup-nuget@v2.0.0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          # NuGet API Key to configure.
-          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-      - name: Push
-        run: nuget push Productive.Modulith.1.0.0.nupkg
+          dotnet-version: 8.0.x
+          
+      - name: Push Package to NuGet.org
+        run: dotnet nuget push Productive.Modulith.1.0.0.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
