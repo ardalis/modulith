@@ -42,3 +42,17 @@ jobs:
       working-directory: working/content/${{ matrix.template.working-dir }}
       run: dotnet test ${{ matrix.template.project }} --no-build --verbosity normal
       
+  install:
+    name: 'Install template'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: install
+        working-directory: working
+        run: dotnet new install .
+        
