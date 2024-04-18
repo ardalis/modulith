@@ -1,4 +1,4 @@
-![modulith cover](https://repository-images.githubusercontent.com/783914354/659c3087-8fab-47ca-b1aa-90da249fd88b)
+![modulith cover](https://github.com/david-acm/modulith/blob/main/modulith-cover.png)
 
 Modulith is a `dotnet new template` suite for Modular Monoliths. It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
 
