@@ -1,0 +1,108 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        template: 
+          - working-dir: modulith
+            project: Modulith.sln
+          - working-dir: modulith-proj
+            project: NewModule/Modulith.NewModule
+          - working-dir: modulith-proj
+            project: NewModule/Modulith.NewModule.Contracts
+          - working-dir: modulith-proj
+            project: NewModule/Modulith.NewModule.Tests
+  
+    name: 'Build project source: ${{ matrix.template.working-dir }}'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      working-directory: working/content/${{ matrix.template.working-dir }}
+      run: dotnet restore ${{ matrix.template.project }}
+    - name: Build
+      working-directory: working/content/${{ matrix.template.working-dir }}
+      run: dotnet build ${{ matrix.template.project }} --no-restore
+    - name: Test
+      working-directory: working/content/${{ matrix.template.working-dir }}
+      run: dotnet test ${{ matrix.template.project }} --no-build --verbosity normal
+      
+  install:
+    needs: [build]
+    name: 'Install template'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Install
+        working-directory: working
+        run: dotnet new install .
+        
+      - name: Instance solution
+        working-directory: test
+        run: dotnet new modulith -n eShop --with-module Payments 
+        
+      - name: Instance project
+        working-directory: test/eShop
+        run: dotnet new modulith-proj --add-module Shipments --to eShop
+      
+      - name: Add project reference
+        working-directory: test/eShop
+        run: dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
+        
+      - name: Restore
+        working-directory: test/eShop
+        run: dotnet restore
+
+      - name: Build
+        working-directory: test/eShop/eShop.Web
+        run: dotnet build --no-restore
+
+      - name: Test
+        working-directory: test/eShop
+        run: dotnet test --verbosity normal
+  
+  pack:
+    needs: [install]
+    name: 'Pack'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Pack
+        working-directory: working
+        run: dotnet pack
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.3.2
+        with:
+          name: Productive.Modulith.1.0.0.nupkg
+          path: working/bin/Release/Productive.Modulith.*.nupkg
+          error: Could not upload Nuget Package
+          if-no-files-found: error
+        
+          
