@@ -14,9 +14,8 @@ The templates in this project follow the solution structure as taught by [Ardali
 
 You can install both templates by running:
 
-TODO: publish it to nuget
 ```pwsh
-nuget install 
+dotnet new install Productive.Modulith::0.0.1
 ```
 
 Or, by cloning the repo and installing it locally running:
