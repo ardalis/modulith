@@ -11,10 +11,13 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        template: [modulith, modulith-proj]
   
-    name: 'Build template source: modulith'
+    name: 'Build template source: ${{ matrix.template }}'
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -22,12 +25,12 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      working-directory: working/content/modulith
+      working-directory: working/content/${{ matrix.template }}
       run: dotnet restore
     - name: Build
-      working-directory: working/content/modulith
+      working-directory: working/content/${{ matrix.template }}
       run: dotnet build --no-restore
     - name: Test
-      working-directory: working/content/modulith
+      working-directory: working/content/${{ matrix.template }}
       run: dotnet test --no-build --verbosity normal
       
