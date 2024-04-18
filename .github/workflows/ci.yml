@@ -80,3 +80,27 @@ jobs:
       - name: Test
         working-directory: test/eShop
         run: dotnet test --verbosity normal
+  
+  pack:
+    name: 'Pack'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Pack
+        working-directory: working
+        run: dotnet pack
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.3.2
+        with:
+          name: Nuget package artifact  upload
+          path: working/bin/Productive.Modulith.*.nupkg
+          error: Could not upload Nuget Package
+      
+          if-no-files-found: error
+          
