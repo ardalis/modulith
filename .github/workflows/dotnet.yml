@@ -57,9 +57,6 @@ jobs:
         working-directory: working
         run: dotnet new install .
         
-      - name: Make test dir
-        run: mkdir test
-
       - name: Instance solution
         working-directory: test
         run: dotnet new modulith -n eShop --with-module Payments 
