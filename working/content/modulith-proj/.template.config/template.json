@@ -78,7 +78,7 @@
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference to SomeDependency to ExistingProject"
+          "text": "Manually add the reference in the web project to the new project"
         }
       ],
       "applyFileRenamesToArgs": [
