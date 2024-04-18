@@ -4,7 +4,11 @@
 name: .NET
 
 on: 
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      run-id:
+        required: true
+        description: 'The run-id of the ci pipeline to download the nuget package from'
    
 jobs:
   download:
@@ -15,5 +19,6 @@ jobs:
         with:
           # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
           name: Productive.Modulith.1.0.0.nupkg
+          run-id: ${{ inputs.run-id }}
           
           
