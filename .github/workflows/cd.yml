@@ -3,10 +3,11 @@
 
 name: .NET
 
-on:
+on: 
+  workflow_dispatch:
   push:
     branches: [ "main" ]
-
+   
 jobs:
   download:
     runs-on: ubuntu-latest
