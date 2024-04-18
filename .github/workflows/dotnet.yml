@@ -79,4 +79,4 @@ jobs:
 
       - name: Test
         working-directory: test/eShop
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --verbosity normal
