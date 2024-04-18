@@ -19,6 +19,7 @@ jobs:
         with:
           # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
           name: Productive.Modulith.1.0.0.nupkg
+          github-token: ${{ secrets.modulith_actions }}
           run-id: ${{ inputs.run-id }}
           
           
