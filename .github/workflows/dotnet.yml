@@ -13,7 +13,7 @@ jobs:
   build:
     strategy:
       matrix:
-        template: [modulith, modulith-proj]
+        template: [modulith, modulith-proj/NewModule]
   
     name: 'Build template source: ${{ matrix.template }}'
     runs-on: ubuntu-latest
