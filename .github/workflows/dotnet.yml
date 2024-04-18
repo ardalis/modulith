@@ -64,6 +64,10 @@ jobs:
       - name: Instance project
         working-directory: test/eShop
         run: dotnet new modulith-proj --add-module Shipments --to eShop
+      
+      - name: Add project reference
+        working-directory: test/eShop
+        run: dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
         
       - name: Restore
         working-directory: test/eShop
