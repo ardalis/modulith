@@ -34,13 +34,26 @@ dotnet new modulith-proj --add-module Shipments --to eShop
 
 `Shipments` is the name of your new module. This will create a new module folder with the same three projects as in `Payments/`. 
 
-### Add a reference to the new module
+#### Add a reference to the new module
 
 Run:
 
 ``` pwsh
 dotnet add eShop.Web/eShop.Web.csproj reference Shipment/eShop.Shipment/eShop.Shipment.csproj
 ```
+
+And add the service registration in `program.cs`:
+```cs
+using eShop.Shipments
+...
+// Add module services
+builder.AddShipmentsServices();
+```
+
+That's it. Running the solution should show both modules with their default endpoint:
+
+<img src="https://github.com/david-acm/modulith/assets/71415563/94bf15ff-4a4e-4a6c-a3d2-3755926579c5" width="600" />
+
 
 # 🏛️ Solution directory structure
 
