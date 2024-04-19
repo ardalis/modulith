@@ -32,7 +32,7 @@ dotnet new modulith-proj --add-module Shipments --to eShop
 
 *⚠️ `cd` into the solution folder to add the module inside the solution.*
 
-`Shipments` is the name of your new module. This will create a new module folder with the same three projects as in `Users/`. 
+`Shipments` is the name of your new module. This will create a new module folder with the same three projects as in `Payments/`. 
 
 ### Add a reference to the new module
 
