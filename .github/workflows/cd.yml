@@ -37,7 +37,7 @@ jobs:
         run: dotnet pack -c release
           
       - name: Push Package to NuGet.org
-        working-directory: working/bin/Release
+        working-directory: working/bin/release
         run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
 
       - name: Upload a Build Artifact
