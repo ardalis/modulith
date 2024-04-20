@@ -25,10 +25,14 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-          
+
+      - name: Clean
+        working-directory: working
+        run: dotnet clean -c release
+        
       - name: Pack
         working-directory: working
-        run: dotnet pack -c Release
+        run: dotnet pack -c release
           
       - name: Push Package to NuGet.org
         working-directory: working/bin/Release

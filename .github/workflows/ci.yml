@@ -95,7 +95,7 @@ jobs:
           dotnet-version: 8.0.x
       - name: Pack
         working-directory: working
-        run: dotnet pack
+        run: dotnet pack -c release
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.2
