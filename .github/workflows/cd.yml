@@ -4,15 +4,6 @@
 name: CD
 
 on: 
-  workflow_dispatch:
-    inputs:
-      run-id:
-        required: true
-        description: 'The run-id of the ci pipeline to download the nuget package from'
-  push:
-    tags:
-    - '*.*.*'
-    
   workflow_run:
     workflows: [CI]
     types: 
