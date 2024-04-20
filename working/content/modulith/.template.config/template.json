@@ -24,7 +24,6 @@
   "preferNameDirectory": true,
   "symbols": {
     "with-module": {
-      "$comment": "TODO: The symbols section defines variables and their values. For more details, see https://aka.ms/template-json-reference#symbols.",
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "FirstModule",

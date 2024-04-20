@@ -73,7 +73,7 @@
       "continueOnError": true
     },
     {
-      "description": "Adding a reference to another project",
+      "description": "Adding a reference to Web project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
@@ -94,7 +94,7 @@
       }
     },
     {
-      "description": "Adding a reference to another project",
+      "description": "Adding a reference to SharedKernel",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
