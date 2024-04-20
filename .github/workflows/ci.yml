@@ -101,7 +101,7 @@ jobs:
         run: dotnet clean -c release
         
       - name: Pack
-        run: dotnet pack .\working\Productive.Modulith.csproj -c release -o .\artifacts
+        run: dotnet pack working/Productive.Modulith.csproj -c release -o artifacts
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.2
