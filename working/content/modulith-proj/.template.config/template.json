@@ -73,7 +73,7 @@
       "continueOnError": true
     },
     {
-      "description": "Adding a reference to another project",
+      "description": "Adding a reference to Web project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
@@ -91,6 +91,27 @@
         ],
         "referenceType": "project",
         "reference": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+      }
+    },
+    {
+      "description": "Adding a reference to SharedKernel",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Manually add the reference in the web project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "Modulith.SharedKernel/Modulith.SharedKernel.csproj"
       }
     }
   ]

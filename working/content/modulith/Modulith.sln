@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Contract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Tests", "NewModule\Modulith.NewModule.Tests\Modulith.NewModule.Tests.csproj", "{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.SharedKernel", "Modulith.SharedKernel\Modulith.SharedKernel.csproj", "{EDFA53B3-520A-4212-AF95-8FE79AE765FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDFA53B3-520A-4212-AF95-8FE79AE765FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDFA53B3-520A-4212-AF95-8FE79AE765FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDFA53B3-520A-4212-AF95-8FE79AE765FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDFA53B3-520A-4212-AF95-8FE79AE765FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7F15FFAA-822B-437A-B6F4-BCC2C31FB660} = {A3EF1564-343E-4543-B052-4B917E4447FD}

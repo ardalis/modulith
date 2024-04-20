@@ -28,6 +28,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -89,19 +91,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Pack
+
+      - name: Clean
         working-directory: working
-        run: dotnet pack
+        run: dotnet clean -c release
+        
+      - name: Pack
+        run: dotnet pack working/Productive.Modulith.csproj -c release -o artifacts
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.2
         with:
-          name: Productive.Modulith.1.0.1.nupkg
-          path: working/bin/Release/Productive.Modulith.*.nupkg
+          name: artifacts
+          path: artifacts/**/*
           error: Could not upload Nuget Package
           if-no-files-found: error
         

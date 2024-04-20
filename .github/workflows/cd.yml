@@ -4,14 +4,10 @@
 name: CD
 
 on: 
-  workflow_dispatch:
-    inputs:
-      run-id:
-        required: true
-        description: 'The run-id of the ci pipeline to download the nuget package from'
-  push:
-    tags:
-    - '*.*.*'
+  workflow_run:
+    workflows: [CI]
+    types: 
+      - completed
    
 jobs:
   
@@ -20,24 +16,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v4.1.5
         with:
-          dotnet-version: 8.0.x
+          # Name of the artifact to download. If unspecified, all artifacts for the run are downloaded.
+          name: Download Nuget
+          # Destination path. Supports basic tilde expansion. Defaults to $GITHUB_WORKSPACE
+          # path: # optional
+          # A glob pattern matching the artifacts that should be downloaded. Ignored if name is specified.
+          pattern: artifacts/**/*
+          # When multiple artifacts are matched, this changes the behavior of the destination directories. If true, the downloaded artifacts will be in the same directory specified by path. If false, the downloaded artifacts will be extracted into individual named directories within the specified path.
+          # merge-multiple: # optional, default is false
+          # The GitHub token used to authenticate with the GitHub API. This is required when downloading artifacts from a different repository or from a different workflow run. If this is not specified, the action will attempt to download artifacts from the current repository and the current workflow run.
+          github-token: ${{ secrets.MODULITH_ACTIONS }}
+          # The repository owner and the repository name joined together by "/". If github-token is specified, this is the repository that artifacts will be downloaded from.
+          # repository: # optional, default is ${{ github.repository }}
+          # The id of the workflow run where the desired download artifact was uploaded from. If github-token is specified, this is the run that artifacts will be downloaded from.
+          run-id: github.event.workflow_run.id
           
-      - name: Pack
-        working-directory: working
-        run: dotnet pack
+      # - uses: actions/checkout@v4
+      # - name: Setup .NET
+      #   uses: actions/setup-dotnet@v4
+      #   with:
+      #     dotnet-version: 8.0.x
+          
+      # - name: Pack
+      #   working-directory: working
+      #   run: dotnet pack
           
       - name: Push Package to NuGet.org
-        working-directory: working/bin/Release
+        working-directory: artifacts
         run: dotnet nuget push *.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.2
         with:
           name: Release
-          path: working/bin/Release/**/*
+          path: artifacts/*.nupkg
           error: Could not upload Nuget Package
           if-no-files-found: error
