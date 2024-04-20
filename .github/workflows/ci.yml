@@ -93,6 +93,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+
+      - name: Clean
+        working-directory: working
+        run: dotnet clean -c release
+        
       - name: Pack
         working-directory: working
         run: dotnet pack -c release
@@ -101,7 +106,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.2
         with:
           name: Productive.Modulith.1.0.1.nupkg
-          path: working/bin/Release/Productive.Modulith.*.nupkg
+          path: working/bin/Release/Productive.Modulith.**.nupkg
           error: Could not upload Nuget Package
           if-no-files-found: error
         
