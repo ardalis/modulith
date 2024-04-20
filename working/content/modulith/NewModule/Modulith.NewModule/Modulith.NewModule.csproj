@@ -9,4 +9,8 @@
         <PackageReference Include="FastEndpoints" Version="5.24.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Modulith.SharedKernel\Modulith.SharedKernel.csproj" />
+    </ItemGroup>
+
 </Project>

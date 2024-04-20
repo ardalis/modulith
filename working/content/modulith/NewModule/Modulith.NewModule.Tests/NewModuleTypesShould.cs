@@ -18,7 +18,7 @@ public class NewModuleTypesShould
     var domainTypes = Types()
       .That()
       .ResideInNamespace("Modulith.NewModule.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleHostApplicationBuilderExtensions)])
+      .And().AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleServiceRegistrar)])
       .As("Module types");
 
     var rule = domainTypes.Should().BeInternal();
