@@ -28,7 +28,7 @@ jobs:
           
       - name: Pack
         working-directory: working
-        run: dotnet pack
+        run: dotnet pack -c Release
           
       - name: Push Package to NuGet.org
         working-directory: working/bin/Release
