@@ -101,14 +101,13 @@ jobs:
         run: dotnet clean -c release
         
       - name: Pack
-        working-directory: working
-        run: dotnet pack -c release
+        run: dotnet pack .\working -c release -o .\artifacts
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.2
         with:
-          name: Productive.Modulith.1.0.1.nupkg
-          path: working/bin/Release/Productive.Modulith.**.nupkg
+          name: artifacts
+          path: artifacts/**/*
           error: Could not upload Nuget Package
           if-no-files-found: error
         
