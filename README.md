@@ -42,19 +42,23 @@ Run:
 dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
 ```
 
-That's it, no need to register the new service. 
+That's it, no need to register the new service ([but you can](Direct service registration)). The template scans you assemblies and registers services from your modules.
 
-The template scans you assemblies and registers services from your modules, but if you prefer more control and less magic, or you want to modify registration class, remove the `builder.DiscoverAndRegisterModules();`  in `program.cs` and add the service registration for each module:
+Happy coding!
+
+Running the solution should show both modules with their default endpoint:
+
+<img src="https://github.com/david-acm/modulith/assets/71415563/94bf15ff-4a4e-4a6c-a3d2-3755926579c5" width="600" />
+
+#### Direct service registration
+
+However, if you prefer more control and less magic, or you want to modify registration class, remove the `builder.DiscoverAndRegisterModules();`  in `program.cs` and add the service registration for each module:
 
 ```cs
 using eShop.Shipments
 ...
 PaymentsModuleServiceRegistrar.ConfigureServices(builder);
 ```
-
-That's it. Running the solution should show both modules with their default endpoint:
-
-<img src="https://github.com/david-acm/modulith/assets/71415563/94bf15ff-4a4e-4a6c-a3d2-3755926579c5" width="600" />
 
 
 # 🏛️ Solution directory structure
