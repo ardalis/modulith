@@ -42,7 +42,7 @@ Run:
 dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
 ```
 
-That's it, no need to register the new service ([but you can](Direct service registration)). The template scans you assemblies and registers services from your modules.
+That's it, no need to register the new service -- [but you can](#direct-service-registration). The template scans you assemblies and registers services from your modules.
 
 Happy coding!
 
