@@ -39,7 +39,7 @@ dotnet new modulith-proj --add-module Shipments --to eShop
 Run:
 
 ``` pwsh
-dotnet add eShop.Web/eShop.Web.csproj reference Shipment/eShop.Shipment/eShop.Shipment.csproj
+dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
 ```
 
 And add the service registration in `program.cs`:
