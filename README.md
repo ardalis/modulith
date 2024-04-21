@@ -42,12 +42,14 @@ Run:
 dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
 ```
 
-And add the service registration in `program.cs`:
+That's it, no need to register the new service. 
+
+The template scans you assemblies and registers services from your modules, but if you prefer more control and less magic, or you want to modify registration class, remove the `builder.DiscoverAndRegisterModules();`  in `program.cs` and add the service registration for each module:
+
 ```cs
 using eShop.Shipments
 ...
-// Add module services
-builder.AddShipmentsServices();
+PaymentsModuleServiceRegistrar.ConfigureServices(builder);
 ```
 
 That's it. Running the solution should show both modules with their default endpoint:
