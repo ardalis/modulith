@@ -1,4 +1,4 @@
-namespace Modulith.DddModule.Domain;
+namespace Modulith.NewModule.Domain;
 
 public enum Summary
 {

@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Modulith.DddModule.Api;
+using Modulith.NewModule.Api;
 using Modulith.SharedKernel;
 
-namespace Modulith.DddModule;
+namespace Modulith.NewModule;
 
-public class DddModuleServiceRegistrar : IRegisterModuleServices
+public class NewModuleServiceRegistrar : IRegisterModuleServices
 {
   public static IHostApplicationBuilder ConfigureServices(IHostApplicationBuilder builder)
   {
@@ -17,7 +17,7 @@ public class DddModuleServiceRegistrar : IRegisterModuleServices
 
     builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
     
-    logger.LogInformation("⚙️ DddModule module services registered");
+    logger.LogInformation("⚙️ NewModule module services registered");
 
     return builder;
   }

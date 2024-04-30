@@ -1,6 +1,5 @@
 {
-  "$schema": "http://json.schemastore.org/template",
-  "$comment": "See https://aka.ms/template-json-reference for complete configuration description. Complete TODOs below and remove the $comment properties. It is recommended to use the JSON editor that supports schema hints to get more information about defined JSON properties and their description.",
+  "$schema": "http://json.schemastore.org/add",
   "author": "David Chaparro",
   "classifications": [
     "Web",
@@ -11,7 +10,7 @@
     "Monolith"
   ],
   "name": "modulith",
-  "description": "A solution template for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
+  "description": "A solution add for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
   "precedence": "0",
   "identity": "Davidc.Modulith.1.0",
   "shortName": "modulith",
@@ -24,15 +23,29 @@
   "preferDefaultName": true,
   "preferNameDirectory": true,
   "symbols": {
-    "solution": {
+    "add": {
       "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": true
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "solution",
+          "description": "Starter solution with one basic module"
+        },
+        {
+          "choice": "basic-module",
+          "description": "Basic module"
+        },
+        {
+          "choice": "ddd-module",
+          "description": "Ddd module"
+        }
+      ],
+      "defaultValue": "solution",
+      "description": "The type of authentication to use"
     },
-    "add-module": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": false
+    "IsSolution": {
+      "type": "computed",
+      "value": "(add == \"solution\")"
     },
     "with-module": {
       "type": "parameter",
@@ -40,8 +53,8 @@
       "defaultValue": "FirstModule",
       "fileRename": "NewModule",
       "replaces": "NewModule",
-      "isEnabled": "(solution)",
-      "isRequired": "(solution && !add-module)"
+      "isEnabled": "(add == \"solution\")",
+      "isRequired": "(add == \"solution\")"
     },
     "with-name": {
       "type": "parameter",
@@ -49,8 +62,8 @@
       "defaultValue": "MyModule",
       "fileRename": "NewModule",
       "replaces": "NewModule",
-      "isEnabled": "(add-module)",
-      "isRequired": "(add-module)"
+      "isEnabled": "(add != \"solution\")",
+      "isRequired": "(add != \"solution\")"
     },
     "to": {
       "displayName": "Existing project relative path",
@@ -65,68 +78,63 @@
     {
       "source": "./",
       "target": "./",
-      "condition": "(solution && !add-module)",
-      "modifiers": [
-        {
-          "condition": "(solution)",
-          "include": [
-            "Modulith.SharedKernel/**/*",
-            "Modulith.Web/**/*",
-            "NewModule/**/*",
-            ".gitignore",
-            "Directory.Build.props",
-            "Modulith.sln"
-          ],
-          "exclude": [
-            "DddModule/**",
-            "TestModulith.sln"
-          ]
-        }
+      "condition": "(IsSolution)",
+      "include": [
+        "Modulith.SharedKernel/**/*",
+        "Modulith.Web/**/*",
+        "NewModule/**/*",
+        ".gitignore",
+        "Directory.Build.props",
+        "Modulith.sln"
       ]
     },
     {
       "source": ".",
       "target": "./",
-      "condition": "(add-module)",
+      "condition": "(add == \"basic-module\")",
       "rename": {
-        "NewModule/" : "NewModule/"
+        "NewModule/": "NewModule/"
+      },
+      "include": [
+        "NewModule/**/*"
+      ]
+    },
+    {
+      "source": ".",
+      "target": "./",
+      "condition": "(add == \"ddd-module\")",
+      "rename": {
+        "DddModule": "NewModule"
       },
       "modifiers": [
         {
-          "condition": "(solution)",
-          "exclude": [
-            "Modulith.SharedKernel/**/*",
-            "Modulith.Web/**/*",
-            "DddModule/**/*",
-            ".gitignore",
-            "Directory.Build.props",
-            "Modulith.sln",
-            "TestModulith.sln"
-          ],
-          "include": [
-            "NewModule/**/*"
-          ]
+          "rename": {
+            "DddModule": "NewModule"
+          }
         }
+      ],
+      "include": [
+        "DddModule/**/*"
       ]
     }
   ],
   "primaryOutputs": [
     {
-      "condition": "(add-module)",
+      "condition": "(!IsSolution)",
       "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
     },
     {
-      "condition": "(add-module)",
+      "condition": "(!IsSolution)",
       "path": "NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj"
     },
     {
-      "condition": "(add-module)",
+      "condition": "(!IsSolution)",
       "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
   ],
   "postActions": [
     {
-      "condition": "(add-module)",
+      "condition": "(!IsSolution)",
       "description": "Add projects to solution",
       "manualInstructions": [
         {
@@ -137,7 +145,7 @@
       "continueOnError": true
     },
     {
-      "condition": "(add-module)",
+      "condition": "(!IsSolution)",
       "description": "Adding a reference to Web project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
@@ -159,7 +167,7 @@
       }
     },
     {
-      "condition": "(add-module)",
+      "condition": "(!IsSolution)",
       "description": "Adding a reference to SharedKernel",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,

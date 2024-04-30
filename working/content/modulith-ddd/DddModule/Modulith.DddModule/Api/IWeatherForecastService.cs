@@ -1,4 +1,4 @@
-namespace Modulith.DddModule.Api;
+namespace Modulith.NewModule.Api;
 
 internal interface IWeatherForecastService
 {

@@ -1,11 +1,11 @@
 using FastEndpoints;
 using FastEndpoints.Testing;
 using FluentAssertions;
-using Modulith.DddModule.Api;
+using Modulith.NewModule.Api;
 
-namespace Modulith.DddModule.Tests;
+namespace Modulith.NewModule.Tests;
 
-public class WeatherForecastEndpointShould(DddModuleFixture fixture) : TestBase<DddModuleFixture>
+public class WeatherForecastEndpointShould(NewModuleFixture fixture) : TestBase<NewModuleFixture>
 {
   [Fact]
   public async Task ReturnWeatherForecastDataAsync()

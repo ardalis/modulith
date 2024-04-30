@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Modulith.DddModule\Modulith.DddModule.csproj" />
+    <ProjectReference Include="..\Modulith.NewModule\Modulith.NewModule.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,13 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Modulith.DddModule.Api;
+using Modulith.NewModule.Api;
 
-namespace Modulith.DddModule;
+namespace Modulith.NewModule;
 
-public static class DddModuleModuleHostApplicationBuilderExtensions
+public static class NewModuleModuleHostApplicationBuilderExtensions
 {
-  public static void AddDddModuleServices(this IHostApplicationBuilder builder)
+  public static void AddNewModuleServices(this IHostApplicationBuilder builder)
   {
     var logger = GetLogger(builder);
     builder.Services.AddMediatR(
@@ -16,7 +16,7 @@ public static class DddModuleModuleHostApplicationBuilderExtensions
 
     builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
     
-    logger.LogInformation("⚙️ DddModule module services registered");
+    logger.LogInformation("⚙️ NewModule module services registered");
   }
   
   private static ILogger<WebApplicationBuilder> GetLogger(IHostApplicationBuilder builder) 

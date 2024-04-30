@@ -1,6 +1,6 @@
-using Modulith.DddModule.Api;
+using Modulith.NewModule.Api;
 
-namespace Modulith.DddModule.Domain;
+namespace Modulith.NewModule.Domain;
 
 internal class Weather(DateOnly date, int temperatureC, Summary summary)
 {
