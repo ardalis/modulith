@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json.schemastore.org/add",
+  "$schema": "http://json.schemastore.org/template",
   "author": "David Chaparro",
   "classifications": [
     "Web",
@@ -60,10 +60,13 @@
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "MyModule",
-      "fileRename": "NewModule",
-      "replaces": "NewModule",
       "isEnabled": "(add != \"solution\")",
-      "isRequired": "(add != \"solution\")"
+      "isRequired": "(add != \"solution\")",
+      "fileRename": "NewModule",
+      "replaces": "_Module",
+      "forms": {
+        "global": ["ddd", "new"]
+      }
     },
     "to": {
       "displayName": "Existing project relative path",
@@ -72,6 +75,18 @@
       "datatype": "string",
       "fileRename": "Modulith",
       "replaces": "Modulith"
+    }
+  },
+  "forms": {
+    "new": {
+      "identifier": "replace",
+      "pattern": "^_",
+      "replacement": "Ddd"
+    },
+    "ddd": {
+      "identifier": "replace",
+      "pattern": "^_",
+      "replacement": "New"
     }
   },
   "sources": [
@@ -93,10 +108,17 @@
       "target": "./",
       "condition": "(add == \"basic-module\")",
       "rename": {
-        "NewModule/": "NewModule/"
+        "DddModule": "NewModule"
       },
       "include": [
         "NewModule/**/*"
+      ],
+      "modifiers": [
+        {
+          "rename": {
+            "DddModule": "NewModule"
+          }
+        }
       ]
     },
     {
