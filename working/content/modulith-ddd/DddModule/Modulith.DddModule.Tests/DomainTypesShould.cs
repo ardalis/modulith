@@ -3,7 +3,7 @@ using ArchUnitNET.Fluent;
 using ArchUnitNET.Loader;
 using ArchUnitNET.xUnit;
 
-namespace Modulith.NewModule.Tests;
+namespace Modulith.DddModule.Tests;
 
 public class DomainTypesShould
 {
@@ -17,14 +17,14 @@ public class DomainTypesShould
   {
     var domainTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.NewModule.Domain.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleHostApplicationBuilderExtensions)])
+      .ResideInNamespace("Modulith.DddModule.Domain.*", useRegularExpressions: true)
+      .And().AreNot([typeof(AssemblyInfo), typeof(DddModuleModuleHostApplicationBuilderExtensions)])
       .As("Domain types");
     
     var apiTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.NewModule.Api.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleHostApplicationBuilderExtensions)])
+      .ResideInNamespace("Modulith.DddModule.Api.*", useRegularExpressions: true)
+      .And().AreNot([typeof(AssemblyInfo), typeof(DddModuleModuleHostApplicationBuilderExtensions)])
       .As("Api types");
 
     var rule = domainTypes.Should().NotDependOnAny(apiTypes);

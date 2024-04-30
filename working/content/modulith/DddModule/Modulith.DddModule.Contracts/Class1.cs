@@ -1,4 +1,4 @@
-namespace Modulith.NewModule.Contracts;
+namespace Modulith.DddModule.Contracts;
 
 public class Class1
 {
