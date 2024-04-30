@@ -10,11 +10,11 @@
     "Modular",
     "Monolith"
   ],
-  "name": "modulith-proj",
+  "name": "modulith-ddd",
   "description": "A project template for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
   "precedence": "0",
-  "identity": "Davidc.Modulith.Proj.Project.1.0",
-  "shortName": "modulith-proj",
+  "identity": "Davidc.Modulith.Ddd.Project.1.0",
+  "shortName": "modulith-ddd",
   "tags": {
     "language": "C#",
     "type": "solution"
@@ -38,7 +38,7 @@
       "datatype": "string",
       "defaultValue": "ExistingProject/ExistingProject.csproj",
       "fileRename": "ExistingProject"
-    }
+  }
   },
   "sources": [
     {
@@ -59,7 +59,8 @@
     {
       "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
-  ],
+  ]
+  ,
   "postActions": [
     {
       "description": "Add projects to solution",
@@ -72,7 +73,7 @@
       "continueOnError": true
     },
     {
-      "description": "Adding a reference to Web project",
+      "description": "Adding a reference to another project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
@@ -90,27 +91,6 @@
         ],
         "referenceType": "project",
         "reference": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
-      }
-    },
-    {
-      "description": "Adding a reference to SharedKernel",
-      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
-      "continueOnError": true,
-      "manualInstructions": [
-        {
-          "text": "Manually add the reference in the web project to the new project"
-        }
-      ],
-      "applyFileRenamesToArgs": [
-        "targetFiles",
-        "reference"
-      ],
-      "args": {
-        "targetFiles": [
-          "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
-        ],
-        "referenceType": "project",
-        "reference": "Modulith.SharedKernel/Modulith.SharedKernel.csproj"
       }
     }
   ]

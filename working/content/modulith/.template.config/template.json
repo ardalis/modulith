@@ -8,7 +8,8 @@
     "API",
     "Service",
     "Modular",
-    "Monolith" ],
+    "Monolith"
+  ],
   "name": "modulith",
   "description": "A solution template for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
   "precedence": "0",
@@ -23,20 +24,161 @@
   "preferDefaultName": true,
   "preferNameDirectory": true,
   "symbols": {
+    "solution": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": true
+    },
+    "add-module": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": false
+    },
     "with-module": {
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "FirstModule",
       "fileRename": "NewModule",
       "replaces": "NewModule",
-      "isEnabled": true,
-      "isRequired": false
+      "isEnabled": "(solution)",
+      "isRequired": "(solution && !add-module)"
+    },
+    "with-name": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MyModule",
+      "fileRename": "NewModule",
+      "replaces": "NewModule",
+      "isEnabled": "(add-module)",
+      "isRequired": "(add-module)"
+    },
+    "to": {
+      "displayName": "Existing project relative path",
+      "description": "Path relative to the working directory",
+      "type": "parameter",
+      "datatype": "string",
+      "fileRename": "Modulith",
+      "replaces": "Modulith"
     }
   },
   "sources": [
     {
+      "source": "./",
+      "target": "./",
+      "condition": "(solution && !add-module)",
+      "modifiers": [
+        {
+          "condition": "(solution)",
+          "include": [
+            "Modulith.SharedKernel/**/*",
+            "Modulith.Web/**/*",
+            "NewModule/**/*",
+            ".gitignore",
+            "Directory.Build.props",
+            "Modulith.sln"
+          ],
+          "exclude": [
+            "DddModule/**",
+            "TestModulith.sln"
+          ]
+        }
+      ]
+    },
+    {
       "source": ".",
-      "target": "./"
+      "target": "./",
+      "condition": "(add-module)",
+      "rename": {
+        "NewModule/" : "NewModule/"
+      },
+      "modifiers": [
+        {
+          "condition": "(solution)",
+          "exclude": [
+            "Modulith.SharedKernel/**/*",
+            "Modulith.Web/**/*",
+            "DddModule/**/*",
+            ".gitignore",
+            "Directory.Build.props",
+            "Modulith.sln",
+            "TestModulith.sln"
+          ],
+          "include": [
+            "NewModule/**/*"
+          ]
+        }
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "condition": "(add-module)",
+      "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+    },
+    {
+      "condition": "(add-module)",
+      "path": "NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj"
+    },
+    {
+      "condition": "(add-module)",
+      "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "condition": "(add-module)",
+      "description": "Add projects to solution",
+      "manualInstructions": [
+        {
+          "text": "Add generated project(s) to solution manually."
+        }
+      ],
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "continueOnError": true
+    },
+    {
+      "condition": "(add-module)",
+      "description": "Adding a reference to Web project",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Manually add the reference in the web project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "Modulith.Web/Modulith.Web.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+      }
+    },
+    {
+      "condition": "(add-module)",
+      "description": "Adding a reference to SharedKernel",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Manually add the reference in the web project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "Modulith.SharedKernel/Modulith.SharedKernel.csproj"
+      }
     }
   ]
 }

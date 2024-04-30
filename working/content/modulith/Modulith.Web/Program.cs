@@ -38,4 +38,10 @@ app.UseAuthentication()
 
 app.Run();
 
-
+namespace Modulith.Web
+{
+  public partial class Program
+  {
+    
+  }
+}
