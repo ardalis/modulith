@@ -62,7 +62,7 @@
       "defaultValue": "MyModule",
       "isEnabled": "(add != \"solution\")",
       "isRequired": "(add != \"solution\")",
-      "fileRename": "NewModule",
+      "fileRename": "_Module",
       "replaces": "_Module",
       "forms": {
         "global": ["ddd", "new"]
@@ -107,34 +107,14 @@
       "source": ".",
       "target": "./",
       "condition": "(add == \"basic-module\")",
-      "rename": {
-        "DddModule": "NewModule"
-      },
       "include": [
         "NewModule/**/*"
-      ],
-      "modifiers": [
-        {
-          "rename": {
-            "DddModule": "NewModule"
-          }
-        }
       ]
     },
     {
       "source": ".",
       "target": "./",
       "condition": "(add == \"ddd-module\")",
-      "rename": {
-        "DddModule": "NewModule"
-      },
-      "modifiers": [
-        {
-          "rename": {
-            "DddModule": "NewModule"
-          }
-        }
-      ],
       "include": [
         "DddModule/**/*"
       ]
