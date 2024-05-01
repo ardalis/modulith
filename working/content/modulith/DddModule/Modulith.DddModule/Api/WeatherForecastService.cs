@@ -1,6 +1,9 @@
+using Modulith.DddModule.Infrastructure;
+
 namespace Modulith.DddModule.Api;
 
-internal class WeatherForecastService : IWeatherForecastService
+internal class WeatherForecastService(ITemperatureService
+    temperatureService) : IWeatherForecastService
 {
   public WeatherForecastResponse[] GetWeatherForecast(string[] summaries)
   {
@@ -10,7 +13,7 @@ internal class WeatherForecastService : IWeatherForecastService
         new WeatherForecastResponse
         (
           DateOnly.FromDateTime(DateTime.Now.AddDays(random)),
-          Random.Shared.Next(-20, 55),
+          temperatureService.GetTemperature(),
           summaries[Random.Shared.Next(summaries.Length)]
         ))
       .ToArray();
