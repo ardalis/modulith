@@ -100,7 +100,8 @@
         "NewModule/**/*",
         ".gitignore",
         "Directory.Build.props",
-        "Modulith.sln"
+        "Modulith.sln",
+        "Shared/**/*"
       ]
     },
     {

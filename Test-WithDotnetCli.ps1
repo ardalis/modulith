@@ -7,3 +7,7 @@ dotnet new modulith -n eShop --with-module Payments
 cd eShop
 dotnet new modulith --add basic-module --with-name Shipments --to eShop
 dotnet new modulith --add ddd-module --with-name Billing --to eShop
+
+dotnet build
+
+dotnet run --project ./eShop.Web/eShop.Web.csproj

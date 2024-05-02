@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Contract
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Tests", "NewModule\Modulith.NewModule.Tests\Modulith.NewModule.Tests.csproj", "{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.SharedKernel", "Modulith.SharedKernel\Modulith.SharedKernel.csproj", "{EDFA53B3-520A-4212-AF95-8FE79AE765FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.SharedKernel", "Shared/Modulith.SharedKernel\Modulith.SharedKernel.csproj", "{EDFA53B3-520A-4212-AF95-8FE79AE765FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
