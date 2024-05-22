@@ -29,7 +29,7 @@ dotnet new modulith -n eShop --with-module Payments
 
 ``` pwsh
 cd eShop
-dotnet new modulith --add basic --with-name Shipments --to eShop
+dotnet new modulith --add basic-module --with-name Shipments --to eShop
 ```
 
 *⚠️ `cd` into the solution folder to add the module inside the solution.*
