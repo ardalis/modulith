@@ -151,7 +151,7 @@
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference in the web project to the new project"
+          "text": "This is a known issue and is fixed in .Net 9. Manually add the reference in the web project to the new project"
         }
       ],
       "applyFileRenamesToArgs": [
@@ -173,7 +173,7 @@
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference in the web project to the new project"
+          "text": "This is a known issue and is fixed in .Net 9. For now, manually add the reference in the web project to the new project"
         }
       ],
       "applyFileRenamesToArgs": [
