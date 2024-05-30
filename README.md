@@ -1,7 +1,9 @@
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/Productive.Modulith)](https://www.nuget.org/packages/Productive.Modulith)
 
-**⚠️This project is a work in progress. And will likely recieve many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
+**⚠️This project is a work in progress. And will likely receive many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
+
+(originally hosted at **david-acm/modulith** - thanks David for the contribution!)
 
 Modulith is a `dotnet new template` suite for Modular Monoliths. It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
 
