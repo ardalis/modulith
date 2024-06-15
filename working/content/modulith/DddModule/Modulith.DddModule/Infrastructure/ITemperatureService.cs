@@ -1,6 +1,6 @@
 namespace Modulith.DddModule.Infrastructure;
 
-public interface ITemperatureService
+internal interface ITemperatureService
 {
   public int GetTemperature();
 }
