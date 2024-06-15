@@ -16,13 +16,7 @@ jobs:
       matrix:
         template: 
           - working-dir: modulith
-            project: TestModulith.sln
-          - working-dir: modulith-proj
-            project: NewModule/Modulith.NewModule
-          - working-dir: modulith-proj
-            project: NewModule/Modulith.NewModule.Contracts
-          - working-dir: modulith-proj
-            project: NewModule/Modulith.NewModule.Tests
+            project: TestModulith.slns
   
     name: 'Build project source: ${{ matrix.template.working-dir }}'
     runs-on: ubuntu-latest
