@@ -16,7 +16,7 @@ jobs:
       matrix:
         template: 
           - working-dir: modulith
-            project: TestModulith.slns
+            project: TestModulith.sln
   
     name: 'Build project source: ${{ matrix.template.working-dir }}'
     runs-on: ubuntu-latest
