@@ -1,4 +1,4 @@
-namespace eShop.UI;
+namespace Modulith.UI;
 
 public static class ServiceCollectionExtensions
 {

@@ -2,7 +2,7 @@ using Modulith.UI;
 using Modulith.UI.Pages;
 using Modulith.Web.Components;
 
-namespace eShop.Web;
+namespace Modulith.Web;
 
 public static class ConventionBuilderExtensions
 {
