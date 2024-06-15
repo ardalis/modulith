@@ -117,7 +117,8 @@
             "Shared/Modulith.UI/**/*",
             "NewModule/Modulith.NewModule.UI/**/*",
             "Modulith.Web/wwwroot/**/*",
-            "Modulith.Web/Components/**/*"
+            "Modulith.Web/Components/**/*",
+            "Modulith.Web/ConventionBuilderExtensions.cs"
           ]
         }
       ]
@@ -134,6 +135,7 @@
           "condition": "!(WithUi)",
           "exclude": [
             "NewModule/Modulith.NewModule.UI/**/*"
+            
           ]
         }
       ]
