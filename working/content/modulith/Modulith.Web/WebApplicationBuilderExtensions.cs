@@ -25,6 +25,19 @@ public static class WebApplicationBuilderExtensions
       config.AddConfiguration(webApplicationBuilder.Configuration.GetSection("Logging"));
     }).CreateLogger(nameof(WebApplicationBuilderExtensions));
 
+  private static List<AssemblyName> DiscoverModuleAssemblies(ILogger logger)
+  {
+    var solutionAssemblies = GetAllSolutionAssemblies();
+    var paths              = GetAssembliesPaths(solutionAssemblies);
+
+    var discoveredAssemblies = GetDiscoveredAssemblies(logger, paths);
+
+    logger.LogDebug("🧩 Found the following assembly modules");
+    discoveredAssemblies.ForEach(d => logger.LogDebug("🧩 {name}", d.Name));
+
+    return discoveredAssemblies;
+  }
+
   private static IEnumerable<string> GetAppAssemblies()
     => AppDomain.CurrentDomain.GetAssemblies().ToList().Select(a => a.Location).ToArray();
 
@@ -136,19 +149,6 @@ public static class WebApplicationBuilderExtensions
     }
 
     return true;
-  }
-
-  private static List<AssemblyName> DiscoverModuleAssemblies(ILogger logger)
-  {
-    var solutionAssemblies = GetAllSolutionAssemblies();
-    var paths              = GetAssembliesPaths(solutionAssemblies);
-
-    var discoveredAssemblies = GetDiscoveredAssemblies(logger, paths);
-
-    logger.LogDebug("🧩 Found the following assembly modules");
-    discoveredAssemblies.ForEach(d => logger.LogDebug("🧩 {name}", d.Name));
-
-    return discoveredAssemblies;
   }
 
   private static List<Assembly> LoadAssembliesToApp(List<AssemblyName> assemblyModuleNames, ILogger logger)

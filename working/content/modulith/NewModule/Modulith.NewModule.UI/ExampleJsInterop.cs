@@ -11,25 +11,25 @@ namespace Modulith.NewModule.UI;
 
 public class ExampleJsInterop : IAsyncDisposable
 {
-  private readonly Lazy<Task<IJSObjectReference>> moduleTask;
+  private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
 
   public ExampleJsInterop(IJSRuntime jsRuntime)
   {
-    moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
+    _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
       "import", "./_content/Modulith.NewModule.UI/exampleJsInterop.js").AsTask());
   }
 
   public async ValueTask<string> Prompt(string message)
   {
-    var module = await moduleTask.Value;
+    var module = await _moduleTask.Value;
     return await module.InvokeAsync<string>("showPrompt", message);
   }
 
   public async ValueTask DisposeAsync()
   {
-    if (moduleTask.IsValueCreated)
+    if (_moduleTask.IsValueCreated)
     {
-      var module = await moduleTask.Value;
+      var module = await _moduleTask.Value;
       await module.DisposeAsync();
     }
   }

@@ -18,3 +18,7 @@
     --bs-nav-link-color: var(--mud-palette-primary) !important;
     --bs-nav-link-hover-color: var(--mud-palette-primary-darken) !important;
 }
+
+.full-height {
+    height: calc(100vh - calc(var(--mud-appbar-height) * 1.5));
+}

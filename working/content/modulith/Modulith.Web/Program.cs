@@ -1,17 +1,14 @@
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
-using Modulith.NewModule;
+#if (WithUi)
 using Modulith.NewModule.UI;
-
-#region Blazor Usings
-using Modulith.UI.Pages;
 using Modulith.UI;
+using Modulith.UI.Pages;
 using Modulith.Web.Components;
 using MudBlazor.Services;
-#endregion
+#endif
 using Modulith.Web;
-using MudBlazor.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +22,10 @@ builder.Services.AddSwaggerGen();
 // Or use the discover method below to try and find the services for your modules
 builder.DiscoverAndRegisterModules();
 
+#if (WithUi)
+builder.Services.AddBlazorAssemblyDiscovery();
+#endif
+
 builder.Services
   .AddAuthenticationJwtBearer(s =>
   {
@@ -35,44 +36,35 @@ builder.Services
   .SwaggerDocument()
   .AddFastEndpoints();
 
-#region BlazorServices
+#if (WithUi)
 // Add services to the container.
 builder.Services.AddRazorComponents()
   .AddInteractiveServerComponents()
   .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddMudServices();
-builder.Services.RegisterNewModuleSpaServices();
-
-#endregion
-
+#endif
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
-
-#region Blazor static files
-app.UseStaticFiles();
-#endregion
+#if (WithUi)
+app.UseStaticFiles()
+  .UseWebAssemblyDebugging();
+#endif
 
 // Use FastEndpoints
 app.UseAuthentication()
   .UseAuthorization()
-  #region Blazor Middleware
+#if (WithUi)
   .UseRouting()
   .UseAntiforgery()
-  #endregion
+#endif
   .UseFastEndpoints()
   .UseSwaggerGen();
 
-#region Blazor Component Middleware
-var componentBuilder = app.MapRazorComponents<App>()
-  .AddInteractiveServerRenderMode()
-  .AddInteractiveWebAssemblyRenderMode()
-  .AddAdditionalAssemblies(typeof(Counter).Assembly);
-  
-componentBuilder.AddAdditionalAssemblies(typeof(ModularComponent).Assembly);
-#endregion
+#if (WithUi)
+app.AddBlazorModulesAdditionalAssemblies();
+#endif
 
 app.Run();
 
