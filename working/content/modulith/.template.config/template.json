@@ -159,6 +159,10 @@
       "path": "NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
     },
     {
+      "condition": "(WithUi)",
+      "path": "NewModule/Modulith.NewModule.HttpModels/Modulith.NewModule.HttpModels.csproj"
+    },
+    {
       "condition": "(!IsSolution)",
       "path": "Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
     },

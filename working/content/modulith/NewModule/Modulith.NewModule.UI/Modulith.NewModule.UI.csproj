@@ -16,4 +16,8 @@
         <PackageReference Include="MudBlazor" Version="6.*" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj" />
+    </ItemGroup>
+
 </Project>
