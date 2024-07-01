@@ -11,6 +11,8 @@ ide: QDNET
 profile:
   name: qodana.starter
 
+dotnet:
+    solution: working/content/modulith/TestModulith.sln
 #Enable inspections
 #include:
 #  - name: <SomeEnabledInspectionId>
