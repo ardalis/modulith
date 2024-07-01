@@ -1,0 +1,34 @@
+﻿@using System.Reflection
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@inject ILogger<Routes> Logger
+@inject IServiceProvider Services
+
+<Router AppAssembly="@typeof(Program).Assembly" 
+        AdditionalAssemblies="_lazyLoadedAssemblies"
+        OnNavigateAsync="OnNavigateAsync">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+</Router>
+
+@code {
+    private List<Assembly> _lazyLoadedAssemblies = new();
+
+    [Inject]
+    private IBlazorAssemblyDiscoveryService? BlazorAssemblyDiscovery { get; set; }
+
+    private Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+        {
+            _lazyLoadedAssemblies.AddRange(BlazorAssemblyDiscovery!.GetAssemblies());
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Error: {Message}", ex.Message);
+        }
+
+        return Task.CompletedTask;
+    }
+}

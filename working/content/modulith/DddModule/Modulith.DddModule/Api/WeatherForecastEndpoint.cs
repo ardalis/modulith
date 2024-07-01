@@ -1,6 +1,6 @@
 using FastEndpoints;
 
-namespace Modulith.NewModule.Api;
+namespace Modulith.DddModule.Api;
 
 internal record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
 
@@ -9,7 +9,7 @@ internal class WeatherForecastEndpoint(IWeatherForecastService weatherForecastSe
   public override void Configure()
   {
     AllowAnonymous();
-    Get("/NewModule/weatherforecast");
+    Get("/DddModule/weatherforecast");
   }
 
   public override async Task HandleAsync(CancellationToken ct)

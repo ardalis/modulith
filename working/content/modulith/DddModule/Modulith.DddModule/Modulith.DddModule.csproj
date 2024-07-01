@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Modulith.SharedKernel\Modulith.SharedKernel.csproj" />
+      <ProjectReference Include="..\..\Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj" />
     </ItemGroup>
 
 </Project>

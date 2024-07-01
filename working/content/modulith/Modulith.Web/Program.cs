@@ -1,7 +1,13 @@
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
-using Modulith.NewModule;
+#if (WithUi)
+using Modulith.NewModule.UI;
+using Modulith.UI;
+using Modulith.UI.Pages;
+using Modulith.Web.Components;
+using MudBlazor.Services;
+#endif
 using Modulith.Web;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +22,10 @@ builder.Services.AddSwaggerGen();
 // Or use the discover method below to try and find the services for your modules
 builder.DiscoverAndRegisterModules();
 
+#if (WithUi)
+builder.Services.AddBlazorAssemblyDiscovery();
+#endif
+
 builder.Services
   .AddAuthenticationJwtBearer(s =>
   {
@@ -26,15 +36,35 @@ builder.Services
   .SwaggerDocument()
   .AddFastEndpoints();
 
+#if (WithUi)
+// Add services to the container.
+builder.Services.AddRazorComponents()
+  .AddInteractiveServerComponents()
+  .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddMudServices();
+#endif
 var app = builder.Build();
 
 app.UseHttpsRedirection();
+#if (WithUi)
+app.UseStaticFiles()
+  .UseWebAssemblyDebugging();
+#endif
 
 // Use FastEndpoints
 app.UseAuthentication()
   .UseAuthorization()
+#if (WithUi)
+  .UseRouting()
+  .UseAntiforgery()
+#endif
   .UseFastEndpoints()
   .UseSwaggerGen();
+
+#if (WithUi)
+app.AddBlazorModulesAdditionalAssemblies();
+#endif
 
 app.Run();
 

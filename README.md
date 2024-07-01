@@ -10,7 +10,7 @@ Modulith is a `dotnet new template` suite for Modular Monoliths. It streamlines 
 But, what is a Modular Monolith? Glad you asked. It is a software architecture style to build maintainable applications as a single unit, but in nicely separated modules (Modu-lith, pun intended 🙃). 
  More [about Modular Monoliths](#about-modular-monoliths).
 
-# 🏁 Start here
+# 🚀 Quickstart
 
 #### Install by running:
 
@@ -64,7 +64,6 @@ using eShop.Shipments
 PaymentsModuleServiceRegistrar.ConfigureServices(builder);
 ```
 
-
 # 🏛️ Solution directory structure
 
 The previous command creates the following project structure:
@@ -93,7 +92,7 @@ Since this is a Modular Monolith, there are a few rules that are enforced to gua
 
 ## Adding a reference automatically to new modules
 
-We support this, but the .Net SDK does not yet. There is an active PR at [dotnet/sdk #40133](https://github.com/dotnet/sdk/pull/40133). Give it a vote if you'd like this feature:
+This is only supported on .Net 9 preview 6. If you are running an earlier version you will need to run [these commands manually](#add-a-reference-to-the-new-module).
 
 ⚠️ `cd` into the solution folder. I.e. `eShop/`, then run:
 
@@ -101,7 +100,7 @@ We support this, but the .Net SDK does not yet. There is an active PR at [dotnet
 dotnet new modulith-proj --ModuleName Shipments --existingProject eShop.Web/eShop.Web.csproj
 ```
 
-Here `Shipments` is the name of your new module, and `eShop.Web/eShop.Web.csproj` is the path to your web entry project. If you changed this, make sure you update it to the new path and that is relative to the solution folder.
+Here `Shipments` is the name of your new module, and `eShop.Web/eShop.Web.csproj` is the path to your web entry project. If you change this, make sure you update it to the new path and that is relative to the solution folder.
 
 # 📊 About Modular Monoliths
 
@@ -113,7 +112,7 @@ The templates in this project follow the solution structure as taught by [Ardali
 
 # 🛃 Custom templates
 
-No template fits all needs. If you weant to customize the template you can change it in the `working/content` directory and running:
+No template fits all needs. If you want to customize the template you can change it in the `working/content` directory and running:
 
 *⚠️ Make sure to uninstall the original template*
 ```pwsh

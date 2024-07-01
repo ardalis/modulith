@@ -7,13 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.Web", "Modulith.We
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewModule", "NewModule", "{A3EF1564-343E-4543-B052-4B917E4447FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{04A042B2-CF6F-4456-9EB5-DEA178B9B324}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule", "NewModule\Modulith.NewModule\Modulith.NewModule.csproj", "{7F15FFAA-822B-437A-B6F4-BCC2C31FB660}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Contracts", "NewModule\Modulith.NewModule.Contracts\Modulith.NewModule.Contracts.csproj", "{15EACFA3-099A-4AAB-931A-602509346105}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.NewModule.Tests", "NewModule\Modulith.NewModule.Tests\Modulith.NewModule.Tests.csproj", "{44CBFA29-6702-4744-8236-BBEF4FA6FFB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.SharedKernel", "Modulith.SharedKernel\Modulith.SharedKernel.csproj", "{EDFA53B3-520A-4212-AF95-8FE79AE765FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modulith.SharedKernel", "Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj", "{EDFA53B3-520A-4212-AF95-8FE79AE765FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,5 +51,6 @@ Global
 		{7F15FFAA-822B-437A-B6F4-BCC2C31FB660} = {A3EF1564-343E-4543-B052-4B917E4447FD}
 		{15EACFA3-099A-4AAB-931A-602509346105} = {A3EF1564-343E-4543-B052-4B917E4447FD}
 		{44CBFA29-6702-4744-8236-BBEF4FA6FFB9} = {A3EF1564-343E-4543-B052-4B917E4447FD}
+		{EDFA53B3-520A-4212-AF95-8FE79AE765FF} = {04A042B2-CF6F-4456-9EB5-DEA178B9B324}
 	EndGlobalSection
 EndGlobal

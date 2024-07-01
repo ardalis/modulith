@@ -25,6 +25,19 @@ public static class WebApplicationBuilderExtensions
       config.AddConfiguration(webApplicationBuilder.Configuration.GetSection("Logging"));
     }).CreateLogger(nameof(WebApplicationBuilderExtensions));
 
+  private static List<AssemblyName> DiscoverModuleAssemblies(ILogger logger)
+  {
+    var solutionAssemblies = GetAllSolutionAssemblies();
+    var paths              = GetAssembliesPaths(solutionAssemblies);
+
+    var discoveredAssemblies = GetDiscoveredAssemblies(logger, paths);
+
+    logger.LogDebug("🧩 Found the following assembly modules");
+    discoveredAssemblies.ForEach(d => logger.LogDebug("🧩 {name}", d.Name));
+
+    return discoveredAssemblies;
+  }
+
   private static IEnumerable<string> GetAppAssemblies()
     => AppDomain.CurrentDomain.GetAssemblies().ToList().Select(a => a.Location).ToArray();
 
@@ -138,19 +151,6 @@ public static class WebApplicationBuilderExtensions
     return true;
   }
 
-  private static List<AssemblyName> DiscoverModuleAssemblies(ILogger logger)
-  {
-    var solutionAssemblies = GetAllSolutionAssemblies();
-    var paths              = GetAssembliesPaths(solutionAssemblies);
-
-    var discoveredAssemblies = GetDiscoveredAssemblies(logger, paths);
-
-    logger.LogDebug("🧩 Found the following assembly modules");
-    discoveredAssemblies.ForEach(d => logger.LogDebug("🧩 {name}", d.Name));
-
-    return discoveredAssemblies;
-  }
-
   private static List<Assembly> LoadAssembliesToApp(List<AssemblyName> assemblyModuleNames, ILogger logger)
   {
     var addedAssemblies = new List<Assembly>();
@@ -202,14 +202,11 @@ public static class WebApplicationBuilderExtensions
   }
 
   private static bool IsModuleAssembly(IEnumerable<string> loadedPaths, string r)
-    => !(IsAlreadyLoaded(loadedPaths, r) || IsCurrentExecutingAssembly(r) || IsSharedKernel(r));
+    => !(IsWebOrTestAssembly(r) || IsSharedKernel(r));
 
   private static bool IsSharedKernel(string r)
     => r.Contains("SharedKernel");
 
-  private static bool IsCurrentExecutingAssembly(string r)
-    => r == Assembly.GetExecutingAssembly().Location;
-
-  private static bool IsAlreadyLoaded(IEnumerable<string> loadedPaths, string r)
-    => loadedPaths.Contains(r, StringComparer.InvariantCultureIgnoreCase);
+  private static bool IsWebOrTestAssembly(string r)
+    => r.Contains(".Web.") || r.Contains(".Tests.");
 }

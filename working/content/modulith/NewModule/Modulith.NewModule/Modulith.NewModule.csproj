@@ -10,7 +10,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Modulith.SharedKernel\Modulith.SharedKernel.csproj" />
+      <ProjectReference Include="..\..\Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj" />
+      <!--#if (WithUi) -->
+      <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj" />
+      <!--#endif -->
     </ItemGroup>
 
 </Project>
