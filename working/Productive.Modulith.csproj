@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!-- The package metadata. Fill in the properties marked as TODO below -->
     <!-- Follow the instructions on https://learn.microsoft.com/en-us/nuget/create-packages/package-authoring-best-practices -->
-    <PackageId>Productive.Modulith</PackageId>
+    <PackageId>Ardalis.Modulith</PackageId>
     <MinVerTagPrefix>v</MinVerTagPrefix>
     <Title>Modulith</Title>
     <Authors>David Chaparro (davidacm7@outlook.com)</Authors>
