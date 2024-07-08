@@ -9,7 +9,7 @@
     <Authors>David Chaparro (davidacm7@outlook.com)</Authors>
     <Description>Modulith is a dotnet new template for Modular Monoliths. It streamlines the creation of new .Net solutions and the addition of modules to existing ones.</Description>
     <PackageTags>dotnet;.NET;dotnet new;dotnet cli;Visual Studio;template;project template;c#;modular;monolith;modular monolith</PackageTags>
-    <PackageProjectUrl>https://github.com/david-acm/modulith</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/ardalis/modulith</PackageProjectUrl>
 
     <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
     <PackageType>Template</PackageType>
