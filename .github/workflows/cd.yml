@@ -12,7 +12,7 @@ on:
 jobs:
   
   pack:
-    name: 'Pack'
+    name: 'Publish'
     runs-on: ubuntu-latest
 
     steps:
