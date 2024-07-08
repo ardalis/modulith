@@ -1,5 +1,5 @@
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/vpre/Productive.Modulith)](https://www.nuget.org/packages/Productive.Modulith)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
 **⚠️This project is a work in progress. And will likely receive many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
 
@@ -15,7 +15,7 @@ But, what is a Modular Monolith? Glad you asked. It is a software architecture s
 #### Install by running:
 
 ```pwsh
-dotnet new install Productive.Modulith
+dotnet new install Ardalis.Modulith
 ```
 
 #### Create a new solution:
@@ -123,5 +123,5 @@ dotnet new install .
 # 🗑️ Uninstall Modulith
 
 ```pwsh
-dotnet new uninstall Productive.Modulith
+dotnet new uninstall Ardalis.Modulith
 ```

@@ -1,5 +1,5 @@
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
-[![NuGet Version](https://img.shields.io/nuget/vpre/Productive.Modulith)](https://www.nuget.org/packages/Productive.Modulith)
+[![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
 Modulith is a `dotnet new template` suite for Modular Monoliths. It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
 
@@ -11,7 +11,7 @@ But, what is a Modular Monolith? Glad you asked. It is a software architecture s
 #### Install by running:
 
 ```pwsh
-dotnet new install Productive.Modulith
+dotnet new install Ardalis.Modulith
 ```
 
 #### Create a new solution:
@@ -100,5 +100,5 @@ dotnet new install .
 # 🗑️ Uninstall Modulith
 
 ```pwsh
-dotnet new uninstall Productive.Modulith
+dotnet new uninstall Ardalis.Modulith
 ```
