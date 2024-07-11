@@ -1,11 +1,11 @@
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
-**⚠️This project is a work in progress. And will likely receive many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
+**⚠️This project is a work in progress and will likely receive many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
 
 (originally hosted at **david-acm/modulith** - thanks David for the contribution!)
 
-Modulith is a `dotnet new template` suite for Modular Monoliths. It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
+Modulith is a `dotnet new template` suite for [Modular Monoliths](https://dometrain.com/bundle/from-zero-to-hero-modular-monoliths-in-dotnet/). It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
 
 But, what is a Modular Monolith? Glad you asked. It is a software architecture style to build maintainable applications as a single unit, but in nicely separated modules (Modu-lith, pun intended 🙃). 
  More [about Modular Monoliths](#about-modular-monoliths).
