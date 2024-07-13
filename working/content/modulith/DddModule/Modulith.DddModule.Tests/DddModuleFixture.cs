@@ -1,9 +1,9 @@
 using FastEndpoints.Testing;
 using Modulith.Web;
 
-namespace Modulith.NewModule.Tests;
+namespace Modulith.DddModule.Tests;
 
-public class NewModuleFixture : AppFixture<Program>
+public class DddModuleFixture : AppFixture<Program>
 {
   protected override async Task SetupAsync()
   {

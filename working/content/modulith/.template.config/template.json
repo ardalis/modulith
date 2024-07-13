@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json.schemastore.org/add",
+  "$schema": "http://json.schemastore.org/template",
   "author": "David Chaparro",
   "classifications": [
     "Web",
@@ -60,18 +60,40 @@
       "type": "parameter",
       "datatype": "string",
       "defaultValue": "MyModule",
-      "fileRename": "NewModule",
-      "replaces": "NewModule",
       "isEnabled": "(add != \"solution\")",
-      "isRequired": "(add != \"solution\")"
+      "isRequired": "(add != \"solution\")",
+      "fileRename": "_Module",
+      "replaces": "_Module",
+      "forms": {
+        "global": ["ddd", "new"]
+      }
     },
     "to": {
-      "displayName": "Existing project relative path",
+      "displayName": "To",
       "description": "Path relative to the working directory",
       "type": "parameter",
       "datatype": "string",
       "fileRename": "Modulith",
       "replaces": "Modulith"
+    },
+    "WithUi": {
+      "displayName": "With UI",
+      "type": "parameter",
+      "description": "Wether to add UI Blazor projects, and configuration",
+      "datatype": "bool",
+      "defaultValue": "false"
+    }
+  },
+  "forms": {
+    "new": {
+      "identifier": "replace",
+      "pattern": "^_",
+      "replacement": "Ddd"
+    },
+    "ddd": {
+      "identifier": "replace",
+      "pattern": "^_",
+      "replacement": "New"
     }
   },
   "sources": [
@@ -85,40 +107,65 @@
         "NewModule/**/*",
         ".gitignore",
         "Directory.Build.props",
-        "Modulith.sln"
+        "Modulith.sln",
+        "Shared/**/*"
+      ],
+      "modifiers": [
+        {
+          "condition": "!(WithUi)",
+          "exclude": [
+            "Shared/Modulith.UI/**/*",
+            "NewModule/Modulith.NewModule.UI/**/*",
+            "Modulith.Web/wwwroot/**/*",
+            "Modulith.Web/Components/**/*",
+            "Modulith.Web/ConventionBuilderExtensions.cs"
+          ]
+        }
       ]
     },
     {
       "source": ".",
       "target": "./",
       "condition": "(add == \"basic-module\")",
-      "rename": {
-        "NewModule/": "NewModule/"
-      },
       "include": [
         "NewModule/**/*"
+      ],
+      "modifiers": [
+        {
+          "condition": "!(WithUi)",
+          "exclude": [
+            "NewModule/Modulith.NewModule.UI/**/*"
+            
+          ]
+        }
       ]
     },
     {
       "source": ".",
       "target": "./",
       "condition": "(add == \"ddd-module\")",
-      "rename": {
-        "DddModule": "NewModule"
-      },
-      "modifiers": [
-        {
-          "rename": {
-            "DddModule": "NewModule"
-          }
-        }
-      ],
       "include": [
         "DddModule/**/*"
       ]
     }
   ],
   "primaryOutputs": [
+    {
+      "condition": "(WithUi)",
+      "path": "Shared/Modulith.UI/Modulith.UI.csproj"
+    },
+    {
+      "condition": "(WithUi)",
+      "path": "NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
+    },
+    {
+      "condition": "(WithUi)",
+      "path": "NewModule/Modulith.NewModule.HttpModels/Modulith.NewModule.HttpModels.csproj"
+    },
+    {
+      "condition": "(!IsSolution)",
+      "path": "Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
+    },
     {
       "condition": "(!IsSolution)",
       "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
@@ -134,7 +181,6 @@
   ],
   "postActions": [
     {
-      "condition": "(!IsSolution)",
       "description": "Add projects to solution",
       "manualInstructions": [
         {
@@ -146,7 +192,7 @@
     },
     {
       "condition": "(!IsSolution)",
-      "description": "Adding a reference to Web project",
+      "description": "Adding the new module as a reference to Web project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
@@ -167,13 +213,35 @@
       }
     },
     {
-      "condition": "(!IsSolution)",
-      "description": "Adding a reference to SharedKernel",
+      "condition": "(WithUi)",
+      "description": "Adding the new UI module as a reference to UI shared project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference in the web project to the new project"
+          "text": "Manually add the reference in the UI project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "Shared/Modulith.UI/Modulith.UI.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
+      }
+    },
+    {
+      "condition": "(!IsSolution)",
+      "description": "Adding the new module as a reference to SharedKernel",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "Manually add the reference in the shared kernel project to the new project"
         }
       ],
       "applyFileRenamesToArgs": [
@@ -185,7 +253,7 @@
           "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
         ],
         "referenceType": "project",
-        "reference": "Modulith.SharedKernel/Modulith.SharedKernel.csproj"
+        "reference": "Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
       }
     }
   ]

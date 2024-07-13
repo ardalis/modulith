@@ -1,0 +1,41 @@
+﻿<MudNavMenu>
+    <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+    <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
+    <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink>
+    <MudNavLink Href="api" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Api">API</MudNavLink>
+    <MudDivider />
+    @foreach (var module in UiModules)
+    {
+        // TODO: change the blazor discovery service
+        // TODO: refactor to use a regex expression to find the appropriate backend module assemblies
+        // TODO: allow the components to actually use the api
+        <MudNavLink
+            Href="@LinkBuilder(module)"
+            Match="NavLinkMatch.Prefix"
+            Icon="@Icons.Material.Filled.PieChart">
+            @module
+        </MudNavLink>
+    }
+
+</MudNavMenu>
+
+@code
+{
+    [Inject]
+    public IBlazorAssemblyDiscoveryService DiscoveryService { get; set; } = default!;
+
+    private string[] UiModules { get; set; } = [];
+
+    protected override void OnInitialized()
+    {
+        UiModules = DiscoveryService.GetAssemblies()
+            .Select(a => a.GetName().Name?.Split('.')[1] ?? string.Empty)
+            .Where(n => !string.IsNullOrEmpty(n))
+            .ToArray();
+    }
+    
+    private string LinkBuilder(string route)
+    {
+        return route + "/Component";
+    }
+}

@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Modulith.NewModule.Tests")]
-namespace Modulith.NewModule;
+[assembly: InternalsVisibleTo("Modulith.DddModule.Tests")]
+namespace Modulith.DddModule;
 
 public class AssemblyInfo { }
 

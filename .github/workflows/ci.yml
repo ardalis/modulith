@@ -16,13 +16,7 @@ jobs:
       matrix:
         template: 
           - working-dir: modulith
-            project: Modulith.sln
-          - working-dir: modulith-proj
-            project: NewModule/Modulith.NewModule
-          - working-dir: modulith-proj
-            project: NewModule/Modulith.NewModule.Contracts
-          - working-dir: modulith-proj
-            project: NewModule/Modulith.NewModule.Tests
+            project: TestModulith.sln
   
     name: 'Build project source: ${{ matrix.template.working-dir }}'
     runs-on: ubuntu-latest
@@ -65,13 +59,21 @@ jobs:
         working-directory: test
         run: dotnet new modulith -n eShop --with-module Payments 
         
-      - name: Instance project
+      - name: Instance basic project
         working-directory: test/eShop
-        run: dotnet new modulith-proj --add-module Shipments --to eShop
-      
+        run: dotnet new modulith --add basic-module --with-name Shipments --to eShop
+
       - name: Add project reference
         working-directory: test/eShop
         run: dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
+      
+      - name: Instance ddd project
+        working-directory: test/eShop
+        run: dotnet new modulith --add ddd-module --with-name Billing --to eShop
+      
+      - name: Add project reference
+        working-directory: test/eShop
+        run: dotnet add eShop.Web/eShop.Web.csproj reference Billing/eShop.Billing/eShop.Billing.csproj
         
       - name: Restore
         working-directory: test/eShop

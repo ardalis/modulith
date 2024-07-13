@@ -1,0 +1,3 @@
+iframe ::deep {
+    height: calc(100vh - calc(var(--mud-appbar-height) * 1.5));
+}

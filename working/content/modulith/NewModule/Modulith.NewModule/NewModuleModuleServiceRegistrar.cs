@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Modulith.NewModule.HttpModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Modulith.SharedKernel;
 
@@ -10,6 +11,8 @@ public class NewModuleModuleServiceRegistrar : IRegisterModuleServices
   {
     builder.Services.AddMediatR(
       c => c.RegisterServicesFromAssemblies(typeof(AssemblyInfo).Assembly));
+      
+    builder.Services.AddScoped<IWeatherForecastService, ServerWeatherForecastService>();
 
     return builder;
   }

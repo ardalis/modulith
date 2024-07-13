@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Modulith.Web\Modulith.Web.csproj" />
-    <ProjectReference Include="..\Modulith.NewModule\Modulith.NewModule.csproj" />
+    <ProjectReference Include="..\Modulith.DddModule\Modulith.DddModule.csproj" />
   </ItemGroup>
 
 </Project>
