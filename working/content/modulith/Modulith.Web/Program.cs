@@ -2,10 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 #if (WithUi)
-using Modulith.NewModule.UI;
 using Modulith.UI;
-using Modulith.UI.Pages;
-using Modulith.Web.Components;
 using MudBlazor.Services;
 #endif
 using Modulith.Web;
@@ -20,15 +17,14 @@ builder.Services.AddSwaggerGen();
 // NewModuleModuleServiceRegistrar.ConfigureServices(builder);
 
 // Or use the discover method below to try and find the services for your modules
-builder.DiscoverAndRegisterModules();
+builder.Services.DiscoverAndRegisterModules();
 
 #if (WithUi)
 builder.Services.AddBlazorAssemblyDiscovery();
 #endif
 
 builder.Services
-  .AddAuthenticationJwtBearer(s =>
-  {
+  .AddAuthenticationJwtBearer(s => {
     // TODO: Add dotnet secrets
     s.SigningKey = builder.Configuration["Auth:JwtSecret"];
   })
@@ -70,8 +66,5 @@ app.Run();
 
 namespace Modulith.Web
 {
-  public partial class Program
-  {
-    
-  }
+  public partial class Program;
 }

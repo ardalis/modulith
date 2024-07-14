@@ -65,7 +65,10 @@
       "fileRename": "_Module",
       "replaces": "_Module",
       "forms": {
-        "global": ["ddd", "new"]
+        "global": [
+          "ddd",
+          "new"
+        ]
       }
     },
     "to": {
@@ -135,7 +138,6 @@
           "condition": "!(WithUi)",
           "exclude": [
             "NewModule/Modulith.NewModule.UI/**/*"
-            
           ]
         }
       ]

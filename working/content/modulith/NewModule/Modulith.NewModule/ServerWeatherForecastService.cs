@@ -9,9 +9,11 @@ public class ServerWeatherForecastService : IWeatherForecastService
   public Task<IEnumerable<WeatherForecastResponse>> GetWeatherForecastAsync()
   {
     string[] summaries =
-    ["Freezing", "Bracing", "Chilly", "Cool", "Mild", 
-      "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
-    
+    [
+      "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+      "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    ];
+
     return Task.FromResult(Enumerable.Range(1, 5)
       .Select(random =>
         new WeatherForecastResponse

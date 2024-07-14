@@ -13,11 +13,12 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.4"/>
-        <PackageReference Include="MudBlazor" Version="6.*" />
+        <PackageReference Include="MudBlazor" Version="6.*"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj" />
+        <ProjectReference Include="..\..\Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj"/>
+        <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj"/>
     </ItemGroup>
 
 </Project>

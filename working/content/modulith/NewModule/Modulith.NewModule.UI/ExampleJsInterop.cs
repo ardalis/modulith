@@ -15,8 +15,9 @@ public class ExampleJsInterop : IAsyncDisposable
 
   public ExampleJsInterop(IJSRuntime jsRuntime)
   {
-    _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-      "import", "./_content/Modulith.NewModule.UI/exampleJsInterop.js").AsTask());
+    _moduleTask = new Lazy<Task<IJSObjectReference>>(() => jsRuntime.InvokeAsync<IJSObjectReference>(
+        "import", "./_content/Modulith.NewModule.UI/exampleJsInterop.js")
+      .AsTask());
   }
 
   public async ValueTask<string> Prompt(string message)

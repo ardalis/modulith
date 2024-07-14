@@ -13,8 +13,5 @@ internal class WeatherForeCastEndpoint(IWeatherForecastService weatherForecastSe
     Get("/NewModule/weatherforecast");
   }
 
-  public override async Task HandleAsync(CancellationToken ct)
-  {
-    await SendOkAsync(await weatherForecastService.GetWeatherForecastAsync(), ct);
-  }
+  public override async Task HandleAsync(CancellationToken ct) => await SendOkAsync(await weatherForecastService.GetWeatherForecastAsync(), ct);
 }

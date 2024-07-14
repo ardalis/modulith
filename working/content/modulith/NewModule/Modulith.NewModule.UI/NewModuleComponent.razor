@@ -2,7 +2,7 @@
 @inject IWeatherForecastService WeatherForecastService
 
 <div class="my-component">
-    This component is defined in the <strong>Modulith.NewModule.UI</strong> library.
+  This component is defined in the <strong>Modulith.NewModule.UI</strong> library.
 </div>
 
 <PageTitle>Weather</PageTitle>
@@ -12,44 +12,44 @@
 
 @if (!_forecasts.Any())
 {
-    <MudProgressCircular Color="Color.Default" Indeterminate="true"/>
+  <MudProgressCircular Color="Color.Default" Indeterminate="true"/>
 }
 else
 {
-    <MudTable Items="_forecasts" Hover="true" SortLabel="Sort By" Elevation="0">
-        <HeaderContent>
-            <MudTh>
-                <MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<WeatherForecastResponse, object>(x => x.Date)">Date</MudTableSortLabel>
-            </MudTh>
-            <MudTh>
-                <MudTableSortLabel SortBy="new Func<WeatherForecastResponse, object>(x => x.TemperatureC)">Temp. (C)</MudTableSortLabel>
-            </MudTh>
-            <MudTh>
-                <MudTableSortLabel SortBy="new Func<WeatherForecastResponse, object>(x => x.TemperatureF)">Temp. (F)</MudTableSortLabel>
-            </MudTh>
-            <MudTh>
-                <MudTableSortLabel SortBy="new Func<WeatherForecastResponse, object>(x => x.Summary!)">Summary</MudTableSortLabel>
-            </MudTh>
-        </HeaderContent>
-        <RowTemplate>
-            <MudTd DataLabel="Date">@context.Date</MudTd>
-            <MudTd DataLabel="Temp. (C)">@context.TemperatureC</MudTd>
-            <MudTd DataLabel="Temp. (F)">@context.TemperatureF</MudTd>
-            <MudTd DataLabel="Summary">@context.Summary</MudTd>
-        </RowTemplate>
-        <PagerContent>
-            <MudTablePager PageSizeOptions="new int[] { 50, 100 }"/>
-        </PagerContent>
-    </MudTable>
+  <MudTable Items="_forecasts" Hover="true" SortLabel="Sort By" Elevation="0">
+    <HeaderContent>
+      <MudTh>
+        <MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<WeatherForecastResponse, object>(x => x.Date)">Date</MudTableSortLabel>
+      </MudTh>
+      <MudTh>
+        <MudTableSortLabel SortBy="new Func<WeatherForecastResponse, object>(x => x.TemperatureC)">Temp. (C)</MudTableSortLabel>
+      </MudTh>
+      <MudTh>
+        <MudTableSortLabel SortBy="new Func<WeatherForecastResponse, object>(x => x.TemperatureF)">Temp. (F)</MudTableSortLabel>
+      </MudTh>
+      <MudTh>
+        <MudTableSortLabel SortBy="new Func<WeatherForecastResponse, object>(x => x.Summary!)">Summary</MudTableSortLabel>
+      </MudTh>
+    </HeaderContent>
+    <RowTemplate>
+      <MudTd DataLabel="Date">@context.Date</MudTd>
+      <MudTd DataLabel="Temp. (C)">@context.TemperatureC</MudTd>
+      <MudTd DataLabel="Temp. (F)">@context.TemperatureF</MudTd>
+      <MudTd DataLabel="Summary">@context.Summary</MudTd>
+    </RowTemplate>
+    <PagerContent>
+      <MudTablePager PageSizeOptions="new[] { 50, 100 }"/>
+    </PagerContent>
+  </MudTable>
 }
 
 @code {
-    private IEnumerable<WeatherForecastResponse> _forecasts = [];
+  private IEnumerable<WeatherForecastResponse> _forecasts = [];
 
-    protected override async Task OnInitializedAsync()
-    {
+  protected override async Task OnInitializedAsync()
+  {
 // Simulate asynchronous loading to demonstrate a loading indicator
-        await Task.Delay(500);
-        _forecasts = await WeatherForecastService.GetWeatherForecastAsync();
-    }
+    await Task.Delay(500);
+    _forecasts = await WeatherForecastService.GetWeatherForecastAsync();
+  }
 }

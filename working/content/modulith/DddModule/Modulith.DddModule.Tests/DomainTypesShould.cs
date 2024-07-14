@@ -17,32 +17,34 @@ public class DomainTypesShould
   {
     var domainTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Domain.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
+      .ResideInNamespace("Modulith.DddModule.Domain.*", true)
+      .And()
+      .AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
       .As("Domain types");
-    
+
     var apiTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Api.*", useRegularExpressions: true)
+      .ResideInNamespace("Modulith.DddModule.Api.*", true)
       .As("Api types");
 
     var rule = domainTypes.Should().NotDependOnAny(apiTypes);
 
     rule.Check(Architecture);
   }
-  
+
   [Fact]
   public void NotDependOnInfraTypes()
   {
     var domainTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Domain.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
+      .ResideInNamespace("Modulith.DddModule.Domain.*", true)
+      .And()
+      .AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
       .As("Domain types");
-    
+
     var apiTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Infrastructure.*", useRegularExpressions: true)
+      .ResideInNamespace("Modulith.DddModule.Infrastructure.*", true)
       .As("Api types");
 
     var rule = domainTypes.Should().NotDependOnAny(apiTypes);

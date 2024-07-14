@@ -6,10 +6,10 @@ namespace Modulith.Web;
 
 public static class ConventionBuilderExtensions
 {
-  public static WebApplication AddBlazorModulesAdditionalAssemblies(this WebApplication app)
+  public static void AddBlazorModulesAdditionalAssemblies(this WebApplication app)
   {
     var discoveryService = app.Services.GetRequiredService<IBlazorAssemblyDiscoveryService>();
-    
+
     var componentBuilder = app.MapRazorComponents<App>()
       .AddInteractiveServerRenderMode()
       .AddInteractiveWebAssemblyRenderMode()
@@ -17,8 +17,7 @@ public static class ConventionBuilderExtensions
 
     discoveryService.GetAssemblies()
       .ToList()
-      .ForEach( a => componentBuilder.AddAdditionalAssemblies(a));
+      .ForEach(a => componentBuilder.AddAdditionalAssemblies(a));
 
-    return app;
   }
 }

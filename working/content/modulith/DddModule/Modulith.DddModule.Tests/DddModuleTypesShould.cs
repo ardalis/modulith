@@ -17,8 +17,9 @@ public class DddModuleTypesShould
   {
     var domainTypes = Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.*", useRegularExpressions: true)
-      .And().AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
+      .ResideInNamespace("Modulith.DddModule.*", true)
+      .And()
+      .AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
       .As("Module types");
 
     var rule = domainTypes.Should().BeInternal();

@@ -15,11 +15,13 @@ internal class WeatherForecastEndpoint(IWeatherForecastService weatherForecastSe
   public override async Task HandleAsync(CancellationToken ct)
   {
     string[] summaries =
-      ["Freezing", "Bracing", "Chilly", "Cool", "Mild", 
-        "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
+    [
+      "Freezing", "Bracing", "Chilly", "Cool", "Mild",
+      "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    ];
 
     var forecasts = weatherForecastService.GetWeatherForecast(summaries);
-    
+
     await SendOkAsync(forecasts, ct);
   }
 }

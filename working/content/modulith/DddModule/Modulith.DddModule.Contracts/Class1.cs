@@ -1,6 +1,3 @@
 namespace Modulith.DddModule.Contracts;
 
-public class Class1
-{
-
-}
+public class Class1;

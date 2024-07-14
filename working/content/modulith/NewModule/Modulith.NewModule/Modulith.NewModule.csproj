@@ -5,15 +5,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="mediatr" Version="12.2.0" />
-        <PackageReference Include="FastEndpoints" Version="5.24.0" />
+        <PackageReference Include="mediatr" Version="12.2.0"/>
+        <PackageReference Include="FastEndpoints" Version="5.24.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj" />
-      <!--#if (WithUi) -->
-      <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj" />
-      <!--#endif -->
+        <ProjectReference Include="..\..\Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj"/>
+        <!--#if (WithUi) -->
+        <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj"/>
+        <!--#endif -->
     </ItemGroup>
 
 </Project>

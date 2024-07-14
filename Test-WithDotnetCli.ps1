@@ -11,9 +11,9 @@ dotnet new modulith --add ddd-module --with-name Billing --to eShop
 
 dotnet build
 
-dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
-dotnet add eShop.Web/eShop.Web.csproj reference Billing/eShop.Billing/eShop.Billing.csproj
+# dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
+# dotnet add eShop.Web/eShop.Web.csproj reference Billing/eShop.Billing/eShop.Billing.csproj
 
-dotnet build
+# dotnet build
 
 # dotnet run --project ./eShop.Web/eShop.Web.csproj

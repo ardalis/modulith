@@ -6,9 +6,5 @@ namespace Modulith.UI;
 
 public class BlazorAssemblyDiscoveryService : IBlazorAssemblyDiscoveryService
 {
-  public IEnumerable<Assembly> GetAssemblies()
-  {
-      return [typeof(NewModuleComponent).Assembly];
-  }
+  public IEnumerable<Assembly> GetAssemblies() => [typeof(NewModuleComponent).Assembly];
 }
-
