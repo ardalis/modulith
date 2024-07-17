@@ -6,9 +6,6 @@
   <MudDivider/>
   @foreach (var module in UiModules)
   {
-    // TODO: change the blazor discovery service
-    // TODO: refactor to use a regex expression to find the appropriate backend module assemblies
-    // TODO: allow the components to actually use the api
     <MudNavLink
       Href="@LinkBuilder(module)"
       Match="NavLinkMatch.Prefix"

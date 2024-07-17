@@ -5,4 +5,3 @@ using System.Runtime.CompilerServices;
 namespace Modulith.DddModule;
 
 public class AssemblyInfo;
-

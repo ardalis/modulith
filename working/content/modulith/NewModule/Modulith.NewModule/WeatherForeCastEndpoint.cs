@@ -2,6 +2,7 @@ using FastEndpoints;
 using Modulith.NewModule.HttpModels;
 
 namespace Modulith.NewModule;
+
 #if (!WithUi)
 internal record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
 #endif
