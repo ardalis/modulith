@@ -21,11 +21,11 @@
     </ItemGroup>
     <!--#endif -->
     <ItemGroup>
-        <PackageReference Include="FastEndpoints.Security" Version="5.24.0"/>
-        <PackageReference Include="FastEndpoints.Swagger" Version="5.24.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-        <PackageReference Include="FastEndpoints" Version="5.24.0"/>
+        <PackageReference Include="FastEndpoints.Security" Version="5.*"/>
+        <PackageReference Include="FastEndpoints.Swagger" Version="5.*"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.*"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.*"/>
+        <PackageReference Include="FastEndpoints" Version="5.*"/>
     </ItemGroup>
 
     <ItemGroup>

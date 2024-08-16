@@ -10,7 +10,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.*"/>
-        <PackageReference Include="MudBlazor" Version="6.*"/>
+        <PackageReference Include="MudBlazor" Version="7.*"/>
+        <PackageReference Include="System.Text.Json" Version="8.*" />
     </ItemGroup>
 
     <ItemGroup>
