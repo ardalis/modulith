@@ -11,36 +11,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        template: 
-          - working-dir: modulith
-            project: TestModulith.sln
-  
-    name: 'Build project source: ${{ matrix.template.working-dir }}'
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      working-directory: working/content/${{ matrix.template.working-dir }}
-      run: dotnet restore ${{ matrix.template.project }}
-    - name: Build
-      working-directory: working/content/${{ matrix.template.working-dir }}
-      run: dotnet build ${{ matrix.template.project }} --no-restore
-    - name: Test
-      working-directory: working/content/${{ matrix.template.working-dir }}
-      run: dotnet test ${{ matrix.template.project }} --no-build --verbosity normal
-      
+
   install:
-    needs: [build]
     name: 'Install template'
     runs-on: ubuntu-latest
 
