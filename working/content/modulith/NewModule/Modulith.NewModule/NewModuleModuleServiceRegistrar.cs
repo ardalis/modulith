@@ -1,4 +1,6 @@
-﻿using Modulith.NewModule.HttpModels;
+﻿#if (WithUi)
+using Modulith.NewModule.HttpModels;
+#endif
 using Microsoft.Extensions.DependencyInjection;
 using Modulith.SharedKernel;
 

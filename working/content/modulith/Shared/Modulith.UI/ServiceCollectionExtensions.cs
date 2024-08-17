@@ -1,5 +1,5 @@
 using System.Reflection;
-using eShop.SharedKernel;
+using Modulith.SharedKernel;
 
 namespace Modulith.UI;
 

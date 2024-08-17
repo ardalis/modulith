@@ -1,10 +1,12 @@
 using FastEndpoints;
+#if (WithUi)
 using Modulith.NewModule.HttpModels;
+#endif
 
 namespace Modulith.NewModule;
 
 #if (!WithUi)
-internal record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
+public record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
 #endif
 internal class WeatherForeCastEndpoint(IWeatherForecastService weatherForecastService) : EndpointWithoutRequest<IEnumerable<WeatherForecastResponse>>
 {

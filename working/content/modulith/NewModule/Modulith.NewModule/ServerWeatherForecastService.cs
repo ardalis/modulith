@@ -1,4 +1,6 @@
+#if (WithUi)
 using Modulith.NewModule.HttpModels;
+#endif
 using static System.DateOnly;
 using static System.Random;
 
