@@ -6,7 +6,7 @@ using static System.Random;
 
 namespace Modulith.NewModule;
 
-public class ServerWeatherForecastService : IWeatherForecastService
+internal class ServerWeatherForecastService : IWeatherForecastService
 {
   public Task<IEnumerable<WeatherForecastResponse>> GetWeatherForecastAsync()
   {

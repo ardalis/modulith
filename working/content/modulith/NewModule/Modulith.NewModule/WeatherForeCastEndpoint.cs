@@ -6,7 +6,7 @@ using Modulith.NewModule.HttpModels;
 namespace Modulith.NewModule;
 
 #if (!WithUi)
-public record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
+internal record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
 #endif
 internal class WeatherForeCastEndpoint(IWeatherForecastService weatherForecastService) : EndpointWithoutRequest<IEnumerable<WeatherForecastResponse>>
 {

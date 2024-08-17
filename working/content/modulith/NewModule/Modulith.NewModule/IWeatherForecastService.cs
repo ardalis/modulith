@@ -3,7 +3,7 @@ using Modulith.NewModule.HttpModels;
 #endif
 namespace Modulith.NewModule;
 
-public interface IWeatherForecastService
+internal interface IWeatherForecastService
 {
   Task<IEnumerable<WeatherForecastResponse>> GetWeatherForecastAsync();
 }
