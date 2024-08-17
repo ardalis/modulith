@@ -3,6 +3,8 @@
 
 **⚠️This project is a work in progress and will likely receive many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
 
+**🆕 Try UI Module generation with Blazor. Jump to [UI Modules](#ui-module)**
+
 (originally hosted at **david-acm/modulith** - thanks David for the contribution!)
 
 Modulith is a `dotnet new template` suite for [Modular Monoliths](https://dometrain.com/bundle/from-zero-to-hero-modular-monoliths-in-dotnet/). It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
@@ -101,6 +103,56 @@ dotnet new modulith-proj --ModuleName Shipments --existingProject eShop.Web/eSho
 ```
 
 Here `Shipments` is the name of your new module, and `eShop.Web/eShop.Web.csproj` is the path to your web entry project. If you change this, make sure you update it to the new path and that is relative to the solution folder.
+
+# 🖥️ Modules with UI
+
+You can generate a solution with a Blazor UI by using the ```--WithUi```:
+
+``` pwsh
+dotnet new modulith -n eShop --with-module Payments --WithUi
+```
+
+Running the application will show the following blazor app:
+
+![alt text](<with-ui.png>)
+
+The app uses [MudBlazor](https://www.mudblazor.com/) as the component library. It also embeds the swagger document for the WebApi. Most importantly includes a menu item and page for the newly created mmodule with UI. The components in this page are defined in the ```eShop.Payments.UI``` project.
+
+The previous command will create a solution with a few additional projects.
+
+- **eShop.UI:** Is the client project that will be compiled to WebAssembly and executed from the browser. This contains  layout and routes components; but most importantly the ```program.cs``` to register the services for the client side application running in the browser.
+- **eShop.Payments.UI:** Is a razor class library where you can define the components specific to that UI module.
+- **eShop.Paymetns.HttpModels** Contains the DTOs used to send requests from the Blazor client project (```eShop.UI```) to the WebApi in **eShop.Shipments**
+
+## Adding new modules
+
+New modules with UI can be added running:
+
+```pwsh
+cd eShop
+dotnet new modulith --add basic-module --with-name Shipments --to eShop --WithUi
+```
+
+However, to gain access to the newly created module component for the ```Shipments``` module, you need to register the new assembly.
+
+In blazor web assembly, the routeable components not present in the running assembly need to be passed as arguments to the ```Router``` component. In this template, this is done using the ```IBlazorAssemblyDiscoveryService```. Simply add the following to the ```GetAssemblies``` array:
+
+```cs
+typeof(ShipmentsComponent).Assembly
+```
+
+After the modufication the class should look like:
+
+```cs
+public class BlazorAssemblyDiscoveryService : IBlazorAssemblyDiscoveryService
+{
+  public IEnumerable<Assembly> GetAssemblies() => [typeof(PaymentsComponent).Assembly, typeof(ShipmentsComponent).Assembly];
+}
+```
+
+For each additional module you create you will need to add a new assembly to this array.
+
+More about this in [Blazor's documentation page: Lazy Load Assemblies with WebAssembly](https://learn.microsoft.com/en-us/aspnet/core/blazor/webassembly-lazy-load-assemblies?view=aspnetcore-8.0#assemblies-that-include-routable-components)
 
 # 📊 About Modular Monoliths
 
