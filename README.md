@@ -1,7 +1,7 @@
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
-**⚠️This project is a work in progress and will likely receive many API changes before v1.0.0 please keep this in mind when using, there will be breaking changes often.**
+**⚠️This project is a work in progress and will likely receive many API changes before v1.0.0. Please keep this in mind when using, as there will be breaking changes often.**
 
 **🆕 Try UI Module generation with Blazor. Jump to [UI Modules](#ui-module)**
 
@@ -14,7 +14,7 @@ But, what is a Modular Monolith? Glad you asked. It is a software architecture s
 
 # 🚀 Quickstart
 
-#### Install by running:
+#### Install the tool running:
 
 ```pwsh
 dotnet new install Ardalis.Modulith
@@ -58,7 +58,7 @@ Running the solution should show both modules with their default endpoint:
 
 #### Direct service registration
 
-However, if you prefer more control and less magic, or you want to modify registration class, remove the `builder.DiscoverAndRegisterModules();`  in `program.cs` and add the service registration for each module:
+However, if you prefer more control and less magic, or you want to modify registration class, you can remove the `builder.DiscoverAndRegisterModules();`  in `program.cs` and add the service registration for each module:
 
 ```cs
 using eShop.Shipments
@@ -74,7 +74,7 @@ The previous command creates the following project structure:
   - `Users/` 👈 Your first module
   - `eShop.Web/` 👈 Your entry point
 
-Inside `Payments`, you will find the project folders:
+Inside `Payments`, the second module added, you will find the project folders:
 
 - `eShop.Payments/` 👈 Your project code goes here
 - `eShop.Payments.Contracts/` 👈 Public contracts other modules can depend on
@@ -85,12 +85,11 @@ Inside `Payments`, you will find the project folders:
 Since this is a Modular Monolith, there are a few rules that are enforced to guarantee the modularity:
 
 - Every type in `eShop.Payments/` is internal
-- This 👆 is enforced by an archUnit test in `eShop.Payments.Tests/`
-- The only exception to the last two rules is the static class that configures the services for the module: `UsersModule...Extensions.cs`
-- `.Contracts/` and `.Tets/` projects depend on `eShop.Payments/`. The opposite is not possible. This is by design.
+- This is enforced by an [ArchUnit](https://github.com/TNG/ArchUnitNET) test in `eShop.Payments.Tests/`
+- The only exception to the last two rules is the static class that configures the services for the module: `PaymentsModuleServiceRegistrar.cs`
+- `.Contracts/` and `.Tests/` projects depend on `eShop.Payments/`. The opposite is not possible. This is by design.
 
 \* *You can always change these rules after you have created the solution to suit your needs. But be mindful of why you are changing the rules. For example, it is ok to add an additional public extensions class to configure the application pipeline, while adding a public contract to `eShop.Payments/` is not. We have a project for those.*
-
 
 ## Adding a reference automatically to new modules
 
@@ -114,17 +113,17 @@ dotnet new modulith -n eShop --with-module Payments --WithUi
 
 Running the application will show the following blazor app:
 
-![alt text](<with-ui.png>)
+![Screenshot of Blazor app with Payments module](<with-ui.png>)
 
-The app uses [MudBlazor](https://www.mudblazor.com/) as the component library. It also embeds the swagger document for the WebApi. Most importantly includes a menu item and page for the newly created mmodule with UI. The components in this page are defined in the ```eShop.Payments.UI``` project.
+The app uses [MudBlazor](https://www.mudblazor.com/) as the component library. The template includes a menu item and page for the newly created module with UI whose components are defined in the ```eShop.Payments.UI``` project. We include a link to the Swagger UI page in the _API_ menu item.
 
 The previous command will create a solution with a few additional projects.
 
-- **eShop.UI:** Is the client project that will be compiled to WebAssembly and executed from the browser. This contains  layout and routes components; but most importantly the ```program.cs``` to register the services for the client side application running in the browser.
+- **eShop.UI:** Is the client project that will be compiled to WebAssembly and executed from the browser. This contains the layout and routes components; but most importantly the ```program.cs``` to register the services for the client side application.
 - **eShop.Payments.UI:** Is a razor class library where you can define the components specific to that UI module.
-- **eShop.Paymetns.HttpModels** Contains the DTOs used to send requests from the Blazor client project (```eShop.UI```) to the WebApi in **eShop.Shipments**
+- **eShop.Payments.HttpModels** Contains the DTOs used to send requests from the Blazor client project (```eShop.UI```) to the WebApi endpoints in ```eShop.Shipments```.
 
-## Adding new modules
+## Adding new modules with UI
 
 New modules with UI can be added running:
 
@@ -133,15 +132,17 @@ cd eShop
 dotnet new modulith --add basic-module --with-name Shipments --to eShop --WithUi
 ```
 
-However, to gain access to the newly created module component for the ```Shipments``` module, you need to register the new assembly.
+⚠️ New modules with UI can only be added to solutions that were instantiated using the ```-WithUI``` parameter.
 
-In blazor web assembly, the routeable components not present in the running assembly need to be passed as arguments to the ```Router``` component. In this template, this is done using the ```IBlazorAssemblyDiscoveryService```. Simply add the following to the ```GetAssemblies``` array:
+However, to allow routing to the newly created module component for the ```Shipments``` module, you need to register the new assembly.
+
+In blazor WebAssembly, the routeable components that are not present in the executing assembly need to be passed as arguments to the ```Router``` component. In this template, this is done using the ```BlazorAssemblyDiscoveryService```. Simply add the following to the ```GetAssemblies``` array:
 
 ```cs
 typeof(ShipmentsComponent).Assembly
 ```
 
-After the modufication the class should look like:
+After the modification the class should look like this:
 
 ```cs
 public class BlazorAssemblyDiscoveryService : IBlazorAssemblyDiscoveryService
@@ -156,7 +157,7 @@ More about this in [Blazor's documentation page: Lazy Load Assemblies with WebAs
 
 # 📊 About Modular Monoliths
 
-A Modular Monolithic app benefits from the simple deployment of a monolith and the separation of concerns that microservices offer. While avoiding the complexities and maitainability issues they can introduce. When you are ready and *if* you need it, you can split a module as a microservice. Best of both worlds 🌎
+A Modular Monolithic app benefits from the simple deployment of a monolith and the separation of concerns that microservices offer. While avoiding the complexities and maintainability issues they can introduce. When you are ready and *if* you need it, you can split a module as a microservice. Best of both worlds 🌎
 
 This is not a new concept. Martin Fowler [explains it here](https://martinfowler.com/bliki/MonolithFirst.html), and Ardalis teaches it [here](https://ardalis.com/introducing-modular-monoliths-goldilocks-architecture/#:~:text=A%20Modular%20Monolith%20is%20a%20software%20architecture%20that,that%20they%20are%20loosely%20coupled%20and%20highly%20cohesive.).
 
