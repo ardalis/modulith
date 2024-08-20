@@ -1,29 +1,29 @@
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Modulith.NewModule.Api;
+using Modulith.DddModule.Api;
+using Modulith.DddModule.Infrastructure;
 using Modulith.SharedKernel;
 
-namespace Modulith.NewModule;
+namespace Modulith.DddModule;
 
-public class NewModuleServiceRegistrar : IRegisterModuleServices
+public class DddModuleServiceRegistrar : IRegisterModuleServices
 {
-  public static IHostApplicationBuilder ConfigureServices(IHostApplicationBuilder builder)
+  public static IServiceCollection ConfigureServices(IServiceCollection services)
   {
-    var logger = GetLogger(builder);
-    builder.Services.AddMediatR(
+    var logger = GetLogger(services);
+    services.AddMediatR(
       c => c.RegisterServicesFromAssemblies(typeof(AssemblyInfo).Assembly));
 
-    builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
-    
-    logger.LogInformation("⚙️ NewModule module services registered");
+    services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+    services.AddScoped<ITemperatureService, FakeTemperatureService>();
 
-    return builder;
+    logger.LogInformation("⚙️ DddModule module services registered");
+
+    return services;
   }
-  
-  private static ILogger<WebApplicationBuilder> GetLogger(IHostApplicationBuilder builder) 
-    => builder.Services
+
+  private static ILogger<IServiceCollection> GetLogger(IServiceCollection services)
+    => services
       .BuildServiceProvider()
-      .GetRequiredService<ILogger<WebApplicationBuilder>>();
+      .GetRequiredService<ILogger<IServiceCollection>>();
 }

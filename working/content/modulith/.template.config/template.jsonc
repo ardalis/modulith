@@ -8,7 +8,8 @@
     "API",
     "Service",
     "Modular",
-    "Monolith" ],
+    "Monolith"
+  ],
   "name": "modulith",
   "description": "A solution template for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
   "precedence": "0",
@@ -29,7 +30,6 @@
       "replaces": "valueToReplace",
       "isEnabled": false
     }
-
   },
   "sources": [
     {
@@ -43,7 +43,11 @@
     "SampleConstraint": {
       "$comment": "TODO: The template may define the constraints all of which must be met in order for the template to be used. For more details see https://aka.ms/template-json-reference#symbols#template-constraints. If constraints are not required, remove the property.",
       "type": "os",
-      "args": [ "Linux", "OSX", "Windows" ]
+      "args": [
+        "Linux",
+        "OSX",
+        "Windows"
+      ]
     }
   },
   "primaryOutputs": [

@@ -1,6 +1,3 @@
 ﻿namespace Modulith.NewModule.Contracts;
 
-public class Class1
-{
-
-}
+public class Class1;
