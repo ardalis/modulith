@@ -165,12 +165,16 @@ The templates in this project follow the solution structure as taught by [Ardali
 
 # 🛃 Custom templates
 
-No template fits all needs. If you want to customize the template you can change it in the `working/content` directory and running:
+No template fits all needs. If you want to customize the template you can [clone this repository as a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+
+Once you have cloned the repo locally you can make your custom changes in the `working/content` directory. This directory contains the project templates used for every instatiation. Then you can install the template locally running:
 
 *⚠️ Make sure to uninstall the original template*
 ```pwsh
 dotnet new install .
 ```
+
+You can find more information about building ```dotnet new``` templates, including how to add commands and parameters, at Microsoft docs page: [Custom templates for dotnet new](https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates)
 
 # 🗑️ Uninstall Modulith
 
