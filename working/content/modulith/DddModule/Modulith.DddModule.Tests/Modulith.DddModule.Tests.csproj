@@ -6,13 +6,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="coverlet.collector" Version="6.*"/>
-        <PackageReference Include="FastEndpoints.Testing" Version="5.2*"/>
-        <PackageReference Include="FluentAssertions" Version="6.*"/>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*"/>
-        <PackageReference Include="xunit" Version="2.*"/>
-        <PackageReference Include="xunit.runner.visualstudio" Version="2.*"/>
-        <PackageReference Include="tngtech.archunitnet.xunit" Version="0.*"/>
+        <PackageReference Include="coverlet.collector" Version="6.0.2"/>
+        <PackageReference Include="FastEndpoints.Testing" Version="5.29.0"/>
+        <PackageReference Include="FluentAssertions" Version="6.12.1"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.0"/>
+        <PackageReference Include="xunit" Version="2.0.0"/>
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"/>
+        <PackageReference Include="tngtech.archunitnet.xunit" Version="0.11.0"/>
     </ItemGroup>
 
     <ItemGroup>
