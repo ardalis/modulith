@@ -2,6 +2,8 @@ cd /Users/davidchaparro/RiderProjects/modulith/test/
 rm -rf /Users/davidchaparro/RiderProjects/modulith/test/**
 dotnet new uninstall /Users/davidchaparro/RiderProjects/modulith/working/content/modulith
 dotnet new install /Users/davidchaparro/RiderProjects/modulith/working/content/modulith
+# dotnet new uninstall ardalis.modulith
+# dotnet new install ardalis.modulith
 
 dotnet new modulith -n eShop --with-module Payments --WithUi
 
