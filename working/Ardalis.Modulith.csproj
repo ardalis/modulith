@@ -20,6 +20,11 @@
         <NoWarn>$(NoWarn);NU5128</NoWarn>
         <NoDefaultExcludes>true</NoDefaultExcludes>
         <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -45,6 +50,7 @@
 
     <ItemGroup>
         <None Include="README.md" Pack="true" PackagePath=""/>
+        <None Include="..\assets\icon.png" Pack="true" PackagePath="\"/>
     </ItemGroup>
 
 </Project>
