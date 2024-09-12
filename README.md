@@ -3,7 +3,7 @@
 
 **⚠️This project is a work in progress and will likely receive many API changes before v1.0.0. Please keep this in mind when using, as there will be breaking changes often.**
 
-**🆕 Try UI Module generation with Blazor. Jump to [Modules with UI](#🖥️-modules-with-ui)**
+**🆕 Try UI Module generation with Blazor. Jump to [Modules with UI](#modules-with-ui)**
 
 (originally hosted at **david-acm/modulith** - thanks David for the contribution!)
 
@@ -103,7 +103,7 @@ dotnet new modulith-proj --ModuleName Shipments --existingProject eShop.Web/eSho
 
 Here `Shipments` is the name of your new module, and `eShop.Web/eShop.Web.csproj` is the path to your web entry project. If you change this, make sure you update it to the new path and that is relative to the solution folder.
 
-# 🖥️ Modules with UI
+# Modules with UI
 
 You can generate a solution with a Blazor UI by using the ```--WithUi```:
 
