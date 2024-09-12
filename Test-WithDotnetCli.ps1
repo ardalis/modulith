@@ -1,5 +1,5 @@
 # Clear the test directory before each run
-rm -rf test/**
+#rm -rf test/**
 
 # Reinstall latest version
 dotnet new uninstall .

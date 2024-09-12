@@ -3,7 +3,7 @@
 
 **⚠️This project is a work in progress and will likely receive many API changes before v1.0.0. Please keep this in mind when using, as there will be breaking changes often.**
 
-**🆕 Try UI Module generation with Blazor. Jump to [UI Modules](#ui-module)**
+**🆕 Try UI Module generation with Blazor. Jump to [Modules with UI](#🖥️-modules-with-ui)**
 
 (originally hosted at **david-acm/modulith** - thanks David for the contribution!)
 
