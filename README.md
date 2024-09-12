@@ -113,7 +113,7 @@ dotnet new modulith -n eShop --with-module Payments --WithUi
 
 Running the application will show the following blazor app:
 
-![Screenshot of Blazor app with Payments module](<with-ui.png>)
+![Screenshot of Blazor app with Payments module](<assets/with-ui.png>)
 
 The app uses [MudBlazor](https://www.mudblazor.com/) as the component library. The template includes a menu item and page for the newly created module with UI whose components are defined in the ```eShop.Payments.UI``` project. We include a link to the Swagger UI page in the _API_ menu item.
 
