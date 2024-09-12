@@ -61,7 +61,7 @@ jobs:
         
       - name: Instance basic project
         working-directory: test/eShop
-        run: dotnet new modulith --add basic-module --with-name Shipments --to eShop
+        run: dotnet new modulith --add basic-module --module-name Shipments --solution eShop
 
       - name: Add project reference
         working-directory: test/eShop
@@ -69,7 +69,7 @@ jobs:
       
       - name: Instance ddd project
         working-directory: test/eShop
-        run: dotnet new modulith --add ddd-module --with-name Billing --to eShop
+        run: dotnet new modulith --add ddd-module --module-name Billing --solution eShop
       
       - name: Add project reference
         working-directory: test/eShop

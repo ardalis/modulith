@@ -11,7 +11,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\Shared\Modulith.SharedKernel\Modulith.SharedKernel.csproj"/>
-        <!--#if (WithUi) -->
+        <!--#if (withui) -->
         <ProjectReference Include="..\Modulith.NewModule.HttpModels\Modulith.NewModule.HttpModels.csproj"/>
         <!--#endif -->
     </ItemGroup>
