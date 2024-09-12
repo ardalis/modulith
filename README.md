@@ -10,7 +10,7 @@
 Modulith is a `dotnet new template` suite for [Modular Monoliths](https://dometrain.com/bundle/from-zero-to-hero-modular-monoliths-in-dotnet/). It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
 
 But, what is a Modular Monolith? Glad you asked. It is a software architecture style to build maintainable applications as a single unit, but in nicely separated modules (Modu-lith, pun intended 🙃). 
- More [about Modular Monoliths](#about-modular-monoliths).
+ More [about Modular Monoliths](#-about-modular-monoliths).
 
 # 🚀 Quickstart
 
