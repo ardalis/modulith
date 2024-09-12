@@ -8,12 +8,14 @@ dotnet new install .
 
 # Add an UI enabled solution with a first module
 cd test/
-dotnet new modulith -n eShop --with-module Payments --WithUi
+dotnet new modulith -n eShop --module-name Payments --with-ui
 
 # Add second and third module. Third module is DDD
 cd eShop
-dotnet new modulith --add basic-module --with-name Shipments --to eShop --WithUi
-dotnet new modulith --add ddd-module --with-name Billing --to eShop
+dotnet new modulith --solution eShop --with-ui --add basic-module --module-name Shipments
+dotnet new modulith --solution eShop --with-ui --add crud --module-name Shipments --endpoint-name Student
+
+dotnet new modulith --add ddd-module --module-name Billing --solution eShop
 
 # Add project references. Needed before .Net 9
 dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj

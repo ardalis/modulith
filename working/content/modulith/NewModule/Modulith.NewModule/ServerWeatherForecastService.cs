@@ -1,4 +1,4 @@
-#if (WithUi)
+#if (withui)
 using Modulith.NewModule.HttpModels;
 #endif
 using static System.DateOnly;

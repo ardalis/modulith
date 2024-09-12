@@ -38,30 +38,22 @@
         {
           "choice": "ddd-module",
           "description": "Ddd module"
+        },
+        {
+          "choice": "crud",
+          "description": "Adds a set of Get Post Put and Delete endpoints"
         }
       ],
       "defaultValue": "solution",
       "description": "The type of authentication to use"
     },
-    "IsSolution": {
+    "is-solution": {
       "type": "computed",
       "value": "(add == \"solution\")"
     },
     "with-module": {
       "type": "parameter",
       "datatype": "string",
-      "defaultValue": "FirstModule",
-      "fileRename": "NewModule",
-      "replaces": "NewModule",
-      "isEnabled": "(add == \"solution\")",
-      "isRequired": "(add == \"solution\")"
-    },
-    "with-name": {
-      "type": "parameter",
-      "datatype": "string",
-      "defaultValue": "MyModule",
-      "isEnabled": "(add != \"solution\")",
-      "isRequired": "(add != \"solution\")",
       "fileRename": "_Module",
       "replaces": "_Module",
       "forms": {
@@ -71,20 +63,80 @@
         ]
       }
     },
-    "to": {
-      "displayName": "To",
-      "description": "Path relative to the working directory",
+    "module-name": {
       "type": "parameter",
       "datatype": "string",
+      "description": "The name of the new or existing module where you want to instantiate the template.",
+      "fileRename": "_Module",
+      "replaces": "_Module",
+      "forms": {
+        "global": [
+          "ddd",
+          "new"
+        ]
+      }
+    },
+    "with-name": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The name of the new or existing module where you want to instantiate the template.",
+      "fileRename": "_Module",
+      "replaces": "_Module",
+      "forms": {
+        "global": [
+          "ddd",
+          "new"
+        ]
+      }
+    },
+    "endpoint-name": {
+      "displayName": "Endpoint Name",
+      "description": "Name of the endpoints' folder",
+      "type": "parameter",
+      "datatype": "string",
+      "fileRename": "WeatherForecast",
+      "replaces": "WeatherForecast"
+    },
+    "to": {
+      "type": "parameter",
+      "datatype": "string",
+      "displayName": "[Deprecating: use 'solution'] The name of the solution and folder where the module or item will be added."
+    },
+    "solution": {
+      "type": "parameter",
+      "datatype": "string",
+      "displayName": "The name of the solution and folder where the module or item will be added."
+    },
+    "solution-name": {
+      "type": "generated",
+      "generator": "coalesce",
+      "datatype": "string",
+      "parameters": {
+        "sourceVariableName": "solution",
+        "fallbackVariableName": "to"
+      },
       "fileRename": "Modulith",
       "replaces": "Modulith"
     },
-    "WithUi": {
-      "displayName": "With UI",
+    "with-ui": {
       "type": "parameter",
+      "datatype": "bool"
+    },
+    "WithUi": {
+      "type": "parameter",
+      "datatype": "bool"
+    },
+    "withui": {
+      "displayName": "With UI",
+      "type": "generated",
+      "generator": "coalesce",
       "description": "Wether to add UI Blazor projects, and configuration",
       "datatype": "bool",
-      "defaultValue": "false"
+      "defaultValue": "false",
+      "parameters": {
+        "sourceVariableName": "with-ui",
+        "fallbackVariableName": "WithUi"
+      }
     }
   },
   "forms": {
@@ -103,7 +155,7 @@
     {
       "source": "./",
       "target": "./",
-      "condition": "(IsSolution)",
+      "condition": "(is-solution)",
       "include": [
         "Modulith.SharedKernel/**/*",
         "Modulith.Web/**/*",
@@ -115,18 +167,20 @@
       ],
       "modifiers": [
         {
-          "condition": "!(WithUi)",
+          "condition": "!(withui)",
           "exclude": [
             "Shared/Modulith.UI/**/*",
             "NewModule/Modulith.NewModule.UI/**/*",
+            "NewModule/Modulith.NewModule.HttpModels/**/*",
             "Modulith.Web/wwwroot/**/*",
             "Modulith.Web/Components/**/*",
             "Modulith.Web/ConventionBuilderExtensions.cs"
           ]
         },
         {
-          "condition": "WithUi",
+          "condition": "(withui)",
           "exclude": [
+            "NewModule/Modulith.NewModule/WeatherForecastEndpoints/List.Response.cs",
             "NewModule/Modulith.NewModule/IWeatherForecastService.cs"
           ]
         }
@@ -141,9 +195,16 @@
       ],
       "modifiers": [
         {
-          "condition": "!(WithUi)",
+          "condition": "!(withui)",
           "exclude": [
             "NewModule/Modulith.NewModule.UI/**/*"
+          ]
+        },
+        {
+          "condition": "(withui)",
+          "exclude": [
+            "NewModule/Modulith.NewModule/WeatherForecastEndpoints/List.Response.cs",
+            "NewModule/Modulith.NewModule/IWeatherForecastService.cs"
           ]
         }
       ]
@@ -155,40 +216,62 @@
       "include": [
         "DddModule/**/*"
       ]
+    },
+    {
+      "source": ".",
+      "target": ".",
+      "condition": "(add == \"crud\")",
+      "include": [
+        "NewModule/Modulith.NewModule/WeatherForecastEndpoints/*"
+      ],
+      "modifiers": [
+        {
+          "condition": "(withui)",
+          "exclude": [
+            "NewModule/Modulith.NewModule/WeatherForecastEndpoints/List.Response.cs"
+          ],
+          "include": [
+            "NewModule/Modulith.NewModule.HttpModels/WeatherForecastResponse.cs",
+            "NewModule/Modulith.NewModule.HttpModels/IWeatherForecastService.cs",
+            "NewModule/Modulith.NewModule/ServerWeatherForecastService.cs"
+          ]
+        }
+      ]
     }
   ],
   "primaryOutputs": [
     {
-      "condition": "(WithUi)",
+      "condition": "(withui)",
       "path": "Shared/Modulith.UI/Modulith.UI.csproj"
     },
     {
-      "condition": "(WithUi)",
+      "condition": "(withui)",
       "path": "NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
     },
     {
-      "condition": "(WithUi)",
+      "condition": "(withui)",
       "path": "NewModule/Modulith.NewModule.HttpModels/Modulith.NewModule.HttpModels.csproj"
     },
     {
-      "condition": "(!IsSolution)",
+      "condition": "(!is-solution)",
       "path": "Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
     },
     {
-      "condition": "(!IsSolution)",
+      "condition": "(!is-solution)",
       "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
     },
     {
-      "condition": "(!IsSolution)",
+      "condition": "(!is-solution)",
       "path": "NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj"
     },
     {
-      "condition": "(!IsSolution)",
+      "condition": "(!is-solution)",
       "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
   ],
   "postActions": [
     {
+      "condition": "(add != \"crud\")",
       "description": "Add projects to solution",
       "manualInstructions": [
         {
@@ -199,7 +282,7 @@
       "continueOnError": true
     },
     {
-      "condition": "(!IsSolution)",
+      "condition": "(!is-solution)",
       "description": "Adding the new module as a reference to Web project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
@@ -222,7 +305,7 @@
       }
     },
     {
-      "condition": "(WithUi && !Solution)",
+      "condition": "(withui && !is-solution)",
       "description": "Adding the new UI module as a reference to UI shared project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
@@ -245,8 +328,8 @@
       }
     },
     {
-      "condition": "(!IsSolution)",
-      "description": "Adding Shared Kernel as a reference to the new module.",
+      "condition": "(!is-solution && add != \"crud\")",
+      "description": "Adding the new module as a reference to SharedKernel",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [

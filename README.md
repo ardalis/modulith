@@ -35,7 +35,7 @@ dotnet new modulith -n eShop --with-module Payments
 
 ``` pwsh
 cd eShop
-dotnet new modulith --add basic-module --with-name Shipments --to eShop
+dotnet new modulith --add basic-module --module-name Shipments --solution eShop
 ```
 
 *⚠️ `cd` into the solution folder to add the module inside the solution.*
@@ -107,10 +107,10 @@ Here `Shipments` is the name of your new module, and `eShop.Web/eShop.Web.csproj
 
 # Modules with UI
 
-You can generate a solution with a Blazor UI by using the ```--WithUi```:
+You can generate a solution with a Blazor UI by using the ```--with-ui```:
 
 ``` pwsh
-dotnet new modulith -n eShop --with-module Payments --WithUi
+dotnet new modulith -n eShop --with-module Payments --with-ui
 ```
 
 Running the application will show the following blazor app:
@@ -131,7 +131,7 @@ New modules with UI can be added running:
 
 ```pwsh
 cd eShop
-dotnet new modulith --add basic-module --with-name Shipments --to eShop --WithUi
+dotnet new modulith --add basic-module --module-name Shipments --solution eShop --with-ui
 ```
 
 ⚠️ New modules with UI can only be added to solutions that were instantiated using the ```-WithUI``` parameter.

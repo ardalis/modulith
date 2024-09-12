@@ -1,5 +1,7 @@
-#if (WithUi)
+#if (withui)
 using Modulith.NewModule.HttpModels;
+#else
+using Modulith.NewModule.WeatherForecastEndpoints;
 #endif
 namespace Modulith.NewModule;
 
