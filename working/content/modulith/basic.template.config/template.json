@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "David Chaparro",
+  "classifications": [
+    "Web",
+    "Web API",
+    "API",
+    "Service",
+    "Modular",
+    "Monolith"
+  ],
+  "name": "modulith",
+  "groupIdentity": "Ardalis.Modulith",
+  "precedence": "10",
+  "identity": "Ardalis.Modulith.Basic.1.0",
+  "shortName": "modulith",
+  "description": "A 3 layered module template.",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "defaultName": "NewModule",
+  "preferDefaultName": true,
+  "preferNameDirectory": true,
+  "symbols": {
+    "template" : {
+      "type": "parameter",
+      "description": "The modulith template to instantiate.",
+      "datatype": "choice",
+      "choices": [{
+        "choice": "basic",
+        "description": "A basic 3 layer module",
+        "displayName": "Basic Module"
+        }],
+      "displayName": "Template type",
+      "defaultValue": "basic"
+    },
+    "solution-name": {
+      "type": "generated",
+      "generator": "regex",
+      "dataType": "string",
+      "parameters": {
+        "source": "root-namespace",              
+        "steps": [
+          {
+            "regex": "\\.\\w+",      
+            "replacement": ""   
+          }
+        ]
+      },
+      "fileRename": "Modulith",
+      "replaces": "Modulith"
+    },
+    "root-namespace": {
+      "type": "bind",
+      "binding": "msbuild:RootNamespace"
+    },
+    "module-name": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The name of the new or existing module where you want to instantiate the template.",
+      "fileRename": "NewModule",
+      "replaces": "NewModule"
+    },
+    "with-ui": {
+      "displayName": "With UI",
+      "description": "Includes blazor UI projects inside the specified module.",
+      "type": "parameter",
+      "datatype": "bool"
+    },
+    "withui": {
+      "displayName": "With UI",
+      "type": "computed",
+      "value": "with-ui"
+    }
+  },
+  "sources": [
+    {
+      "source": ".",
+      "target": "../",
+      "include": [
+        "NewModule/**/*"
+      ],
+      "modifiers": [
+        {
+          "condition": "!(withui)",
+          "exclude": [
+            "NewModule/Modulith.NewModule.UI/**/*"
+          ]
+        },
+        {
+          "condition": "(withui)",
+          "exclude": [
+            "NewModule/Modulith.NewModule/WeatherForecastEndpoints/List.Response.cs",
+            "NewModule/Modulith.NewModule/IWeatherForecastService.cs"
+          ]
+        }
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "condition": "(withui)",
+      "path": "../Shared/Modulith.UI/Modulith.UI.csproj"
+    },
+    {
+      "condition": "(withui)",
+      "path": "../NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
+    },
+    {
+      "condition": "(withui)",
+      "path": "../NewModule/Modulith.NewModule.HttpModels/Modulith.NewModule.HttpModels.csproj"
+    },
+    {
+      "path": "../Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
+    },
+    {
+      "path": "../NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+    },
+    {
+      "path": "../NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj"
+    },
+    {
+      "path": "../NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [{
+        "text": "Run 'dotnet restore'"
+      }],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    },
+    {
+      "description": "Add projects to solution",
+      "manualInstructions": [
+        {
+          "text": "[PA 1] Add generated project(s) to solution manually."
+        }
+      ],
+      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
+      "continueOnError": true
+    },
+    {
+      "description": "Adding the new module as a reference to Web project",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "[PA 2] Manually add the reference in the web project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "../Modulith.Web/Modulith.Web.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "../NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
+      }
+    },
+    {
+      "condition": "(withui)",
+      "description": "Adding the new UI module as a reference to UI shared project",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "[PA3] Manually add the reference in the UI project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "../Shared/Modulith.UI/Modulith.UI.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "../NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
+      }
+    }
+  ]
+}
