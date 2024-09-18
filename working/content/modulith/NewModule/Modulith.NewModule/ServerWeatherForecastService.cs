@@ -6,7 +6,11 @@ using static System.Random;
 
 namespace Modulith.NewModule;
 
-internal class ServerWeatherForecastService : IWeatherForecastService
+internal class WeatherForecastQuery : IRequest<IEnumerable<WeatherForecastResponse>>
+{
+}
+
+internal class ServerWeatherForecastService : IWeatherForecastService, IRequestHandler<WeatherForecastQuery, IEnumerable<WeatherForecastResponse>>
 {
   public Task<IEnumerable<WeatherForecastResponse>> GetWeatherForecastAsync()
   {
@@ -24,5 +28,10 @@ internal class ServerWeatherForecastService : IWeatherForecastService
           Shared.Next(-20, 55),
           summaries[Shared.Next(summaries.Length)]
         )));
+  }
+
+  public async Task<IEnumerable<WeatherForecastResponse>> Handle(WeatherForecastQuery request, CancellationToken cancellationToken)
+  {
+    return await GetWeatherForecastAsync();
   }
 }

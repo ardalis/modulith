@@ -10,9 +10,9 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8"/>
     </ItemGroup>
 
-
     <ItemGroup>
         <ProjectReference Include="..\NewModule\Modulith.NewModule.UI\Modulith.NewModule.UI.csproj"/>
+        <ProjectReference Include="..\NewModule\Modulith.NewModule\Modulith.NewModule.csproj"/>
         <ProjectReference Include="..\Shared\Modulith.UI\Modulith.UI.csproj"/>
     </ItemGroup>
 
@@ -26,10 +26,6 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3"/>
         <PackageReference Include="FastEndpoints" Version="5.29.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\NewModule\Modulith.NewModule\Modulith.NewModule.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "test/eShop"
+		},
+		{
+			"path": "../sdk/src/Assets/TestPackages/dotnet-new/test_templates/PostActions/AddProjectToSolution/Modulith"
+		}
+	],
+	"settings": {}
+}

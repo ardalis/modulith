@@ -10,19 +10,39 @@
     "Monolith"
   ],
   "name": "modulith",
-  "description": "A solution add for creating a Modular Monolithic Web API using FastEndpoints and MediatR",
-  "precedence": "0",
+  "groupIdentity": "Ardalis.Modulith",
+  "precedence": "20",
   "identity": "Ardalis.Modulith.1.0",
   "shortName": "modulith",
+  "description": "The modular solution template containing a single module.",
   "tags": {
     "language": "C#",
     "type": "solution"
   },
-  "sourceName": "Modulith",
   "defaultName": "Modulith",
+  "sourceName": "Modulith",
   "preferDefaultName": true,
   "preferNameDirectory": true,
   "symbols": {
+    "template" : {
+      "type": "parameter",
+      "description": "The modulith template to instantiate.",
+      "datatype": "choice",
+      "choices": [{
+        "choice": "solution",
+        "description": "The modular solution template containing a single module.",
+        "displayName": "Modulith solution."
+        }],
+      "displayName": "Template type",
+      "defaultValue": "solution"
+    },
+    "project": {
+      "type": "bind",
+      "binding": "msbuild:RootNamespace",
+      "fileRename": "Modulith",
+      "replaces": "Modulith",
+      "defaultValue": "Modulith"
+    },
     "add": {
       "type": "parameter",
       "datatype": "choice",
@@ -66,6 +86,7 @@
     "module-name": {
       "type": "parameter",
       "datatype": "string",
+      "isRequired": true,
       "description": "The name of the new or existing module where you want to instantiate the template.",
       "fileRename": "_Module",
       "replaces": "_Module",
@@ -98,14 +119,16 @@
       "replaces": "WeatherForecast"
     },
     "to": {
+      "displayName": "To",
       "type": "parameter",
       "datatype": "string",
-      "displayName": "[Deprecating: use 'solution'] The name of the solution and folder where the module or item will be added."
+      "description": "[Deprecating: use 'solution'] The name of the solution and folder where the module or item will be added."
     },
     "solution": {
+      "displayName": "Solution",
       "type": "parameter",
       "datatype": "string",
-      "displayName": "The name of the solution and folder where the module or item will be added."
+      "description": "The name of the solution and folder where the module or item will be added."
     },
     "solution-name": {
       "type": "generated",
@@ -119,6 +142,8 @@
       "replaces": "Modulith"
     },
     "with-ui": {
+      "displayName": "With UI",
+      "description": "Includes blazor UI projects inside the specified module.",
       "type": "parameter",
       "datatype": "bool"
     },
@@ -153,17 +178,27 @@
   },
   "sources": [
     {
-      "source": "./",
-      "target": "./",
+      "source": "../Modulith",
+      "target": ".",
       "condition": "(is-solution)",
       "include": [
         "Modulith.SharedKernel/**/*",
         "Modulith.Web/**/*",
+        "Modulith.Web/Modulith.Web.csproj",
+        "Directory.Build.props",
         "NewModule/**/*",
         ".gitignore",
         "Directory.Build.props",
         "Modulith.sln",
         "Shared/**/*"
+      ],
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/*.template.config/**/*",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json"
       ],
       "modifiers": [
         {
@@ -187,7 +222,7 @@
       ]
     },
     {
-      "source": ".",
+      "source": "./",
       "target": "./",
       "condition": "(add == \"basic-module\")",
       "include": [
@@ -210,7 +245,7 @@
       ]
     },
     {
-      "source": ".",
+      "source": "./",
       "target": "./",
       "condition": "(add == \"ddd-module\")",
       "include": [
@@ -218,7 +253,7 @@
       ]
     },
     {
-      "source": ".",
+      "source": "./",
       "target": ".",
       "condition": "(add == \"crud\")",
       "include": [
@@ -253,31 +288,39 @@
       "path": "NewModule/Modulith.NewModule.HttpModels/Modulith.NewModule.HttpModels.csproj"
     },
     {
-      "condition": "(!is-solution)",
+      "path": "Modulith.Web/Modulith.Web.csproj"
+    },
+    {
       "path": "Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
     },
     {
-      "condition": "(!is-solution)",
       "path": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
     },
     {
-      "condition": "(!is-solution)",
       "path": "NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj"
     },
     {
-      "condition": "(!is-solution)",
       "path": "NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
   ],
   "postActions": [
     {
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [{
+        "text": "[PA1] Run 'dotnet restore'"
+      }],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    },
+    {
       "condition": "(add != \"crud\")",
       "description": "Add projects to solution",
       "manualInstructions": [
         {
-          "text": "Add generated project(s) to solution manually."
+          "text": "[PA2] Add generated project(s) to solution manually. Modulith.sln"
         }
       ],
+      "applyFileRenamesToManualInstructions": true,
       "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
       "continueOnError": true
     },
@@ -298,7 +341,7 @@
       ],
       "args": {
         "targetFiles": [
-          "Modulith.Web/Modulith.Web.csproj"
+          "Modulith.Web.csproj"
         ],
         "referenceType": "project",
         "reference": "NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
