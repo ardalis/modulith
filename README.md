@@ -1,7 +1,9 @@
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
-**⚠️This project is a work in progress and will likely receive many API changes before v1.0.0. Please keep this in mind when using, as there will be breaking changes often.**
+* _⚠️This project is a work in progress and will likely receive many API changes before v2.0.0. Please keep this in mind when using, as there will be breaking changes often._
+
+* _⚠️ Automatic project references for new modules are only supported in .Net SDK 9.0.100-preview.7.* and newer. Please make a [manual project reference](#add-a-reference-to-the-new-module) when using earlier versions._
 
 **🆕 Try UI Module generation with Blazor. Jump to [Modules with UI](#modules-with-ui)**
 
