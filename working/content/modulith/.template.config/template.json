@@ -205,9 +205,10 @@
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference in the web project to the new project"
+          "text": "\n⚠️ This is only supported in .Net SDK 9.0.100-preview.7 and newer.\n🔧 For earlier versions please run:\n\n\tdotnet add Modulith.Web/Modulith.Web.csproj reference NewModule/Modulith.NewModule/Modulith.NewModule.csproj"
         }
       ],
+      "applyFileRenamesToManualInstructions": true,
       "applyFileRenamesToArgs": [
         "targetFiles",
         "reference"
@@ -221,15 +222,16 @@
       }
     },
     {
-      "condition": "(WithUi)",
+      "condition": "(WithUi && !Solution)",
       "description": "Adding the new UI module as a reference to UI shared project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference in the UI project to the new project"
+          "text": "\n⚠️ This is only supported in .Net SDK 9.0.100-preview.7 and newer.\n🔧 For earlier versions please run:\n\n\tdotnet add Shared/Modulith.UI/Modulith.UI.csproj reference NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj"
         }
       ],
+      "applyFileRenamesToManualInstructions": true,
       "applyFileRenamesToArgs": [
         "targetFiles",
         "reference"
@@ -244,14 +246,15 @@
     },
     {
       "condition": "(!IsSolution)",
-      "description": "Adding the new module as a reference to SharedKernel",
+      "description": "Adding Shared Kernel as a reference to the new module.",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
       "manualInstructions": [
         {
-          "text": "Manually add the reference in the shared kernel project to the new project"
+          "text": "\n⚠️ This is only supported in .Net SDK 9.0.100-preview.7 and newer.\n🔧 For earlier versions please run:\n\n\tdotnet add NewModule/Modulith.NewModule/Modulith.NewModule.csproj reference Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj"
         }
       ],
+      "applyFileRenamesToManualInstructions": true,
       "applyFileRenamesToArgs": [
         "targetFiles",
         "reference"
