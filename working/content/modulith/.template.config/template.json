@@ -123,6 +123,12 @@
             "Modulith.Web/Components/**/*",
             "Modulith.Web/ConventionBuilderExtensions.cs"
           ]
+        },
+        {
+          "condition": "WithUi",
+          "exclude": [
+            "NewModule/Modulith.NewModule/IWeatherForecastService.cs"
+          ]
         }
       ]
     },
