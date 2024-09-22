@@ -1,6 +1,6 @@
 cls
 # Clear the test directory before each run
-rm -rf test/**
+rm -rf manual-test/**
 
 # Reinstall latest version
 dotnet new uninstall .
@@ -8,7 +8,7 @@ dotnet new install .
 
 
 # Add an UI enabled solution with a first module
-cd test/
+cd manual-test/
 dotnet new modulith `
     --name eShop `
     --module-name Payments `
@@ -40,5 +40,5 @@ dotnet new modulith --add ddd-module --module-name Billing
 # Build and run
 cd ../..
 
-# dotnet build test/eShop
-# dotnet run --project test/eShop/eShop.Web/eShop.Web.csproj
+# dotnet build manual-test/eShop
+# dotnet run --project manual-test/eShop/eShop.Web/eShop.Web.csproj
