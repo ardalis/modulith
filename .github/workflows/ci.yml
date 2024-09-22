@@ -56,35 +56,35 @@ jobs:
         run: dotnet new install .
         
       - name: Instance solution
-        working-directory: test
+        working-directory: manual-test
         run: dotnet new modulith -n eShop --with-module Payments 
         
       - name: Instance basic project
-        working-directory: test/eShop
+        working-directory: manual-test/eShop
         run: dotnet new modulith --add basic-module --module-name Shipments --solution eShop
 
       - name: Add project reference
-        working-directory: test/eShop
+        working-directory: manual-test/eShop
         run: dotnet add eShop.Web/eShop.Web.csproj reference Shipments/eShop.Shipments/eShop.Shipments.csproj
       
       - name: Instance ddd project
-        working-directory: test/eShop
+        working-directory: manual-test/eShop
         run: dotnet new modulith --add ddd-module --module-name Billing --solution eShop
       
       - name: Add project reference
-        working-directory: test/eShop
+        working-directory: manual-test/eShop
         run: dotnet add eShop.Web/eShop.Web.csproj reference Billing/eShop.Billing/eShop.Billing.csproj
         
       - name: Restore
-        working-directory: test/eShop
+        working-directory: manual-test/eShop
         run: dotnet restore
 
       - name: Build
-        working-directory: test/eShop/eShop.Web
+        working-directory: manual-test/eShop/eShop.Web
         run: dotnet build --no-restore
 
       - name: Test
-        working-directory: test/eShop
+        working-directory: manual-test/eShop
         run: dotnet test --verbosity normal
   
   pack:

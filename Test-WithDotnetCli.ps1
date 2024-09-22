@@ -1,12 +1,12 @@
 # Clear the test directory before each run
-rm -rf test/**
+rm -rf manual-test/**
 
 # Reinstall latest version
 dotnet new uninstall .
 dotnet new install .
 
 # Add solution with a first module
-cd test/
+cd manual-test/
 dotnet new modulith -n eShop --with-module Payments
 
 # Add second and third module. Third module is DDD
@@ -23,5 +23,5 @@ dotnet add eShop.Web/eShop.Web.csproj reference Billing/eShop.Billing/eShop.Bill
 
 # Build and run
 cd ../..
-dotnet build test/eShop
-dotnet run --project test/eShop/eShop.Web/eShop.Web.csproj
+dotnet build manual-test/eShop
+dotnet run --project manual-test/eShop/eShop.Web/eShop.Web.csproj
