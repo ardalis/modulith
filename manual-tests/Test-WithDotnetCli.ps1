@@ -1,20 +1,21 @@
 # Clear the test directory before each run
-rm -rf manual-test/**
+rm -rf eShop
 
 # Reinstall latest version
-dotnet new uninstall .
-dotnet new install .
+dotnet new uninstall ../
+dotnet new install ../
 
 # Add solution with a first module
-cd manual-test/
 dotnet new modulith -n eShop --with-module Payments
 
 # Add second and third module. Third module is DDD
 cd eShop
 dotnet new modulith `
-    --add basic-module `
+    --template basic `
     --module-name Shipments `
     --solution eShop
+
+cd eShop/eShop.Web
 dotnet new modulith --add ddd-module --module-name Billing --solution eShop
 
 # Add project references. Needed before .Net 9
