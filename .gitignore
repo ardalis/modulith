@@ -3,3 +3,5 @@
 manual-test/*
 **/.idea/*
 *.user
+manual-tests/eShop/*
+.DS_Store
