@@ -36,7 +36,6 @@ public abstract class TestBase(ITestOutputHelper output)
       VerificationExcludePatterns = ["**/*.DS_Store*"],
       OutputDirectory             = customOutput,
       EnsureEmptyOutputDirectory  = false,
-      DisableDiffTool             = true
     };
     return options.WithCustomScrubbers(GuidScrubber);
   }

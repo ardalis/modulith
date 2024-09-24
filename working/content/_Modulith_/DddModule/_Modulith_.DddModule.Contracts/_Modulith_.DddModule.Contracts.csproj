@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <ProjectReference Include="..\_Modulith_.DddModule\_Modulith_.DddModule.csproj"/>
+    </ItemGroup>
+</Project>
