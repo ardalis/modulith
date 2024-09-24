@@ -28,4 +28,8 @@
         <PackageReference Include="FastEndpoints" Version="5.29.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectCapability Include="Solution" />
+    </ItemGroup>
+
 </Project>

@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <!--#if (withui) -->
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
@@ -10,14 +11,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Payments\eShop.Payments.UI\eShop.Payments.UI.csproj"/>
-        <ProjectReference Include="..\Payments\eShop.Payments\eShop.Payments.csproj"/>
-        <ProjectReference Include="..\Shared\eShop.UI\eShop.UI.csproj"/>
+        <ProjectReference Include="..\NewModule\_Modulith_.NewModule.UI\_Modulith_.NewModule.UI.csproj"/>
+        <ProjectReference Include="..\NewModule\_Modulith_.NewModule\_Modulith_.NewModule.csproj"/>
+        <ProjectReference Include="..\Shared\_Modulith_.UI\_Modulith_.UI.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Components\Layout\"/>
     </ItemGroup>
+    <!--#endif -->
     <ItemGroup>
         <PackageReference Include="FastEndpoints.Security" Version="5.29.0"/>
         <PackageReference Include="FastEndpoints.Swagger" Version="5.29.0"/>
