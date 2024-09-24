@@ -86,7 +86,6 @@
     "module-name": {
       "type": "parameter",
       "datatype": "string",
-      "isRequired": true,
       "description": "The name of the new or existing module where you want to instantiate the template.",
       "fileRename": "_Module",
       "replaces": "_Module",
@@ -198,7 +197,8 @@
         "**/*.template.config/**/*",
         "**/*.filelist",
         "**/*.user",
-        "**/*.lock.json"
+        "**/*.lock.json",
+        "**/*.DS_Store"
       ],
       "modifiers": [
         {

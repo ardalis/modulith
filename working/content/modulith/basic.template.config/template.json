@@ -124,6 +124,18 @@
       "path": "../NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj"
     }
   ],
+  "constraints": {
+    "csharp-only": {
+      "type": "project-capability",
+      "args": "Solution"
+    },
+    "sdk-only": {
+      "type": "host",
+      "args": [{
+          "hostname": "dotnetcli"
+      }]
+    }
+  },
   "postActions": [
     {
       "description": "Restore NuGet packages required by this project.",
