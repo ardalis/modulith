@@ -5,3 +5,4 @@ manual-test/*
 *.user
 manual-tests/eShop/*
 .DS_Store
+*.received
