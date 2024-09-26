@@ -32,6 +32,6 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
       "--module-name", "Shipments",
       "--with-ui",
       "-o", "eShop/eShop.Web"
-    ], Path.Combine(solutionOptions.OutputDirectory!)));
+    ], solutionOptions.OutputDirectory));
   }
 }

@@ -29,7 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectCapability Include="Solution" />
+        <ProjectCapability Include="Modulith.Solution" />
     </ItemGroup>
 
 </Project>

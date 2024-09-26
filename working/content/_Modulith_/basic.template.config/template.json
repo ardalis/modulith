@@ -127,7 +127,7 @@
   "constraints": {
     "csharp-only": {
       "type": "project-capability",
-      "args": "Modulith + Solution"
+      "args": "Modulith.Solution"
     },
     "sdk-only": {
       "type": "host",
