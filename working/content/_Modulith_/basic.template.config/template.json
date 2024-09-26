@@ -12,7 +12,7 @@
   "name": "modulith",
   "groupIdentity": "Ardalis.Modulith",
   "precedence": "10",
-  "identity": "ArdalisModulithBasic.1.0",
+  "identity": "Ardalis.Modulith.Basic.1.0",
   "shortName": "modulith",
   "description": "A 3 layered module template.",
   "tags": {

@@ -34,7 +34,7 @@ public abstract class TestBase(ITestOutputHelper output)
       TemplateSpecificArgs        = templateArgs,
       TemplatePath                = _workingLocation,
       VerificationExcludePatterns = ["**/*.DS_Store*"],
-      OutputDirectory             = customOutput,
+      OutputDirectory             = OutputLocation,
       EnsureEmptyOutputDirectory  = false,
     };
     return options.WithCustomScrubbers(GuidScrubber);
@@ -48,7 +48,7 @@ public abstract class TestBase(ITestOutputHelper output)
       TemplatePath                = _workingLocation,
       DisableDiffTool             = disableDiffTool,
       VerificationExcludePatterns = ["**/*"],
-      OutputDirectory             = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()),
+      OutputDirectory             = OutputLocation,//Path.GetRandomFileName()),
       EnsureEmptyOutputDirectory  = false,
     };
     return options.WithCustomScrubbers(GuidScrubber);

@@ -12,7 +12,8 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
     await Engine.Execute(WithVerificationOptions([
       "--name", "eShop",
       "--module-name", "Payments",
-      "--with-ui"
+      "--with-ui",
+      "-o", "eShop"
     ]));
   }
 

@@ -12,7 +12,7 @@
   "name": "modulith",
   "groupIdentity": "Ardalis.Modulith",
   "precedence": "20",
-  "identity": "ArdalisModulith1.0",
+  "identity": "Ardalis.Modulith.1.0",
   "shortName": "modulith",
   "description": "The modular solution template containing a single module.",
   "tags": {
@@ -35,13 +35,6 @@
         }],
       "displayName": "Template type",
       "defaultValue": "solution"
-    },
-    "project": {
-      "type": "bind",
-      "binding": "msbuild:RootNamespace",
-      "fileRename": "_Modulith_",
-      "replaces": "_Modulith_",
-      "defaultValue": "_Modulith_"
     },
     "add": {
       "type": "parameter",
