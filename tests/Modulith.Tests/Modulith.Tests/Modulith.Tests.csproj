@@ -28,4 +28,8 @@
         <None Include="Snapshots\**\*" CopyToOutputDirectory="Never" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Snapshots\output\" />
+    </ItemGroup>
+
 </Project>
