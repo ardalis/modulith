@@ -8,49 +8,175 @@ namespace Modulith.Tests;
 public abstract class TestBase(ITestOutputHelper output)
 {
 
-  protected readonly      VerificationEngine Engine    = new(output.BuildLogger());
-  private static readonly Regex              GuidRegex = new("[(]?[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{12}[)}]?");
-  protected const         string             Modulith  = "modulith";
+  protected readonly VerificationEngine Engine   = new(output.BuildLogger());
+  protected const    string             Modulith = "modulith";
 
-  protected readonly ScrubbersDefinition GuidScrubber = ScrubbersDefinition.Empty.AddScrubber(line => {
-
-    var matches = GuidRegex.Matches(line.ToString());
-
-    matches
-      .ForEach(match =>
-        line.Replace(match.ToString(), Guid.Empty.ToString())
-      );
-  }, "sln");
 
   private static   string  _codebase        = typeof(SolutionTests).Assembly.Location;
   private static   string? _codeBaseRoot    = new FileInfo(_codebase).Directory?.Parent?.Parent?.Parent?.Parent?.Parent?.Parent?.FullName;
   private readonly string  _workingLocation = Path.Combine(_codeBaseRoot!, "working");
   protected static string  OutputLocation   = Path.Combine(_codeBaseRoot!, "tests", "Modulith.Tests", "Modulith.Tests", "Snapshots", "output");
 
-  protected TemplateVerifierOptions WithVerificationOptions(IEnumerable<string>? templateArgs, string? customOutput = null)
+  protected TemplateVerifierOptionsBuilder GetVerificationOptions(string? customOutput = null)
   {
-    TemplateVerifierOptions options = new(templateName: Modulith)
-    {
-      TemplateSpecificArgs        = templateArgs,
-      TemplatePath                = _workingLocation,
-      VerificationExcludePatterns = ["**/*.DS_Store*"],
-      OutputDirectory             = OutputLocation,
-      EnsureEmptyOutputDirectory  = false,
-    };
-    return options.WithCustomScrubbers(GuidScrubber);
+    return TemplateVerifierOptionsExtensions
+      .ForTemplate(Modulith)
+      .WithTemplatePath(_workingLocation)
+      .WithOutputDirectory(OutputLocation);
+  }
+  //
+  // protected TemplateVerifierOptions WithoutVerificationOptions(IEnumerable<string>? templateArgs, bool disableDiffTool = false)
+  // {
+  //   TemplateVerifierOptions options = new(templateName: Modulith)
+  //   {
+  //     TemplateSpecificArgs        = templateArgs,
+  //     TemplatePath                = _workingLocation,
+  //     DisableDiffTool             = disableDiffTool,
+  //     VerificationExcludePatterns = ["**/*"],
+  //     OutputDirectory             = OutputLocation,//Path.GetRandomFileName()),
+  //     EnsureEmptyOutputDirectory  = false,
+  //   };
+  //   return options.WithCustomScrubbers(GuidScrubber);
+  // }
+}
+
+public class TemplateVerifierOptionsBuilder(string templateName)
+{
+  private List<string>        _templateArgs = [];
+  private string              _templatePath = ".";
+  private bool                _disableDiffTool;
+  private List<string>        _excludePaths    = [];
+  private string              _outputDirectory = ".";
+  private bool                _ensureOutputDirectory;
+  private bool                _deleteEmptyOutputDirectory;
+  private ScrubbersDefinition _customScrubbers;
+
+  private static readonly Regex GuidRegex = new("[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{12}");
+
+
+  protected readonly ScrubbersDefinition GuidScrubber = ScrubbersDefinition.Empty
+    // .AddScrubber(line => {
+    //
+    //   var matches = GuidRegex.Matches(line.ToString());
+    //
+    //   matches
+    //     .ForEach(match =>
+    //       line.Replace(match.ToString(), Guid.Empty.ToString())
+    //     );
+    // }, "sln")
+    .AddScrubber((path, content) => {
+      if (!Path.GetExtension(path).Equals(".sln", StringComparison.OrdinalIgnoreCase))
+      {
+        return;
+      }
+
+      var guids = GuidRegex.Matches(content.ToString());
+
+      var items = guids
+        .Distinct()
+        .Select((guid, index) => (guid: guid.ToString(), index))
+        .ToList();
+      items
+        .ForEach((item) => {
+          var newGuid = Guid.Empty.ToString().Replace("00", item.index <= 9 ? $"0{item.index}" : $"{item.index}");
+          content.Replace(item.guid, newGuid);
+        });
+    });
+
+  public TemplateVerifierOptionsBuilder WithArgs(IEnumerable<string>? templateArgs)
+  {
+    _templateArgs.AddRange(templateArgs ?? []);
+    return this;
   }
 
-  protected TemplateVerifierOptions WithoutVerificationOptions(IEnumerable<string>? templateArgs, bool disableDiffTool = false)
+  public TemplateVerifierOptionsBuilder WithTemplatePath(string templatePath)
   {
-    TemplateVerifierOptions options = new(templateName: Modulith)
-    {
-      TemplateSpecificArgs        = templateArgs,
-      TemplatePath                = _workingLocation,
-      DisableDiffTool             = disableDiffTool,
-      VerificationExcludePatterns = ["**/*"],
-      OutputDirectory             = OutputLocation,//Path.GetRandomFileName()),
-      EnsureEmptyOutputDirectory  = false,
-    };
-    return options.WithCustomScrubbers(GuidScrubber);
+    _templatePath = templatePath;
+    return this;
   }
+
+  public TemplateVerifierOptionsBuilder DisableDiffTool(bool disableDiffTool = false)
+  {
+    _disableDiffTool = disableDiffTool;
+    return this;
+  }
+
+  public TemplateVerifierOptionsBuilder ExcludeVerificationPaths(IEnumerable<string> excludePaths)
+  {
+    _excludePaths.AddRange(excludePaths);
+    return this;
+  }
+
+  public TemplateVerifierOptionsBuilder WithOutputDirectory(string outputDirectory)
+  {
+    _outputDirectory = outputDirectory;
+    return this;
+  }
+
+  public TemplateVerifierOptionsBuilder EnsureEmptyOutputDirectory(bool ensureEmptyOutputDirectory = true)
+  {
+    _ensureOutputDirectory = ensureEmptyOutputDirectory;
+    return this;
+  }
+
+  public TemplateVerifierOptionsBuilder DeletingOutputDirectory(bool deleteEmptyOutputDirectory = true)
+  {
+    _deleteEmptyOutputDirectory = deleteEmptyOutputDirectory;
+    return this;
+  }
+
+  public TemplateVerifierOptionsBuilder WithCustomScrubbers(ScrubbersDefinition scrubbers)
+  {
+    _customScrubbers = scrubbers;
+    return this;
+  }
+
+  public TemplateVerifierOptionsBuilder InstantiateWithoutVerification()
+  {
+    _excludePaths = ["**/*"];
+    EnsureEmptyOutputDirectory(false);
+    return this;
+  }
+
+  public TemplateVerifierOptions Build()
+  {
+    if (this._deleteEmptyOutputDirectory)
+    {
+      DeleteDirectory(this._outputDirectory);
+    }
+
+    return new TemplateVerifierOptions(templateName)
+      {
+        TemplateSpecificArgs        = _templateArgs,
+        TemplatePath                = _templatePath,
+        DisableDiffTool             = _disableDiffTool,
+        VerificationExcludePatterns = _excludePaths,
+        OutputDirectory             = _outputDirectory,//Path.GetRandomFileName()),
+        EnsureEmptyOutputDirectory  = _ensureOutputDirectory,
+      }
+      .WithCustomScrubbers(_customScrubbers);
+  }
+
+  public TemplateVerifierOptionsBuilder WithDefaultOptions() =>
+    this.EnsureEmptyOutputDirectory()
+      .DisableDiffTool()
+      .WithCustomScrubbers(GuidScrubber)
+      .ExcludeVerificationPaths(["**/*.DS_Store*"]);
+
+  private static void DeleteDirectory(string location)
+  {
+    Directory.EnumerateFiles(location).ToList().ForEach(File.Delete);
+    Directory.EnumerateDirectories(location).ToList().ForEach(DeleteDirectory);
+    Directory.Delete(location);
+  }
+
+  public static implicit operator TemplateVerifierOptions(TemplateVerifierOptionsBuilder builder)
+  {
+    return builder.Build();
+  }
+}
+
+public static class TemplateVerifierOptionsExtensions
+{
+  public static TemplateVerifierOptionsBuilder ForTemplate(string templateName) => new TemplateVerifierOptionsBuilder(templateName).WithDefaultOptions();
 }
