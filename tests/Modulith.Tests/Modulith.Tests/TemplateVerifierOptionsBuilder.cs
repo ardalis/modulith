@@ -39,7 +39,6 @@ public class TemplateVerifierOptionsBuilder(string templateName)
         });
     });
 
-
   public TemplateVerifierOptionsBuilder PrependTemplateNameToScenarionName(bool prependTemplateName)
   {
     _prependTemplateName = prependTemplateName;
