@@ -3,6 +3,7 @@ using Modulith.NewModule.HttpModels;
 #endif
 using Microsoft.Extensions.DependencyInjection;
 using Modulith.SharedKernel;
+using Microsoft.Extensions.Configuration;
 
 namespace Modulith.NewModule;
 
