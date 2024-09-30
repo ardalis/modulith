@@ -20,7 +20,20 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
       .DeletingOutputDirectory();
     await Engine.Execute(options.Build());
   }
-
+  
+  [Fact]
+  public async Task Solution()
+  {
+    var options = GetVerificationOptions()
+      .WithArgs([
+        "--name", "eShop",
+        "--module-name", "Payments",
+        "-o", "eShop"
+      ])
+      .DeletingOutputDirectory();
+    await Engine.Execute(options.Build());
+  }
+  
   [Fact]
   public async Task BasicModule()
   {

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8"/>
+        <PackageReference Include="MudBlazor" Version="7.7.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\eShop.SharedKernel\eShop.SharedKernel.csproj"/>
+        <ProjectReference Include="..\eShop.Payments.HttpModels\eShop.Payments.HttpModels.csproj"/>
+    </ItemGroup>
+
+</Project>

@@ -29,7 +29,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Snapshots\BasicModule.--template#basic#--module-name#Shipments#--with-ui#-o#eShopeShop.Web.verified\" />
       <Folder Include="Snapshots\output\" />
+      <Folder Include="Snapshots\Solution.--name#eShop#--module-name#Payments#-o#eShop.verified\" />
     </ItemGroup>
 
 </Project>
