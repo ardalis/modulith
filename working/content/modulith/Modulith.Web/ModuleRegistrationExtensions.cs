@@ -9,13 +9,18 @@ public static class ModuleRegistrationExtensions
 
   public static void DiscoverAndRegisterModules(this IServiceCollection services)
   {
-    var logger = CreateLogger();
+    var logger        = CreateLogger();
+    var configuration = GetConfiguration(services);
 
     var discoveredModuleAssemblies = DiscoverModuleAssemblies(logger);
 
     var moduleAssembliesLoaded = LoadAssembliesToApp(discoveredModuleAssemblies, logger);
 
-    moduleAssembliesLoaded.ForEach(module => RegisterModuleServices(services, module, logger));
+    moduleAssembliesLoaded.ForEach(module => RegisterModuleServices(services, module, logger, configuration));
+  }
+  private static IConfiguration GetConfiguration(IServiceCollection services)
+  {
+    return services.BuildServiceProvider().GetRequiredService<IConfiguration>();
   }
 
   private static ILogger CreateLogger()
@@ -37,7 +42,7 @@ public static class ModuleRegistrationExtensions
     return discoveredAssemblies;
   }
 
-  private static void RegisterModuleServices(IServiceCollection services, Assembly assembly, ILogger logger)
+  private static void RegisterModuleServices(IServiceCollection services, Assembly assembly, ILogger logger, IConfiguration configuration)
   {
     if (!TryGetServiceRegistrationMethod(logger, assembly, out var method))
     {
@@ -45,15 +50,15 @@ public static class ModuleRegistrationExtensions
       return;
     }
 
-    InvokeServiceRegistrationMethod(logger, services, method!);
+    InvokeServiceRegistrationMethod(logger, services, configuration, method!);
   }
 
-  private static void InvokeServiceRegistrationMethod(ILogger logger, IServiceCollection services, MethodBase method)
+  private static void InvokeServiceRegistrationMethod(ILogger logger, IServiceCollection services, IConfiguration configuration, MethodBase method)
   {
     try
     {
       var initialServiceCount = GetServicesCount(services);
-      method.Invoke(null, [services]);
+      method.Invoke(null, [services, configuration]);
       var finalServiceCount = GetServicesCount(services);
 
       logger.LogInformation("✅ Registered {serviceCount} services for module: {module}",

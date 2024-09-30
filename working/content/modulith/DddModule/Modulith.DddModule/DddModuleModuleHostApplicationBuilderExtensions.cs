@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using Modulith.DddModule.Api;
 using Modulith.DddModule.Infrastructure;
 using Modulith.SharedKernel;
@@ -8,7 +9,7 @@ namespace Modulith.DddModule;
 
 public class DddModuleServiceRegistrar : IRegisterModuleServices
 {
-  public static IServiceCollection ConfigureServices(IServiceCollection services)
+  public static IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
   {
     var logger = GetLogger(services);
     services.AddMediatR(
