@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 using eShop.Payments.HttpModels;
 
 namespace eShop.Payments.UI;

@@ -1,4 +1,4 @@
-﻿using eShop.SharedKernel;
+using eShop.SharedKernel;
 using eShop.Payments.HttpModels;
 using Microsoft.Extensions.DependencyInjection;
 

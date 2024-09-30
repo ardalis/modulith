@@ -1,4 +1,4 @@
-﻿using eShop.Shipments.HttpModels;
+using eShop.Shipments.HttpModels;
 using static System.DateOnly;
 using static System.Random;
 

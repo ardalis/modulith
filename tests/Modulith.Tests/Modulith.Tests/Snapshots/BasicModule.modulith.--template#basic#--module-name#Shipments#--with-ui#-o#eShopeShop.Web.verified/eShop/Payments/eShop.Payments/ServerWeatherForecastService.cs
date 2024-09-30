@@ -1,4 +1,4 @@
-﻿using eShop.Payments.HttpModels;
+using eShop.Payments.HttpModels;
 using static System.DateOnly;
 using static System.Random;
 

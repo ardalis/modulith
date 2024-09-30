@@ -1,4 +1,4 @@
-﻿namespace eShop.Payments.HttpModels;
+namespace eShop.Payments.HttpModels;
 
 public interface IWeatherForecastService
 {

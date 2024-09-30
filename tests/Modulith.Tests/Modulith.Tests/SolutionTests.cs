@@ -20,7 +20,35 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
       .DeletingOutputDirectory();
     await Engine.Execute(options.Build());
   }
+  
+  [Fact]
+  public async Task Solution()
+  {
+    var options = GetVerificationOptions()
+      .WithArgs([
+        "--name", "eShop",
+        "--module-name", "Payments",
+        "-o", "eShop"
+      ])
+      .DeletingOutputDirectory();
+    await Engine.Execute(options.Build());
+  }
 
+  /* Simplest option
+  Solution:
+  - Template config at the level of the root folder parent
+  
+  Modules:
+  - Instantiate a base module in a new folder
+  - Make the changes specific to the module
+  - Everything in the module copies over
+   
+  Sub modules:
+  - Instantiate a base module in a new folder
+  - Make the changes needed for the module
+  - Make a template config file for the files added
+  */
+  
   [Fact]
   public async Task BasicModule()
   {

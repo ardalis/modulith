@@ -1,4 +1,4 @@
-﻿using ArchUnitNET.Domain;
+using ArchUnitNET.Domain;
 using ArchUnitNET.Loader;
 using ArchUnitNET.xUnit;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;

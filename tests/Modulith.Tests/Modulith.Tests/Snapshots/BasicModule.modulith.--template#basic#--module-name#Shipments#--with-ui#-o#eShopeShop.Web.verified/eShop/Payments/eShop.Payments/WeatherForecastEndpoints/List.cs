@@ -1,4 +1,4 @@
-﻿using FastEndpoints;
+using FastEndpoints;
 using MediatR;
 using eShop.Payments.HttpModels;
 

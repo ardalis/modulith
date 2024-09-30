@@ -1,4 +1,4 @@
-﻿using MudBlazor.Services;
+using MudBlazor.Services;
 
 namespace eShop.UI;
 

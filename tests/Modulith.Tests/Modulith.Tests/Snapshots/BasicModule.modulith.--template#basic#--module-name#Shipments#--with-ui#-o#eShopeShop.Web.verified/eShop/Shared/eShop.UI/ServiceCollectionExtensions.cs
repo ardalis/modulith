@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using eShop.SharedKernel;
 
 namespace eShop.UI;

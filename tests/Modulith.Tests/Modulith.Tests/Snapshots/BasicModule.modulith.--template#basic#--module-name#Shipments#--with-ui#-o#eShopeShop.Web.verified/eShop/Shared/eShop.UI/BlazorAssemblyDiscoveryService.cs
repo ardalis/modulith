@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using eShop.Payments.UI;
 using eShop.UI;
 
