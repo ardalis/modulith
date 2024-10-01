@@ -1,7 +1,4 @@
-using Microsoft.Extensions.Options;
-using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 using Xunit.Abstractions;
-using static Modulith.Tests.TemplateVerifierOptionsExtensions;
 
 namespace Modulith.Tests;
 
@@ -10,55 +7,56 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
   [Fact]
   public async Task SolutionWithUi()
   {
-    var options = GetVerificationOptions()
-      .WithArgs([
-        "--name", "eShop",
-        "--module-name", "Payments",
-        "--with-ui",
-        "-o", "eShop"
-      ]);
-    await Engine.Execute(options.Build());
-  }
-  
-  [Fact]
-  public async Task Solution()
-  {
-    var options = GetVerificationOptions()
-      .WithArgs([
-        "--name", "eShop",
-        "--module-name", "Payments",
-        "-o", "eShop"
-      ]);
-    await Engine.Execute(options.Build());
-  }
-  
-  [Fact]
-  public async Task BasicModule()
-  {
-    var solutionDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-    var solutionOptions = GetVerificationOptions($"{nameof(BasicModule)}._.received")
+    await Engine.Execute(options => options
       .WithArgs([
         "--name", "eShop",
         "--module-name", "Payments",
         "--with-ui",
         "-o", "eShop"
       ])
-      .WithOutputDirectory(solutionDir)
-      .InstantiateWithoutVerification()
-      .Build();
+      .DisableDiffTool(false)
+      .DeletingReceivingDirectory());
+  }
 
-    await Engine.Execute(solutionOptions);
+  [Fact]
+  public async Task Solution()
+  {
+    await Engine.Execute(options => 
+      options.WithArgs([
+        "--name", "eShop",
+        "--module-name", "Payments",
+        "-o", "eShop"
+      ])
+      .DeletingVerifyCompilationFiles()
+      .DisableDiffTool(false)
+      .WithOutputDirectory(Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()))
+      .DeletingReceivingDirectory());
+  }
 
-    var moduleOptions = GetVerificationOptions()
-      .WithArgs([
+  [Fact]
+  public async Task BasicModule()
+  {
+    var outputDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+      var solutionOptions = await Engine.TryExecute(o => 
+        o.WithArgs([
+          "--name", "eShop",
+          "--module-name", "Payments",
+          "--with-ui",
+          "-o", "eShop"
+        ])
+        .DeletingVerifyCompilationFiles()
+        .DeletingReceivingDirectory()
+        .KeepInstantiationInSnapshot()
+        // .WithOutputDirectory(outputDirectory)
+        );
+
+    await Engine.Execute(o => o.WithArgs([
         "--template", "basic",
         "--module-name", "Shipments",
         "--with-ui",
         "-o", "eShop/eShop.Web"
       ])
-      .WithOutputDirectory(solutionDir)
-      .Build();
-
-    await Engine.Execute(moduleOptions);
+      .DisableDiffTool(false)
+      .WithOutputDirectory(solutionOptions.OutputDirectory!));
   }
 }

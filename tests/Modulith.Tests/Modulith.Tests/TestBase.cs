@@ -1,6 +1,5 @@
 using System.Runtime.CompilerServices;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
-using Microsoft.TemplateEngine.Utils;
 using Xunit.Abstractions;
 
 namespace Modulith.Tests;
@@ -23,6 +22,7 @@ public abstract class TestBase(ITestOutputHelper output)
       .ForTemplate(Modulith)
       .WithDefaultOptions()
       .WithTemplatePath(_workingLocation)
-      .WithSnapshotsDirectory(Path.Combine(OutputLocation, testName ?? ""));
+      .WithSnapshotsDirectory(Path.Combine(OutputLocation,  testName!))
+      .KeepInstantiationInSnapshot(testName);
   }
 }

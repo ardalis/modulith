@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 
@@ -7,27 +8,30 @@ public class TemplateVerifierOptionsBuilder(string templateName)
 {
   private readonly List<string> _templateArgs = [];
 
-  private string              _templatePath = ".";
-  private bool                _disableDiffTool;
-  private List<string>        _excludePaths       = [];
-  private string              _snapshotsDirectory = ".";
-  private bool                _ensureOutputDirectory;
-  private bool                _deleteEmptyOutputDirectory;
-  private ScrubbersDefinition _customScrubbers;
-  private bool                _prependTemplateName = true;
-  private string              _outputDirectory;
+  private string       _templatePath = ".";
+  private bool         _disableDiffTool;
+  private List<string> _excludePaths       = [];
+  private string       _snapshotsDirectory = ".";
+  private bool         _ensureOutputDirectory;
+  public  bool         DeleteEmptyOutputDirectory { get; private set; }
+  public  bool         DeleteExclusions           { get; private set; }
 
+  private ScrubbersDefinition _customScrubbers     = ScrubbersDefinition.Empty;
+  private bool                _prependTemplateName = true;
+  private string?             _outputDirectory;
+
+  private static readonly Regex ProjectGuidRegex = new("\\s\"{[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{12}");
+  
   private static readonly Regex GuidRegex = new("[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{12}");
 
-
-  protected readonly ScrubbersDefinition GuidScrubber = ScrubbersDefinition.Empty
+  private readonly ScrubbersDefinition _guidScrubber = ScrubbersDefinition.Empty
     .AddScrubber((path, content) => {
       if (!Path.GetExtension(path).Equals(".sln", StringComparison.OrdinalIgnoreCase))
       {
         return;
       }
 
-      var guids = GuidRegex.Matches(content.ToString());
+      var guids = ProjectGuidRegex.Matches(content.ToString());
 
       var items = guids
         .Distinct()
@@ -35,12 +39,13 @@ public class TemplateVerifierOptionsBuilder(string templateName)
         .ToList();
       items
         .ForEach((item) => {
-          var newGuid = Guid.Empty.ToString().Replace("00", item.index <= 9 ? $"0{item.index}" : $"{item.index}");
-          content.Replace(item.guid, newGuid);
+          var newGuid  = Guid.Empty.ToString().Replace("00", item.index <= 9 ? $"0{item.index}" : $"{item.index}");
+          var oldValue = item.guid.Split("{")[1];
+          content.Replace(oldValue, newGuid);
         });
     });
 
-  public TemplateVerifierOptionsBuilder PrependTemplateNameToScenarionName(bool prependTemplateName)
+  public TemplateVerifierOptionsBuilder PrependTemplateNameToScenarioName(bool prependTemplateName)
   {
     _prependTemplateName = prependTemplateName;
     return this;
@@ -58,7 +63,7 @@ public class TemplateVerifierOptionsBuilder(string templateName)
     return this;
   }
 
-  public TemplateVerifierOptionsBuilder DisableDiffTool(bool disableDiffTool = false)
+  public TemplateVerifierOptionsBuilder DisableDiffTool(bool disableDiffTool = true)
   {
     _disableDiffTool = disableDiffTool;
     return this;
@@ -80,15 +85,23 @@ public class TemplateVerifierOptionsBuilder(string templateName)
     _snapshotsDirectory = outputDirectory;
     return this;
   }
-  
+
   public TemplateVerifierOptionsBuilder WithOutputDirectory(string outputDirectory)
   {
-
+    if (!Directory.Exists(outputDirectory))
+    {
+      Directory.CreateDirectory(outputDirectory);
+    }
 
     _outputDirectory = outputDirectory;
     return this;
   }
-  
+
+  public TemplateVerifierOptionsBuilder KeepInstantiationInSnapshot([CallerMemberName] string? testName = null)
+  {
+    WithOutputDirectory(Path.Combine(_snapshotsDirectory, $"{testName}._.instance"));
+    return this;
+  }
 
   public TemplateVerifierOptionsBuilder EnsureEmptyOutputDirectory(bool ensureEmptyOutputDirectory = true)
   {
@@ -98,10 +111,15 @@ public class TemplateVerifierOptionsBuilder(string templateName)
 
   public TemplateVerifierOptionsBuilder DeletingReceivingDirectory(bool deleteEmptyOutputDirectory = true)
   {
-    _deleteEmptyOutputDirectory = deleteEmptyOutputDirectory;
+    DeleteEmptyOutputDirectory = deleteEmptyOutputDirectory;
     return this;
   }
 
+  public TemplateVerifierOptionsBuilder DeletingVerifyCompilationFiles(bool deleteExclusions = true)
+  {
+    DeleteExclusions = deleteExclusions;
+    return this;
+  }
   public TemplateVerifierOptionsBuilder WithCustomScrubbers(ScrubbersDefinition scrubbers)
   {
     _customScrubbers = scrubbers;
@@ -117,17 +135,12 @@ public class TemplateVerifierOptionsBuilder(string templateName)
 
   public TemplateVerifierOptions Build()
   {
-    if (_deleteEmptyOutputDirectory)
-    {
-      // DeleteDirectory(_outputDirectory);
-    }
-
     return new TemplateVerifierOptions(templateName)
       {
-        TemplateSpecificArgs        = _templateArgs,
-        TemplatePath                = _templatePath,
-        DisableDiffTool             = _disableDiffTool,
-        VerificationExcludePatterns = _excludePaths,
+        TemplateSpecificArgs                   = _templateArgs,
+        TemplatePath                           = _templatePath,
+        DisableDiffTool                        = _disableDiffTool,
+        VerificationExcludePatterns            = _excludePaths,
         OutputDirectory                        = _outputDirectory,
         EnsureEmptyOutputDirectory             = _ensureOutputDirectory,
         DoNotPrependTemplateNameToScenarioName = _prependTemplateName,
@@ -139,18 +152,7 @@ public class TemplateVerifierOptionsBuilder(string templateName)
 
   public TemplateVerifierOptionsBuilder WithDefaultOptions() =>
     DisableDiffTool()
-      .WithCustomScrubbers(GuidScrubber)
+      .WithCustomScrubbers(_guidScrubber)
       .ExcludeVerificationPaths(["**/*.DS_Store*"]);
 
-  private static void DeleteDirectory(string location)
-  {
-    Directory.EnumerateFiles(location).ToList().ForEach(File.Delete);
-    Directory.EnumerateDirectories(location).ToList().ForEach(DeleteDirectory);
-    Directory.Delete(location);
-  }
-
-  public static implicit operator TemplateVerifierOptions(TemplateVerifierOptionsBuilder builder)
-  {
-    return builder.Build();
-  }
 }

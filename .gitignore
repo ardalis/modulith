@@ -6,4 +6,5 @@ manual-test/*
 manual-tests/eShop/*
 .DS_Store
 **/*.received
+**/*.instance
 **/received/*

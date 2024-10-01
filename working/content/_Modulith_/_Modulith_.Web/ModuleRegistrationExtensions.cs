@@ -114,7 +114,7 @@ public static class ModuleRegistrationExtensions
   }
 
   private static Type? GetRegisterServicesClass(Assembly assembly)
-    => assembly.GetTypes().Find(t => t.IsClass && t.IsAssignableTo(typeof(IRegisterModuleServices)));
+    => assembly.GetTypes().FirstOrDefault(t => t.IsClass && t.IsAssignableTo(typeof(IRegisterModuleServices)));
 
   private static List<Assembly> LoadAssembliesToApp(List<AssemblyName> assemblyModuleNames, ILogger logger)
   {
