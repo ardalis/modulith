@@ -10,7 +10,7 @@ namespace _Modulith_.NewModule;
 public class NewModuleModuleServiceRegistrar : IRegisterModuleServices
 {
   public static IServiceCollection ConfigureServices(IServiceCollection services,
-    IConfiguration config)
+    IConfiguration configuration)
   {
     services.AddMediatR(
       c => c.RegisterServicesFromAssemblies(typeof(AssemblyInfo).Assembly));

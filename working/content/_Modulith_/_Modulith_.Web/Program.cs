@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 // Call the method where you are registering services for each module:
 // NewModuleModuleServiceRegistrar.ConfigureServices(builder.Services, builder.Configuration);
 
-// Or use the discover method below to try and find the services for your modules`
+// Or use the discover method below to try and find the services for your modules
 builder.Services.DiscoverAndRegisterModules();
 
 #if (withui)

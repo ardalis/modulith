@@ -95,5 +95,5 @@ public static class ServiceCollectionExtensions
   }
 
   private static Type? GetRegisterServicesClass(Assembly assembly)
-    => assembly.GetTypes().FirstOrDefault(t => t.IsClass && t.IsAssignableTo(typeof(IRegisterModuleServices)));
+    => assembly.GetTypes().Find(t => t.IsClass && t.IsAssignableTo(typeof(IRegisterModuleServices)));
 }

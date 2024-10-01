@@ -9,12 +9,13 @@ public class TemplateVerifierOptionsBuilder(string templateName)
 
   private string              _templatePath = ".";
   private bool                _disableDiffTool;
-  private List<string>        _excludePaths    = [];
-  private string              _outputDirectory = ".";
+  private List<string>        _excludePaths       = [];
+  private string              _snapshotsDirectory = ".";
   private bool                _ensureOutputDirectory;
   private bool                _deleteEmptyOutputDirectory;
   private ScrubbersDefinition _customScrubbers;
   private bool                _prependTemplateName = true;
+  private string              _outputDirectory;
 
   private static readonly Regex GuidRegex = new("[0-9a-fA-F]{8}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{4}[-]?[0-9a-fA-F]{12}");
 
@@ -69,11 +70,25 @@ public class TemplateVerifierOptionsBuilder(string templateName)
     return this;
   }
 
+  public TemplateVerifierOptionsBuilder WithSnapshotsDirectory(string outputDirectory)
+  {
+    if (!Directory.Exists(outputDirectory))
+    {
+      Directory.CreateDirectory(outputDirectory);
+    }
+
+    _snapshotsDirectory = outputDirectory;
+    return this;
+  }
+  
   public TemplateVerifierOptionsBuilder WithOutputDirectory(string outputDirectory)
   {
+
+
     _outputDirectory = outputDirectory;
     return this;
   }
+  
 
   public TemplateVerifierOptionsBuilder EnsureEmptyOutputDirectory(bool ensureEmptyOutputDirectory = true)
   {
@@ -81,7 +96,7 @@ public class TemplateVerifierOptionsBuilder(string templateName)
     return this;
   }
 
-  public TemplateVerifierOptionsBuilder DeletingOutputDirectory(bool deleteEmptyOutputDirectory = true)
+  public TemplateVerifierOptionsBuilder DeletingReceivingDirectory(bool deleteEmptyOutputDirectory = true)
   {
     _deleteEmptyOutputDirectory = deleteEmptyOutputDirectory;
     return this;
@@ -104,25 +119,26 @@ public class TemplateVerifierOptionsBuilder(string templateName)
   {
     if (_deleteEmptyOutputDirectory)
     {
-      DeleteDirectory(_outputDirectory);
+      // DeleteDirectory(_outputDirectory);
     }
 
     return new TemplateVerifierOptions(templateName)
       {
-        TemplateSpecificArgs                   = _templateArgs,
-        TemplatePath                           = _templatePath,
-        DisableDiffTool                        = _disableDiffTool,
-        VerificationExcludePatterns            = _excludePaths,
-        OutputDirectory                        = _outputDirectory,//Path.GetRandomFileName()),
+        TemplateSpecificArgs        = _templateArgs,
+        TemplatePath                = _templatePath,
+        DisableDiffTool             = _disableDiffTool,
+        VerificationExcludePatterns = _excludePaths,
+        OutputDirectory                        = _outputDirectory,
         EnsureEmptyOutputDirectory             = _ensureOutputDirectory,
         DoNotPrependTemplateNameToScenarioName = _prependTemplateName,
+        DoNotAppendTemplateArgsToScenarioName  = true,
+        SnapshotsDirectory                     = _snapshotsDirectory
       }
       .WithCustomScrubbers(_customScrubbers);
   }
 
   public TemplateVerifierOptionsBuilder WithDefaultOptions() =>
-    EnsureEmptyOutputDirectory()
-      .DisableDiffTool()
+    DisableDiffTool()
       .WithCustomScrubbers(GuidScrubber)
       .ExcludeVerificationPaths(["**/*.DS_Store*"]);
 

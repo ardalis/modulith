@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Microsoft.TemplateEngine.Authoring.TemplateVerifier;
 using Microsoft.TemplateEngine.Utils;
 using Xunit.Abstractions;
@@ -14,14 +15,14 @@ public abstract class TestBase(ITestOutputHelper output)
   private static   string  _codebase        = typeof(SolutionTests).Assembly.Location;
   private static   string? _codeBaseRoot    = new FileInfo(_codebase).Directory?.Parent?.Parent?.Parent?.Parent?.Parent?.Parent?.FullName;
   private readonly string  _workingLocation = Path.Combine(_codeBaseRoot!, "working");
-  protected static string  OutputLocation   = Path.Combine(_codeBaseRoot!, "tests", "Modulith.Tests", "Modulith.Tests", "Snapshots", "output");
+  protected static string  OutputLocation   = Path.Combine(_codeBaseRoot!, "tests", "Modulith.Tests", "Modulith.Tests", "Snapshots");
 
-  protected TemplateVerifierOptionsBuilder GetVerificationOptions(string? customOutput = null)
+  protected TemplateVerifierOptionsBuilder GetVerificationOptions([CallerMemberName] string? testName = null)
   {
     return TemplateVerifierOptionsExtensions
       .ForTemplate(Modulith)
       .WithDefaultOptions()
       .WithTemplatePath(_workingLocation)
-      .WithOutputDirectory(OutputLocation);
+      .WithSnapshotsDirectory(Path.Combine(OutputLocation, testName ?? ""));
   }
 }

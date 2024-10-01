@@ -16,8 +16,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
         "--module-name", "Payments",
         "--with-ui",
         "-o", "eShop"
-      ])
-      .DeletingOutputDirectory();
+      ]);
     await Engine.Execute(options.Build());
   }
   
@@ -29,23 +28,23 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
         "--name", "eShop",
         "--module-name", "Payments",
         "-o", "eShop"
-      ])
-      .DeletingOutputDirectory();
+      ]);
     await Engine.Execute(options.Build());
   }
   
   [Fact]
   public async Task BasicModule()
   {
-    var solutionOptions = GetVerificationOptions()
+    var solutionDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+    var solutionOptions = GetVerificationOptions($"{nameof(BasicModule)}._.received")
       .WithArgs([
         "--name", "eShop",
         "--module-name", "Payments",
         "--with-ui",
         "-o", "eShop"
       ])
+      .WithOutputDirectory(solutionDir)
       .InstantiateWithoutVerification()
-      .DeletingOutputDirectory()
       .Build();
 
     await Engine.Execute(solutionOptions);
@@ -57,8 +56,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
         "--with-ui",
         "-o", "eShop/eShop.Web"
       ])
-      .WithOutputDirectory(solutionOptions.OutputDirectory!)
-      .EnsureEmptyOutputDirectory(false)
+      .WithOutputDirectory(solutionDir)
       .Build();
 
     await Engine.Execute(moduleOptions);

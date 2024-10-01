@@ -30,8 +30,11 @@
 
     <ItemGroup>
       <Folder Include="Snapshots\BasicModule.--template#basic#--module-name#Shipments#--with-ui#-o#eShopeShop.Web.verified\" />
-      <Folder Include="Snapshots\output\" />
-      <Folder Include="Snapshots\Solution.--name#eShop#--module-name#Payments#-o#eShop.verified\" />
+      <Folder Include="Snapshots\BasicModule\" />
+      <Folder Include="Snapshots\BasicModule\BasicModule._.received\" />
+      <Folder Include="Snapshots\BasicModule\BasicModule._.verified\" />
+      <Folder Include="Snapshots\Solution._.received\" />
+      <Folder Include="Snapshots\Solution\Solution._.received\" />
     </ItemGroup>
 
 </Project>
