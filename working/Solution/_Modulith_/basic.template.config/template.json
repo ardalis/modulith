@@ -85,7 +85,8 @@
         {
           "condition": "!(withui)",
           "exclude": [
-            "NewModule/_Modulith_.NewModule.UI/**/*"
+            "NewModule/_Modulith_.NewModule.UI/**/*",
+            "NewModule/_Modulith_.NewModule.HttpModels/**/*"
           ]
         },
         {

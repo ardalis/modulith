@@ -1,11 +1,7 @@
-using FastEndpoints;
+﻿using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
-#if (withui)
-using _Modulith_.UI;
-using MudBlazor.Services;
-#endif
-using _Modulith_.Web;
+using eShop.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +10,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Call the method where you are registering services for each module:
-// NewModuleModuleServiceRegistrar.ConfigureServices(builder.Services, builder.Configuration);
+// PaymentsModuleServiceRegistrar.ConfigureServices(builder.Services, builder.Configuration);
 
 // Or use the discover method below to try and find the services for your modules
 builder.Services.DiscoverAndRegisterModules();
 
-#if (withui)
-builder.Services.AddBlazorAssemblyDiscovery();
-#endif
 
 builder.Services
   .AddAuthenticationJwtBearer(s => {
@@ -32,39 +25,20 @@ builder.Services
   .SwaggerDocument()
   .AddFastEndpoints();
 
-#if (withui)
-// Add services to the container.
-builder.Services.AddRazorComponents()
-  .AddInteractiveServerComponents()
-  .AddInteractiveWebAssemblyComponents();
-
-builder.Services.AddMudServices();
-#endif
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-#if (withui)
-app.UseStaticFiles()
-  .UseWebAssemblyDebugging();
-#endif
 
 // Use FastEndpoints
 app.UseAuthentication()
   .UseAuthorization()
-#if (withui)
-  .UseRouting()
-  .UseAntiforgery()
-#endif
   .UseFastEndpoints()
   .UseSwaggerGen(uiConfig: ui => ui.Path = string.Empty);
 
-#if (withui)
-app.AddBlazorModulesAdditionalAssemblies();
-#endif
 
 app.Run();
 
-namespace _Modulith_.Web
+namespace eShop.Web
 {
   public partial class Program;
 }

@@ -44,6 +44,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Content Include="BlazorSolution\AddBasicModule\**\*" Exclude="BlazorSolution\AddBasicModule\**\bin\**;BlazorSolution\AddBasicModule\**\obj\**"/>
         <Content Include="Solution\**\*" Exclude="Solution\**\bin\**;Solution\**\obj\**"/>
         <Content Include="SolutionWithUi\**\*" Exclude="SolutionWithUi\**\bin\**;SolutionWithUi\**\obj\**"/>
         <Compile Remove="**\*"/>

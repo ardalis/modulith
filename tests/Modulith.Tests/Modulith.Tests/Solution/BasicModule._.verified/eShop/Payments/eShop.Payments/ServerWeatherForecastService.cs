@@ -1,12 +1,8 @@
-#if (withui)
-using _Modulith_.NewModule.HttpModels;
-#else
-using _Modulith_.NewModule.WeatherForecastEndpoints;
-#endif
+﻿using eShop.Payments.WeatherForecastEndpoints;
 using static System.DateOnly;
 using static System.Random;
 
-namespace _Modulith_.NewModule;
+namespace eShop.Payments;
 
 internal class WeatherForecastQuery : IRequest<IEnumerable<WeatherForecastResponse>>
 {

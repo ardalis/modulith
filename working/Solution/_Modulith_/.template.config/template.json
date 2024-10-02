@@ -180,7 +180,6 @@
         "Directory.Build.props",
         "NewModule/**/*",
         ".gitignore",
-        "Directory.Build.props",
         "_Modulith_.sln",
         "Shared/**/*"
       ],
