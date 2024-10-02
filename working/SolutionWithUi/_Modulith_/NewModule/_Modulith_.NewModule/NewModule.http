@@ -1,6 +1,0 @@
-@_Modulith_.Web_HostAddress = http://localhost:5183
-
-GET {{_Modulith_.Web_HostAddress}}/NewModule/weatherforecast/
-Accept: application/json
-
-###

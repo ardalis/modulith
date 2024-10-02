@@ -25,7 +25,7 @@
 
     <ItemGroup>
         <Compile Remove="**\*._.received\**\*" />
-        <Content Include="**\*._.received\**\*" />
+        <Content Remove="**\*._.received\**\*" />
         <None Include="**\*._.received\**\*" CopyToOutputDirectory="Never" />
 
         <Compile Remove="**\*._.verified\**\*" />
@@ -36,13 +36,12 @@
         <Compile Remove="**\*._.instance\**\*" />
         <Content Remove="**\*._.instance\**\*" />
         <None Include="**\*._.instance\**\*" CopyToOutputDirectory="Never" />
-
-        <Content Include="Solution\Solution._.verified\eShop\eShop.sln" />
-        <None Include="Snapshots\**\*" CopyToOutputDirectory="Never" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="SolutionWithUi\WithBasicModule._.verified\" />
+      <Folder Include="BlazorSolution\BlazorSolution._.verified\" />
+      <Folder Include="BlazorSolution\SolutionWithUi._.verified\" />
+      <Folder Include="BlazorSolution\WithBasicModule._.verified\" />
       <Folder Include="Solution\WithBasicModule._.received\" />
       <Folder Include="Solution\WithBasicModule._.verified\" />
       <Folder Include="Solution\Solution._.verified\" />

@@ -6,7 +6,7 @@ namespace Modulith.Tests.SolutionWithUi;
 public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
 {
   [Fact]
-  public async Task SolutionWithUi()
+  public async Task BlazorSolution()
   {
     await Engine.Verify(options => options
       .WithArgs([
