@@ -15,7 +15,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
         "--module-name", "Payments",
         "-o", "eShop"
       ])
-      .DisableDiffTool()
+      .DisableDiffTool(false)
       .DeletingReceivingDirectory());
   }
 

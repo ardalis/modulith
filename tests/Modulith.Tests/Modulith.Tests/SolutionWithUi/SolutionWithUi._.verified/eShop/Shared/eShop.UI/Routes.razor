@@ -1,5 +1,4 @@
 ﻿@using System.Reflection
-@using eShop.UI.Layout
 @using NavigationContext = Microsoft.AspNetCore.Components.Routing.NavigationContext
 @inject ILogger<Routes>  Logger
 @inject IServiceProvider Services
@@ -8,7 +7,7 @@
         AdditionalAssemblies="_lazyLoadedAssemblies"
         OnNavigateAsync="OnNavigateAsync">
   <Found Context="routeData">
-    <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
+    <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)"/>
     <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
   </Found>
 </Router>
