@@ -11,8 +11,8 @@
   ],
   "name": "modulith",
   "groupIdentity": "Ardalis.Modulith",
-  "precedence": "20",
-  "identity": "Ardalis.Modulith.1.0",
+  "precedence": "50",
+  "identity": "Ardalis.Modulith.Solution.1.0",
   "shortName": "modulith",
   "description": "The modular solution template containing a single module.",
   "tags": {
@@ -30,7 +30,7 @@
       "datatype": "choice",
       "choices": [{
         "choice": "solution",
-        "description": "The modular solution template containing a single module.",
+        "description": "A solution with a basic module.",
         "displayName": "_Modulith_ solution."
         }],
       "displayName": "Template type",

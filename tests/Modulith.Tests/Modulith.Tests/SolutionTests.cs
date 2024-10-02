@@ -9,12 +9,12 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
   {
     await Engine.Execute(options => options
       .WithArgs([
+        "--template", "ui-solution",
         "--name", "eShop",
         "--module-name", "Payments",
-        "--with-ui",
         "-o", "eShop"
       ])
-      .DisableDiffTool(false)
+      .DisableDiffTool()
       .DeletingReceivingDirectory());
   }
 

@@ -11,7 +11,7 @@
   ],
   "name": "modulith",
   "groupIdentity": "Ardalis.Modulith",
-  "precedence": "10",
+  "precedence": "40",
   "identity": "Ardalis.Modulith.Basic.1.0",
   "shortName": "modulith",
   "description": "A 3 layered module template.",

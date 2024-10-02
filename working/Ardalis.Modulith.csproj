@@ -44,7 +44,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**"/>
+        <Content Include="Solution\**\*" Exclude="Solution\**\bin\**;Solution\**\obj\**"/>
+        <Content Include="SolutionWithUi\**\*" Exclude="SolutionWithUi\**\bin\**;SolutionWithUi\**\obj\**"/>
         <Compile Remove="**\*"/>
     </ItemGroup>
 
