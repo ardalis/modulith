@@ -8,7 +8,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
   [Fact]
   public async Task SolutionWithUi()
   {
-    await Engine.Execute(options => options
+    await Engine.Verify(options => options
       .WithArgs([
         "--template", "ui-solution",
         "--name", "eShop",
@@ -23,7 +23,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
   public async Task BasicModule()
   {
     var outputDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-    await Engine.TryExecute(o =>
+    await Engine.TryVerify(o =>
         o.WithArgs([
             "--template", "ui-solution",
             "--name", "eShop",
@@ -35,7 +35,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
           .WithOutputDirectory(outputDirectory) // This is necessary for both instantiations to point to the same location
     );
     
-    await Engine.Execute(o => o.WithArgs([
+    await Engine.Verify(o => o.WithArgs([
         "--template", "basic",
         "--module-name", "Shipments",
         "--with-ui",

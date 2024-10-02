@@ -14,7 +14,7 @@ public static class VerificationEngineExtensions
   private static string? _codeBaseRoot    = new FileInfo(_codebase).Directory?.Parent?.Parent?.Parent?.Parent?.Parent?.Parent?.FullName;
   private static string  _workingLocation = Path.Combine(_codeBaseRoot!, "working");
 
-  public static async Task<TemplateVerifierOptions> TryExecute(this VerificationEngine engine, Func<TemplateVerifierOptionsBuilder, TemplateVerifierOptionsBuilder> optionsBuilder,
+  public static async Task<TemplateVerifierOptions> TryVerify(this VerificationEngine engine, Func<TemplateVerifierOptionsBuilder, TemplateVerifierOptionsBuilder> optionsBuilder,
     [CallerMemberName] string? callerMethod = null,
     [CallerFilePath] string? callerFile = null)
   {
@@ -26,7 +26,7 @@ public static class VerificationEngineExtensions
     
     try
     {
-      return await Execute(engine, optionsBuilder, callerMethod, Path.Combine(parentFullName, callerFile));
+      return await Verify(engine, optionsBuilder, callerMethod, Path.Combine(parentFullName, callerFile));
     }
     catch (TemplateVerificationException)
     {
@@ -34,7 +34,7 @@ public static class VerificationEngineExtensions
     }
   }
 
-  public static async Task<TemplateVerifierOptions> Execute(
+  public static async Task<TemplateVerifierOptions> Verify(
     this VerificationEngine engine,
     Func<TemplateVerifierOptionsBuilder,
       TemplateVerifierOptionsBuilder> optionsBuilder,
