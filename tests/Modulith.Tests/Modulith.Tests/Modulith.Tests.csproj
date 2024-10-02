@@ -42,9 +42,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="SolutionWithUi\BasicModule._.verified\" />
-      <Folder Include="Solution\BasicModule._.received\" />
-      <Folder Include="Solution\BasicModule._.verified\" />
+      <Folder Include="SolutionWithUi\WithBasicModule._.verified\" />
+      <Folder Include="Solution\WithBasicModule._.received\" />
+      <Folder Include="Solution\WithBasicModule._.verified\" />
       <Folder Include="Solution\Solution._.verified\" />
     </ItemGroup>
 

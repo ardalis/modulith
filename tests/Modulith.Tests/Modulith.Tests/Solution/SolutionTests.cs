@@ -20,7 +20,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
   }
 
   [Fact]
-  public async Task BasicModule()
+  public async Task WithBasicModule()
   {
     var outputDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
     var solutionOptions = await Engine.TryVerify(o =>
