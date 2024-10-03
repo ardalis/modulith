@@ -36,8 +36,7 @@ public static class VerificationEngineExtensions
 
   public static async Task<TemplateVerifierOptions> Verify(
     this VerificationEngine engine,
-    Func<TemplateVerifierOptionsBuilder,
-      TemplateVerifierOptionsBuilder> optionsBuilder,
+    Func<TemplateVerifierOptionsBuilder, TemplateVerifierOptionsBuilder> optionsBuilder,
     [CallerMemberName] string? callerMethod = null,
     [CallerFilePath] string? callerFile = null)
   {

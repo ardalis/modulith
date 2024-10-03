@@ -15,8 +15,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
           "-o", "eShop"
         ])
         .DisableDiffTool()
-        .DeletingVerifyCompilationFiles()
-        .DisableDiffTool(false));
+        .DeletingVerifyCompilationFiles());
   }
 
   [Fact]
@@ -25,7 +24,6 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
     var outputDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
     var solutionOptions = await Engine.TryVerify(o =>
       o.WithArgs([
-          "--template", "solution",
           "--name", "eShop",
           "--module-name", "Payments",
           "-o", "eShop",
@@ -41,7 +39,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
           "--module-name", "Shipments",
           "-o", "eShop/eShop.Web",
         ])
-        .DisableDiffTool(false)
+        .DisableDiffTool()
         .WithOutputDirectory(solutionOptions.OutputDirectory!));
   }
 }

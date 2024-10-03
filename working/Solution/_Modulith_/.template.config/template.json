@@ -36,152 +36,27 @@
       "displayName": "Template type",
       "defaultValue": "solution"
     },
-    "add": {
-      "type": "parameter",
-      "datatype": "choice",
-      "choices": [
-        {
-          "choice": "solution",
-          "description": "Starter solution with one basic module"
-        },
-        {
-          "choice": "basic-module",
-          "description": "Basic module"
-        },
-        {
-          "choice": "ddd-module",
-          "description": "Ddd module"
-        },
-        {
-          "choice": "crud",
-          "description": "Adds a set of Get Post Put and Delete endpoints"
-        }
-      ],
-      "defaultValue": "solution",
-      "description": "The type of authentication to use"
-    },
-    "is-solution": {
-      "type": "computed",
-      "value": "(add == \"solution\")"
-    },
-    "with-module": {
-      "type": "parameter",
-      "datatype": "string",
-      "fileRename": "_Module",
-      "replaces": "_Module",
-      "forms": {
-        "global": [
-          "ddd",
-          "new"
-        ]
-      }
-    },
     "module-name": {
       "type": "parameter",
       "datatype": "string",
       "description": "The name of the new or existing module where you want to instantiate the template.",
-      "fileRename": "_Module",
-      "replaces": "_Module",
-      "forms": {
-        "global": [
-          "ddd",
-          "new"
-        ]
-      }
-    },
-    "with-name": {
-      "type": "parameter",
-      "datatype": "string",
-      "description": "The name of the new or existing module where you want to instantiate the template.",
-      "fileRename": "_Module",
-      "replaces": "_Module",
-      "forms": {
-        "global": [
-          "ddd",
-          "new"
-        ]
-      }
-    },
-    "endpoint-name": {
-      "displayName": "Endpoint Name",
-      "description": "Name of the endpoints' folder",
-      "type": "parameter",
-      "datatype": "string",
-      "fileRename": "WeatherForecast",
-      "replaces": "WeatherForecast"
-    },
-    "to": {
-      "displayName": "To",
-      "type": "parameter",
-      "datatype": "string",
-      "description": "[Deprecating: use 'solution'] The name of the solution and folder where the module or item will be added."
-    },
-    "solution": {
-      "displayName": "Solution",
-      "type": "parameter",
-      "datatype": "string",
-      "description": "The name of the solution and folder where the module or item will be added."
+      "fileRename": "NewModule",
+      "replaces": "NewModule"
     },
     "solution-name": {
-      "type": "generated",
-      "generator": "coalesce",
+      "type": "parameter",
       "datatype": "string",
-      "parameters": {
-        "sourceVariableName": "solution",
-        "fallbackVariableName": "to"
-      },
+      "description": "The name of the solution.",
       "fileRename": "_Modulith_",
       "replaces": "_Modulith_"
-    },
-    "with-ui": {
-      "displayName": "With UI",
-      "description": "Includes blazor UI projects inside the specified module.",
-      "type": "parameter",
-      "datatype": "bool"
-    },
-    "WithUi": {
-      "type": "parameter",
-      "datatype": "bool"
-    },
-    "withui": {
-      "displayName": "With UI",
-      "type": "generated",
-      "generator": "coalesce",
-      "description": "Wether to add UI Blazor projects, and configuration",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "parameters": {
-        "sourceVariableName": "with-ui",
-        "fallbackVariableName": "WithUi"
-      }
-    }
-  },
-  "forms": {
-    "new": {
-      "identifier": "replace",
-      "pattern": "^_",
-      "replacement": "Ddd"
-    },
-    "ddd": {
-      "identifier": "replace",
-      "pattern": "^_",
-      "replacement": "New"
     }
   },
   "sources": [
     {
       "source": "../_Modulith_",
       "target": ".",
-      "condition": "(is-solution)",
       "include": [
-        "_Modulith_.SharedKernel/**/*",
-        "_Modulith_.Web/**/*",
-        "_Modulith_.Web/_Modulith_.Web.csproj",
-        "Directory.Build.props",
-        "NewModule/**/*",
-        ".gitignore",
-        "_Modulith_.sln",
-        "Shared/**/*"
+        "**/*"
       ],
       "exclude": [
         "**/[Bb]in/**",
@@ -191,94 +66,10 @@
         "**/*.user",
         "**/*.lock.json",
         "**/*.DS_Store"
-      ],
-      "modifiers": [
-        {
-          "condition": "!(withui)",
-          "exclude": [
-            "Shared/_Modulith_.UI/**/*",
-            "NewModule/_Modulith_.NewModule.UI/**/*",
-            "NewModule/_Modulith_.NewModule.HttpModels/**/*",
-            "_Modulith_.Web/wwwroot/**/*",
-            "_Modulith_.Web/Components/**/*",
-            "_Modulith_.Web/ConventionBuilderExtensions.cs"
-          ]
-        },
-        {
-          "condition": "(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule/WeatherForecastEndpoints/List.Response.cs",
-            "NewModule/_Modulith_.NewModule/IWeatherForecastService.cs"
-          ]
-        }
-      ]
-    },
-    {
-      "source": "./",
-      "target": "./",
-      "condition": "(add == \"basic-module\")",
-      "include": [
-        "NewModule/**/*"
-      ],
-      "modifiers": [
-        {
-          "condition": "!(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule.UI/**/*"
-          ]
-        },
-        {
-          "condition": "(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule/WeatherForecastEndpoints/List.Response.cs",
-            "NewModule/_Modulith_.NewModule/IWeatherForecastService.cs"
-          ]
-        }
-      ]
-    },
-    {
-      "source": "./",
-      "target": "./",
-      "condition": "(add == \"ddd-module\")",
-      "include": [
-        "DddModule/**/*"
-      ]
-    },
-    {
-      "source": "./",
-      "target": ".",
-      "condition": "(add == \"crud\")",
-      "include": [
-        "NewModule/_Modulith_.NewModule/WeatherForecastEndpoints/*"
-      ],
-      "modifiers": [
-        {
-          "condition": "(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule/WeatherForecastEndpoints/List.Response.cs"
-          ],
-          "include": [
-            "NewModule/_Modulith_.NewModule.HttpModels/WeatherForecastResponse.cs",
-            "NewModule/_Modulith_.NewModule.HttpModels/IWeatherForecastService.cs",
-            "NewModule/_Modulith_.NewModule/ServerWeatherForecastService.cs"
-          ]
-        }
       ]
     }
   ],
   "primaryOutputs": [
-    {
-      "condition": "(withui)",
-      "path": "Shared/_Modulith_.UI/_Modulith_.UI.csproj"
-    },
-    {
-      "condition": "(withui)",
-      "path": "NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
-    },
-    {
-      "condition": "(withui)",
-      "path": "NewModule/_Modulith_.NewModule.HttpModels/_Modulith_.NewModule.HttpModels.csproj"
-    },
     {
       "path": "_Modulith_.Web/_Modulith_.Web.csproj"
     },
@@ -303,87 +94,6 @@
       }],
       "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
       "continueOnError": true
-    },
-    {
-      "condition": "(add != \"crud\")",
-      "description": "Add projects to solution",
-      "manualInstructions": [
-        {
-          "text": "[PA2] Add generated project(s) to solution manually. _Modulith_.sln"
-        }
-      ],
-      "applyFileRenamesToManualInstructions": true,
-      "actionId": "D396686C-DE0E-4DE6-906D-291CD29FC5DE",
-      "continueOnError": true
-    },
-    {
-      "condition": "(!is-solution)",
-      "description": "Adding the new module as a reference to Web project",
-      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
-      "continueOnError": true,
-      "manualInstructions": [
-        {
-          "text": "\n⚠️ This is only supported in .Net SDK 9.0.100-preview.7 and newer.\n🔧 For earlier versions please run:\n\n\tdotnet add _Modulith_.Web/_Modulith_.Web.csproj reference NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
-        }
-      ],
-      "applyFileRenamesToManualInstructions": true,
-      "applyFileRenamesToArgs": [
-        "targetFiles",
-        "reference"
-      ],
-      "args": {
-        "targetFiles": [
-          "_Modulith_.Web.csproj"
-        ],
-        "referenceType": "project",
-        "reference": "NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
-      }
-    },
-    {
-      "condition": "(withui && !is-solution)",
-      "description": "Adding the new UI module as a reference to UI shared project",
-      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
-      "continueOnError": true,
-      "manualInstructions": [
-        {
-          "text": "\n⚠️ This is only supported in .Net SDK 9.0.100-preview.7 and newer.\n🔧 For earlier versions please run:\n\n\tdotnet add Shared/_Modulith_.UI/_Modulith_.UI.csproj reference NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
-        }
-      ],
-      "applyFileRenamesToManualInstructions": true,
-      "applyFileRenamesToArgs": [
-        "targetFiles",
-        "reference"
-      ],
-      "args": {
-        "targetFiles": [
-          "Shared/_Modulith_.UI/_Modulith_.UI.csproj"
-        ],
-        "referenceType": "project",
-        "reference": "NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
-      }
-    },
-    {
-      "condition": "(!is-solution && add != \"crud\")",
-      "description": "Adding the new module as a reference to SharedKernel",
-      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
-      "continueOnError": true,
-      "manualInstructions": [
-        {
-          "text": "\n⚠️ This is only supported in .Net SDK 9.0.100-preview.7 and newer.\n🔧 For earlier versions please run:\n\n\tdotnet add NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj reference Shared/_Modulith_.SharedKernel/_Modulith_.SharedKernel.csproj"
-        }
-      ],
-      "applyFileRenamesToManualInstructions": true,
-      "applyFileRenamesToArgs": [
-        "targetFiles",
-        "reference"
-      ],
-      "args": {
-        "targetFiles": [
-          "NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
-        ],
-        "referenceType": "project",
-        "reference": "Shared/_Modulith_.SharedKernel/_Modulith_.SharedKernel.csproj"
-      }
     }
   ]
 }
