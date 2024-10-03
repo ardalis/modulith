@@ -11,7 +11,7 @@
   ],
   "name": "modulith-basic-endpoint",
   "description": "Creates a 3 layered module template",
-  "precedence": "0",
+  "precedence": "10",
   "identity": "Ardalis._Modulith_.Basic.Endpoint.1.0",
   "shortName": "modulith-basic-endpoint",
   "tags": {

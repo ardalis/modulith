@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "David Chaparro",
+  "classifications": [
+    "Web",
+    "Web API",
+    "API",
+    "Service",
+    "Modular",
+    "Monolith"
+  ],
+  "name": "modulith",
+  "groupIdentity": "Ardalis.Modulith",
+  "precedence": "30",
+  "identity": "Ardalis.Modulith.BlazorSolution.1.0",
+  "shortName": "modulith-blazor-solution",
+  "description": "The modular solution template containing a single module.",
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "defaultName": "_Modulith_",
+  "sourceName": "_Modulith_",
+  "preferDefaultName": true,
+  "preferNameDirectory": true,
+  "symbols": {
+    "template": {
+      "type": "parameter",
+      "description": "The modulith template to instantiate.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "blazor-solution",
+          "description": "A blazor enabled solution with a basic module.",
+          "displayName": "_Modulith_ solution."
+        }
+      ],
+      "displayName": "Template type",
+      "defaultValue": "solution"
+    },
+    "module-name": {
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The name of the new or existing module where you want to instantiate the template.",
+      "fileRename": "NewModule",
+      "replaces": "NewModule"
+    },
+    "solution-name": {
+      "displayName": "Solution",
+      "type": "parameter",
+      "datatype": "string",
+      "description": "The name of the solution and folder where the module or item will be added.",
+      "fileRename": "_Modulith_",
+      "replaces": "_Modulith_"
+    }
+  },
+  "sources": [
+    {
+      "source": "../_Modulith_",
+      "target": ".",
+      "include": [
+        "**/*"
+      ],
+      "exclude": [
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        "**/*.template.config/**/*",
+        "**/*.filelist",
+        "**/*.user",
+        "**/*.lock.json",
+        "**/*.DS_Store"
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "path": "_Modulith_.Web/_Modulith_.Web.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        {
+          "text": "[PA1] Run 'dotnet restore'"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": true
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-﻿{
+{
   "$schema": "http://json.schemastore.org/template",
   "author": "David Chaparro",
   "classifications": [
@@ -12,13 +12,13 @@
   "name": "modulith-basic-endpoint",
   "description": "Creates a 3 layered module template",
   "precedence": "0",
-  "identity": "Ardalis.eShop.Basic.Endpoint.1.0",
+  "identity": "Ardalis._Modulith_.Basic.Endpoint.1.0",
   "shortName": "modulith-basic-endpoint",
   "tags": {
     "language": "C#",
     "type": "item"
   },
-  "defaultName": "Shipments",
+  "defaultName": "_BlazorModule_",
   "preferDefaultName": true,
   "preferNameDirectory": true,
   "symbols": {
@@ -39,8 +39,8 @@
           }
         ]
       },
-      "fileRename": "eShop",
-      "replaces": "eShop"
+      "fileRename": "_Modulith_",
+      "replaces": "_Modulith_"
     },
     "generated-module-name": {
       "type": "generated",
@@ -55,8 +55,8 @@
           }
         ]
       },
-      "fileRename": "Shipments",
-      "replaces": "Shipments"
+      "fileRename": "_BlazorModule_",
+      "replaces": "_BlazorModule_"
     },
     "module-name": {
       "displayName": "module-name",
@@ -87,20 +87,20 @@
       "source": "../",
       "target": "../",
       "include": [
-        "**/*Shipments*/**/*WeatherForecast**"
+        "**/*_BlazorModule_*/**/*WeatherForecast**"
       ],
       "modifiers": [
         {
           "condition": "!(withui)",
           "exclude": [
-            "Shipments/eShop.Shipments.UI/**/*"
+            "_BlazorModule_/_Modulith_._BlazorModule_.UI/**/*"
           ]
         },
         {
           "condition": "(withui)",
           "exclude": [
-            "**/eShop.Shipments/WeatherForecastEndpoints/List.Response.cs",
-            "**/eShop.Shipments/IWeatherForecastService.cs"
+            "**/_Modulith_._BlazorModule_/WeatherForecastEndpoints/List.Response.cs",
+            "**/_Modulith_._BlazorModule_/IWeatherForecastService.cs"
           ]
         }
       ]
@@ -109,7 +109,7 @@
   "primaryOutputs": [
     {
       "condition": "(withui)",
-      "path": "eShop.Shipments.csproj"
+      "path": "_Modulith_._BlazorModule_.csproj"
     }
   ],
   "postActions": [

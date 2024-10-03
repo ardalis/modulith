@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="mediatr" Version="12.4.0"/>
+        <PackageReference Include="FastEndpoints" Version="5.29.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Shared\_Modulith_.SharedKernel\_Modulith_.SharedKernel.csproj"/>
+        <ProjectReference Include="..\_Modulith_.NewModule.HttpModels\_Modulith_.NewModule.HttpModels.csproj"/>
+    </ItemGroup>
+
+</Project>

@@ -40,7 +40,6 @@
 
     <ItemGroup>
       <Folder Include="BlazorSolution\BlazorSolution._.verified\" />
-      <Folder Include="BlazorSolution\SolutionWithUi._.verified\" />
       <Folder Include="BlazorSolution\WithBasicModule._.verified\" />
       <Folder Include="Solution\WithBasicModule._.received\" />
       <Folder Include="Solution\WithBasicModule._.verified\" />

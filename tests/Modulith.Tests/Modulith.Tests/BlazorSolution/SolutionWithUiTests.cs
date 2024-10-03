@@ -10,7 +10,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
   {
     await Engine.Verify(options => options
       .WithArgs([
-        "--template", "ui-solution",
+        "--template", "blazor-solution",
         "--name", "eShop",
         "--module-name", "Payments",
         "-o", "eShop"
@@ -25,7 +25,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
     var outputDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
     await Engine.TryVerify(o =>
         o.WithArgs([
-            "--template", "ui-solution",
+            "--template", "blazor-solution",
             "--name", "eShop",
             "--module-name", "Payments",
             "-o", "eShop"
@@ -36,12 +36,11 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
     );
     
     await Engine.Verify(o => o.WithArgs([
-        "--template", "basic",
+        "--template", "blazor-module",
         "--module-name", "Shipments",
-        "--with-ui",
         "-o", "eShop/eShop.Web"
       ])
-      .DisableDiffTool(false)
+      // .DisableDiffTool()
       .WithOutputDirectory(outputDirectory!));
   }
 }

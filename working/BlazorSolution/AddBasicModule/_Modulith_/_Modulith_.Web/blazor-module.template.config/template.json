@@ -11,15 +11,15 @@
   ],
   "name": "modulith",
   "groupIdentity": "Ardalis.Modulith",
-  "precedence": "40",
-  "identity": "Ardalis.Modulith.Basic.1.0",
-  "shortName": "modulith",
-  "description": "A 3 layered module template.",
+  "precedence": "20",
+  "identity": "Ardalis.Modulith.Blazor.Module.1.0",
+  "shortName": "blazor-module",
+  "description": "A blazor basic module",
   "tags": {
     "language": "C#",
     "type": "solution"
   },
-  "defaultName": "NewModule",
+  "defaultName": "_BlazorModule_",
   "preferDefaultName": true,
   "preferNameDirectory": true,
   "symbols": {
@@ -28,9 +28,9 @@
       "description": "The modulith template to instantiate.",
       "datatype": "choice",
       "choices": [{
-        "choice": "basic",
-        "description": "A basic 3 layer module",
-        "displayName": "Basic Module"
+        "choice": "blazor-module",
+        "description": "A blazor basic module",
+        "displayName": "Blazor Module"
         }],
       "displayName": "Template type",
       "defaultValue": "basic"
@@ -59,78 +59,34 @@
       "type": "parameter",
       "datatype": "string",
       "description": "The name of the new or existing module where you want to instantiate the template.",
-      "fileRename": "NewModule",
-      "replaces": "NewModule"
-    },
-    "with-ui": {
-      "displayName": "With UI",
-      "description": "Includes blazor UI projects inside the specified module.",
-      "type": "parameter",
-      "datatype": "bool"
-    },
-    "withui": {
-      "displayName": "With UI",
-      "type": "computed",
-      "value": "with-ui"
+      "fileRename": "_BlazorModule_",
+      "replaces": "_BlazorModule_"
     }
   },
   "sources": [
     {
-      "source": ".",
+      "source": "../",
       "target": "../",
       "include": [
-        "NewModule/**/*"
-      ],
-      "exclude": [
-        "**/[Bb]in/**",
-        "**/[Oo]bj/**",
-        "**/*.template.config/**/*",
-        "**/*.filelist",
-        "**/*.user",
-        "**/*.lock.json"
-      ],
-      "modifiers": [
-        {
-          "condition": "!(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule.UI/**/*",
-            "NewModule/_Modulith_.NewModule.HttpModels/**/*"
-          ]
-        },
-        {
-          "condition": "(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule/WeatherForecastEndpoints/List.Response.cs",
-            "NewModule/_Modulith_.NewModule/IWeatherForecastService.cs"
-          ]
-        }
+        "_BlazorModule_/**/*"
       ]
     }
   ],
   "primaryOutputs": [
     {
-      "condition": "(withui)",
-      "path": "../Shared/_Modulith_.UI/_Modulith_.UI.csproj"
+      "path": "../_BlazorModule_/_Modulith_._BlazorModule_.UI/_Modulith_._BlazorModule_.UI.csproj"
     },
     {
-      "condition": "(withui)",
-      "path": "../NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
+      "path": "../_BlazorModule_/_Modulith_._BlazorModule_.HttpModels/_Modulith_._BlazorModule_.HttpModels.csproj"
     },
     {
-      "condition": "(withui)",
-      "path": "../NewModule/_Modulith_.NewModule.HttpModels/_Modulith_.NewModule.HttpModels.csproj"
+      "path": "../_BlazorModule_/_Modulith_._BlazorModule_/_Modulith_._BlazorModule_.csproj"
     },
     {
-      "path": "../Shared/_Modulith_.SharedKernel/_Modulith_.SharedKernel.csproj"
+      "path": "../_BlazorModule_/_Modulith_._BlazorModule_.Contracts/_Modulith_._BlazorModule_.Contracts.csproj"
     },
     {
-      "path": "../NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
-    },
-    {
-      "path": "../NewModule/_Modulith_.NewModule.Contracts/_Modulith_.NewModule.Contracts.csproj"
-    },
-    {
-      "path": "../NewModule/_Modulith_.NewModule.Tests/_Modulith_.NewModule.Tests.csproj"
+      "path": "../_BlazorModule_/_Modulith_._BlazorModule_.Tests/_Modulith_._BlazorModule_.Tests.csproj"
     }
   ],
   "constraints": {
@@ -182,11 +138,10 @@
           "../_Modulith_.Web/_Modulith_.Web.csproj"
         ],
         "referenceType": "project",
-        "reference": "../NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
+        "reference": "../_BlazorModule_/_Modulith_._BlazorModule_/_Modulith_._BlazorModule_.csproj"
       }
     },
     {
-      "condition": "(withui)",
       "description": "Adding the new UI module as a reference to UI shared project",
       "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
       "continueOnError": true,
@@ -204,7 +159,7 @@
           "../Shared/_Modulith_.UI/_Modulith_.UI.csproj"
         ],
         "referenceType": "project",
-        "reference": "../NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
+        "reference": "../_BlazorModule_/_Modulith_._BlazorModule_.UI/_Modulith_._BlazorModule_.UI.csproj"
       }
     }
   ]
