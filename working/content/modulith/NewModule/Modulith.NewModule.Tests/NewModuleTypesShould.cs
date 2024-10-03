@@ -20,6 +20,8 @@ public class NewModuleTypesShould
       .ResideInNamespace("Modulith.NewModule.*", true)
       .And()
       .AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleServiceRegistrar)])
+      .And()
+      .DoNotResideInNamespace("Modulith.NewModule.Data.Migrations")
       .As("Module types");
 
     var rule = domainTypes.Should().BeInternal();

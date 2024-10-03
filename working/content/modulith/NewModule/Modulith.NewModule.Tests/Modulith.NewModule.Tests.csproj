@@ -11,6 +11,8 @@
         <PackageReference Include="xunit" Version="2.9.0"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"/>
         <PackageReference Include="tngtech.archunitnet.xunit" Version="0.11.0"/>
+        <PackageReference Include="FastEndpoints.Testing" Version="5.30.0" />
+        <PackageReference Include="FluentAssertions" Version="6.12.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -18,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\Modulith.Web\Modulith.Web.csproj" />
         <ProjectReference Include="..\Modulith.NewModule\Modulith.NewModule.csproj"/>
     </ItemGroup>
 
