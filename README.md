@@ -1,4 +1,4 @@
-[![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
+[![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ardalis/modulith/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
 * _⚠️This project is a work in progress and will likely receive many API changes before v2.0.0. Please keep this in mind when using, as there will be breaking changes often._
