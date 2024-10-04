@@ -36,7 +36,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.TemplateEngine.Tasks" Version="*" PrivateAssets="all" IsImplicitlyDefined="true"/>
+        <PackageReference Include="Microsoft.TemplateEngine.Tasks" Version="*" PrivateAssets="all" IsImplicitlyDefined="true" />
         <PackageReference Include="MinVer" Version="5.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -44,14 +44,20 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Include="BlazorSolution\AddBasicModule\**\*" Exclude="BlazorSolution\AddBasicModule\**\bin\**;BlazorSolution\AddBasicModule\**\obj\**"/>
-        <Content Include="Solution\**\*" Exclude="Solution\**\bin\**;Solution\**\obj\**"/>
-        <Compile Remove="**\*"/>
+        <Content Include="BlazorSolution\AddBasicModule\**\*" Exclude="BlazorSolution\AddBasicModule\**\bin\**;BlazorSolution\AddBasicModule\**\obj\**" />
+        <Content Include="Solution\**\*" Exclude="Solution\**\bin\**;Solution\**\obj\**" />
+        <Content Include="V1\**\*" Exclude="V1\**\bin\**;V1\**\obj\**" />
+        <Compile Remove="**\*" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\README.md" Pack="true" PackagePath=""/>
-        <None Include="..\assets\icon.png" Pack="true" PackagePath="\"/>
+        <None Include="..\README.md" Pack="true" PackagePath="" />
+        <None Include="..\assets\icon.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="V1\test\eShop\Shipments\eShop.Shipments\eShop.Shipments.csproj" />
+      <ProjectReference Include="V1\test\eShop\Shared\eShop.SharedKernel\eShop.SharedKernel.csproj" />
     </ItemGroup>
 
 </Project>

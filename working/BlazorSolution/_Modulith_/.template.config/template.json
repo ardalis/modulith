@@ -12,7 +12,7 @@
   "name": "modulith",
   "groupIdentity": "Ardalis.Modulith",
   "precedence": "30",
-  "identity": "Ardalis.Modulith.BlazorSolution.1.0",
+  "identity": "Ardalis.Modulith.BlazorSolution.2.0",
   "shortName": "modulith-blazor-solution",
   "description": "The modular solution template containing a single module.",
   "tags": {
