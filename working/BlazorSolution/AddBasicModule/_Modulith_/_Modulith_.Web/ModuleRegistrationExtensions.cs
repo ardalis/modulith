@@ -46,7 +46,7 @@ public static class ModuleRegistrationExtensions
   {
     if (!TryGetServiceRegistrationMethod(logger, assembly, out var method))
     {
-      logger.LogError("🛑 An error occurred registering services for assembly: '{assembly}'. Skipping registration", assembly.GetName());
+      logger.LogDebug("🛑 An error occurred registering services for assembly: '{assembly}'. Skipping registration", assembly.GetName());
       return;
     }
 
