@@ -6,7 +6,7 @@
 
     <ItemGroup>
         <PackageReference Include="mediatr" Version="12.4.0"/>
-        <PackageReference Include="FastEndpoints" Version="5.29.0"/>
+        <PackageReference Include="FastEndpoints" Version="5.30.0"/>
     </ItemGroup>
 
     <ItemGroup>

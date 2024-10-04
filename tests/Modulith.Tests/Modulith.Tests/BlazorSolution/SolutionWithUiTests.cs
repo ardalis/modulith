@@ -40,7 +40,7 @@ public class SolutionWithUiTests(ITestOutputHelper output) : TestBase(output)
         "--module-name", "Shipments",
         "-o", "eShop/eShop.Web"
       ])
-      // .DisableDiffTool()
+      .DisableDiffTool(false)
       .WithOutputDirectory(outputDirectory!));
   }
 }

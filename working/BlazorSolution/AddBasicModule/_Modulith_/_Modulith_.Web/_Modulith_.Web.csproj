@@ -21,11 +21,11 @@
         <Folder Include="Components\Layout\" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="FastEndpoints.Security" Version="5.29.0" />
-        <PackageReference Include="FastEndpoints.Swagger" Version="5.29.0" />
+        <PackageReference Include="FastEndpoints.Security" Version="5.30.0" />
+        <PackageReference Include="FastEndpoints.Swagger" Version="5.30.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
-        <PackageReference Include="FastEndpoints" Version="5.29.0" />
+        <PackageReference Include="FastEndpoints" Version="5.30.0" />
     </ItemGroup>
 
     <ItemGroup>

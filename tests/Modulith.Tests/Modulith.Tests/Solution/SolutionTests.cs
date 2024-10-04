@@ -14,7 +14,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
           "--module-name", "Payments",
           "-o", "eShop"
         ])
-        .DisableDiffTool()
+        .DisableDiffTool(false)
         .DeletingVerifyCompilationFiles());
   }
 
@@ -39,7 +39,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
           "--module-name", "Shipments",
           "-o", "eShop/eShop.Web",
         ])
-        .DisableDiffTool()
+        .DisableDiffTool(false)
         .WithOutputDirectory(solutionOptions.OutputDirectory!));
   }
 }
