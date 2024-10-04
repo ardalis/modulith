@@ -117,7 +117,9 @@ public static class VerificationEngineExtensions
       @"**/obj",
       @"**\obj",
       @"**/bin",
-      @"**\bin"
+      @"**\bin",
+      @"**\.DS_Store",
+      @"**/.DS_Store",
     ];
 
     var folders = new List<string>();

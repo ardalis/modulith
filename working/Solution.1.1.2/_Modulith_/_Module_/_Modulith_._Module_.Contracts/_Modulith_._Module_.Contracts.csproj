@@ -1,0 +1,5 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="Mediatr" Version="12.4.1" />
+    </ItemGroup>
+</Project>
