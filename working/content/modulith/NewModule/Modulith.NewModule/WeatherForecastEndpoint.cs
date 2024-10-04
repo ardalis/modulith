@@ -8,7 +8,7 @@ namespace Modulith.NewModule;
 #if (!WithUi)
 internal record WeatherForecastResponse(DateOnly Date, int TemperatureC, string? Summary);
 #endif
-internal class WeatherForeCastEndpoint(IWeatherForecastService weatherForecastService) : EndpointWithoutRequest<IEnumerable<WeatherForecastResponse>>
+internal class WeatherForecastEndpoint(IWeatherForecastService weatherForecastService) : EndpointWithoutRequest<IEnumerable<WeatherForecastResponse>>
 {
   public override void Configure()
   {
