@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_.Web", "_Modulith_.Web\_Modulith_.Web.csproj", "{00000000-0000-0000-0000-000000000000}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Module_", "_Module_", "{01010101-0101-0101-0101-010101010101}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{02020202-0202-0202-0202-020202020202}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_._Module_", "_Module_\_Modulith_._Module_\_Modulith_._Module_.csproj", "{03030303-0303-0303-0303-030303030303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_._Module_.Contracts", "_Module_\_Modulith_._Module_.Contracts\_Modulith_._Module_.Contracts.csproj", "{04040404-0404-0404-0404-040404040404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_._Module_.Tests", "_Module_\_Modulith_._Module_.Tests\_Modulith_._Module_.Tests.csproj", "{05050505-0505-0505-0505-050505050505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_.SharedKernel", "Shared\_Modulith_.SharedKernel\_Modulith_.SharedKernel.csproj", "{06060606-0606-0606-0606-060606060606}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_NewModule_", "_NewModule_", "{07070707-0707-0707-0707-070707070707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_._NewModule_", "_NewModule_\_Modulith_._NewModule_\_Modulith_._NewModule_.csproj", "{08080808-0808-0808-0808-080808080808}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_._NewModule_.Contracts", "_NewModule_\_Modulith_._NewModule_.Contracts\_Modulith_._NewModule_.Contracts.csproj", "{09090909-0909-0909-0909-090909090909}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_Modulith_._NewModule_.Tests", "_NewModule_\_Modulith_._NewModule_.Tests\_Modulith_._NewModule_.Tests.csproj", "{10101010-1010-1010-1010-101010101010}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00000000-0000-0000-0000-000000000000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00000000-0000-0000-0000-000000000000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00000000-0000-0000-0000-000000000000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00000000-0000-0000-0000-000000000000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03030303-0303-0303-0303-030303030303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03030303-0303-0303-0303-030303030303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03030303-0303-0303-0303-030303030303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03030303-0303-0303-0303-030303030303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04040404-0404-0404-0404-040404040404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04040404-0404-0404-0404-040404040404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04040404-0404-0404-0404-040404040404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04040404-0404-0404-0404-040404040404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05050505-0505-0505-0505-050505050505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05050505-0505-0505-0505-050505050505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05050505-0505-0505-0505-050505050505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05050505-0505-0505-0505-050505050505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06060606-0606-0606-0606-060606060606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06060606-0606-0606-0606-060606060606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06060606-0606-0606-0606-060606060606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06060606-0606-0606-0606-060606060606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08080808-0808-0808-0808-080808080808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08080808-0808-0808-0808-080808080808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08080808-0808-0808-0808-080808080808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08080808-0808-0808-0808-080808080808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09090909-0909-0909-0909-090909090909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09090909-0909-0909-0909-090909090909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09090909-0909-0909-0909-090909090909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09090909-0909-0909-0909-090909090909}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10101010-1010-1010-1010-101010101010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10101010-1010-1010-1010-101010101010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10101010-1010-1010-1010-101010101010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10101010-1010-1010-1010-101010101010}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03030303-0303-0303-0303-030303030303} = {01010101-0101-0101-0101-010101010101}
+		{04040404-0404-0404-0404-040404040404} = {01010101-0101-0101-0101-010101010101}
+		{05050505-0505-0505-0505-050505050505} = {01010101-0101-0101-0101-010101010101}
+		{06060606-0606-0606-0606-060606060606} = {02020202-0202-0202-0202-020202020202}
+		{08080808-0808-0808-0808-080808080808} = {07070707-0707-0707-0707-070707070707}
+		{09090909-0909-0909-0909-090909090909} = {07070707-0707-0707-0707-070707070707}
+		{10101010-1010-1010-1010-101010101010} = {07070707-0707-0707-0707-070707070707}
+	EndGlobalSection
+EndGlobal

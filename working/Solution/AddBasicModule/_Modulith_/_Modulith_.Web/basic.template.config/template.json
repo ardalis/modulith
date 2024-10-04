@@ -19,7 +19,7 @@
     "language": "C#",
     "type": "solution"
   },
-  "defaultName": "NewModule",
+  "defaultName": "_NewModule_",
   "preferDefaultName": true,
   "preferNameDirectory": true,
   "symbols": {
@@ -59,27 +59,16 @@
       "type": "parameter",
       "datatype": "string",
       "description": "The name of the new or existing module where you want to instantiate the template.",
-      "fileRename": "NewModule",
-      "replaces": "NewModule"
-    },
-    "with-ui": {
-      "displayName": "With UI",
-      "description": "Includes blazor UI projects inside the specified module.",
-      "type": "parameter",
-      "datatype": "bool"
-    },
-    "withui": {
-      "displayName": "With UI",
-      "type": "computed",
-      "value": "with-ui"
+      "fileRename": "_NewModule_",
+      "replaces": "_NewModule_"
     }
   },
   "sources": [
     {
-      "source": ".",
+      "source": "../",
       "target": "../",
       "include": [
-        "NewModule/**/*"
+        "_NewModule_/**/*"
       ],
       "exclude": [
         "**/[Bb]in/**",
@@ -88,49 +77,21 @@
         "**/*.filelist",
         "**/*.user",
         "**/*.lock.json"
-      ],
-      "modifiers": [
-        {
-          "condition": "!(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule.UI/**/*",
-            "NewModule/_Modulith_.NewModule.HttpModels/**/*"
-          ]
-        },
-        {
-          "condition": "(withui)",
-          "exclude": [
-            "NewModule/_Modulith_.NewModule/WeatherForecastEndpoints/List.Response.cs",
-            "NewModule/_Modulith_.NewModule/IWeatherForecastService.cs"
-          ]
-        }
       ]
     }
   ],
   "primaryOutputs": [
     {
-      "condition": "(withui)",
-      "path": "../Shared/_Modulith_.UI/_Modulith_.UI.csproj"
-    },
-    {
-      "condition": "(withui)",
-      "path": "../NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
-    },
-    {
-      "condition": "(withui)",
-      "path": "../NewModule/_Modulith_.NewModule.HttpModels/_Modulith_.NewModule.HttpModels.csproj"
-    },
-    {
       "path": "../Shared/_Modulith_.SharedKernel/_Modulith_.SharedKernel.csproj"
     },
     {
-      "path": "../NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
+      "path": "../_NewModule_/_Modulith_._NewModule_/_Modulith_._NewModule_.csproj"
     },
     {
-      "path": "../NewModule/_Modulith_.NewModule.Contracts/_Modulith_.NewModule.Contracts.csproj"
+      "path": "../_NewModule_/_Modulith_._NewModule_.Contracts/_Modulith_._NewModule_.Contracts.csproj"
     },
     {
-      "path": "../NewModule/_Modulith_.NewModule.Tests/_Modulith_.NewModule.Tests.csproj"
+      "path": "../_NewModule_/_Modulith_._NewModule_.Tests/_Modulith_._NewModule_.Tests.csproj"
     }
   ],
   "constraints": {
@@ -182,29 +143,7 @@
           "../_Modulith_.Web/_Modulith_.Web.csproj"
         ],
         "referenceType": "project",
-        "reference": "../NewModule/_Modulith_.NewModule/_Modulith_.NewModule.csproj"
-      }
-    },
-    {
-      "condition": "(withui)",
-      "description": "Adding the new UI module as a reference to UI shared project",
-      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
-      "continueOnError": true,
-      "manualInstructions": [
-        {
-          "text": "[PA3] Manually add the reference in the UI project to the new project"
-        }
-      ],
-      "applyFileRenamesToArgs": [
-        "targetFiles",
-        "reference"
-      ],
-      "args": {
-        "targetFiles": [
-          "../Shared/_Modulith_.UI/_Modulith_.UI.csproj"
-        ],
-        "referenceType": "project",
-        "reference": "../NewModule/_Modulith_.NewModule.UI/_Modulith_.NewModule.UI.csproj"
+        "reference": "../_NewModule_/_Modulith_._NewModule_/_Modulith_._NewModule_.csproj"
       }
     }
   ]
