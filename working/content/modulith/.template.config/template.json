@@ -189,6 +189,7 @@
   ],
   "postActions": [
     {
+      "condition": "(!IsSolution)",
       "description": "Add projects to solution",
       "manualInstructions": [
         {
