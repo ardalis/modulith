@@ -47,4 +47,5 @@
       <Folder Include="V1\Solution._.verified\" />
       <Folder Include="V1\WithBasicModule._.received\" />
     </ItemGroup>
+
 </Project>

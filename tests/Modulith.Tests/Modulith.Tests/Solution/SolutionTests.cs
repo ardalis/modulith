@@ -21,6 +21,7 @@ public class SolutionTests(ITestOutputHelper output) : TestBase(output)
   [Fact]
   public async Task WithBasicModule()
   {
+    // dotnet new modulith --add basic-module --with-name Shipments --to eShop
     var outputDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
     var solutionOptions = await Engine.TryVerify(o =>
       o.WithArgs([

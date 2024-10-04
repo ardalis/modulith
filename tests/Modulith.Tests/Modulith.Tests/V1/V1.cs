@@ -41,9 +41,8 @@ public class V1(ITestOutputHelper output) : TestBase(output)
           "--add", "basic-module",
           "--with-name", "Shipments",
           "--to", "eShop",
-          "-o", "eShop",
+          "-o", "eShop/eShop.Web",
         ])
-        .KeepInstantiationInSnapshot()
         .DisableDiffTool(false)
         .WithOutputDirectory(solutionOptions.OutputDirectory!));
   }

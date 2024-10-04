@@ -61,6 +61,17 @@
       "description": "The name of the new or existing module where you want to instantiate the template.",
       "fileRename": "_NewModule_",
       "replaces": "_NewModule_"
+    },
+    "with-ui": {
+      "displayName": "With UI",
+      "description": "Includes blazor UI projects inside the specified module.",
+      "type": "parameter",
+      "datatype": "bool"
+    },
+    "withui": {
+      "displayName": "With UI",
+      "type": "computed",
+      "value": "with-ui"
     }
   },
   "sources": [
@@ -77,10 +88,38 @@
         "**/*.filelist",
         "**/*.user",
         "**/*.lock.json"
+      ],
+      "modifiers": [
+        {
+          "condition": "!(withui)",
+          "exclude": [
+            "../_NewModule_/_Modulith_._NewModule_.UI/**/*",
+            "../_NewModule_/_Modulith_._NewModule_.HttpModels/**/*"
+          ]
+        },
+        {
+          "condition": "(withui)",
+          "exclude": [
+            "../_NewModule_/_Modulith_._NewModule_/WeatherForecastEndpoints/List.Response.cs",
+            "../_NewModule_/_Modulith_._NewModule_/IWeatherForecastService.cs"
+          ]
+        }
       ]
     }
   ],
   "primaryOutputs": [
+    {
+      "condition": "(withui)",
+      "path": "../Shared/_Modulith_.UI/_Modulith_.UI.csproj"
+    },
+    {
+      "condition": "(withui)",
+      "path": "../_NewModule_/_Modulith_._NewModule_.UI/_Modulith_._NewModule_.UI.csproj"
+    },
+    {
+      "condition": "(withui)",
+      "path": "../_NewModule_/_Modulith_._NewModule_.HttpModels/_Modulith_._NewModule_.HttpModels.csproj"
+    },
     {
       "path": "../Shared/_Modulith_.SharedKernel/_Modulith_.SharedKernel.csproj"
     },
@@ -144,6 +183,28 @@
         ],
         "referenceType": "project",
         "reference": "../_NewModule_/_Modulith_._NewModule_/_Modulith_._NewModule_.csproj"
+      }
+    },
+    {
+      "condition": "(withui)",
+      "description": "Adding the new UI module as a reference to UI shared project",
+      "actionId": "B17581D1-C5C9-4489-8F0A-004BE667B814",
+      "continueOnError": true,
+      "manualInstructions": [
+        {
+          "text": "[PA3] Manually add the reference in the UI project to the new project"
+        }
+      ],
+      "applyFileRenamesToArgs": [
+        "targetFiles",
+        "reference"
+      ],
+      "args": {
+        "targetFiles": [
+          "../Shared/_Modulith_.UI/_Modulith_.UI.csproj"
+        ],
+        "referenceType": "project",
+        "reference": "../_NewModule_/_Modulith_._NewModule_.UI/_Modulith_._NewModule_.UI.csproj"
       }
     }
   ]
