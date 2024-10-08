@@ -79,12 +79,26 @@
       "fileRename": "Modulith",
       "replaces": "Modulith"
     },
-    "WithUi": {
+    "with-ui-type": {
       "displayName": "With UI",
       "type": "parameter",
-      "description": "Wether to add UI Blazor projects, and configuration",
-      "datatype": "bool",
-      "defaultValue": "false"
+      "description": "Whether to add Blazor or Razor UI projects, and configuration",
+      "datatype": "choice",
+      "defaultValue": "none",
+      "choices": [
+        {
+          "description": "Adds no UI",
+          "choice": "none"
+        },
+        {
+          "description": "Adds Blazor UI",
+          "choice": "blazor"
+        }
+      ]
+    },
+    "WithUi": {
+      "type": "computed",
+      "value": "!(with-ui == 'none')"
     }
   },
   "forms": {

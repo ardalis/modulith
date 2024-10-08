@@ -8,11 +8,11 @@ dotnet new install .
 
 # Add an UI enabled solution with a first module
 cd test/
-dotnet new modulith -n eShop --with-module Payments --WithUi
+dotnet new modulith -n eShop --with-module Payments --with-ui-type blazor
 
 # Add second and third module. Third module is DDD
 cd eShop
-dotnet new modulith --add basic-module --with-name Shipments --to eShop --WithUi
+dotnet new modulith --add basic-module --with-name Shipments --to eShop --with-ui-type blazor
 dotnet new modulith --add ddd-module --with-name Billing --to eShop
 
 # Add project references. Needed before .Net 9
