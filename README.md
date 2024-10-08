@@ -1,3 +1,5 @@
+# Ardalis.Modulith
+
 [![CI](https://github.com/david-acm/modulith/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/david-acm/modulith/actions/workflows/ci.yml)
 [![NuGet Version](https://img.shields.io/nuget/vpre/Ardalis.Modulith)](https://www.nuget.org/packages/Ardalis.Modulith)
 
