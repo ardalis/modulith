@@ -4,7 +4,7 @@ theme: just-the-docs
 plugins:
   - jekyll-feed
 
-url: https://just-the-docs.github.io
+url: https://github.com/ardalis/modulith.github.io
 
 aux_links:
-  Template Repository: https://github.com/salzaki/modulith
+  Template Repository: https://github.com/ardalis/modulith/
