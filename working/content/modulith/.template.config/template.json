@@ -110,6 +110,7 @@
         "NewModule/**/*",
         ".gitignore",
         "Directory.Build.props",
+        "Directory.Packages.props",
         "Modulith.sln",
         "Shared/**/*"
       ],

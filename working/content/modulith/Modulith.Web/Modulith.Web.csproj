@@ -1,15 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <!--#if (WithUi) -->
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
-
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server"/>
     </ItemGroup>
-
 
     <ItemGroup>
         <ProjectReference Include="..\NewModule\Modulith.NewModule.UI\Modulith.NewModule.UI.csproj"/>
@@ -20,12 +13,13 @@
         <Folder Include="Components\Layout\"/>
     </ItemGroup>
     <!--#endif -->
+    
     <ItemGroup>
-        <PackageReference Include="FastEndpoints.Security" Version="5.30.0"/>
-        <PackageReference Include="FastEndpoints.Swagger" Version="5.30.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3"/>
-        <PackageReference Include="FastEndpoints" Version="5.30.0"/>
+        <PackageReference Include="FastEndpoints.Security"/>
+        <PackageReference Include="FastEndpoints.Swagger"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+        <PackageReference Include="Swashbuckle.AspNetCore"/>
+        <PackageReference Include="FastEndpoints"/>
     </ItemGroup>
 
     <ItemGroup>

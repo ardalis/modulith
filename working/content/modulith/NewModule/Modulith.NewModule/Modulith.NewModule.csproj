@@ -5,8 +5,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="mediatr" Version="12.4.0"/>
-        <PackageReference Include="FastEndpoints" Version="5.30.0"/>
+        <PackageReference Include="MediatR"/>
+        <PackageReference Include="FastEndpoints"/>
     </ItemGroup>
 
     <ItemGroup>
