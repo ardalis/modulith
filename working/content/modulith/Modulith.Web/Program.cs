@@ -10,10 +10,6 @@ using Modulith.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 // Call the method where you are registering services for each module:
 // NewModuleModuleServiceRegistrar.ConfigureServices(builder.Services, builder.Configuration);
 

@@ -1,6 +1,6 @@
 using FastEndpoints;
 using FastEndpoints.Testing;
-using FluentAssertions;
+using AwesomeAssertions;
 using Modulith.DddModule.Api;
 
 namespace Modulith.DddModule.Tests;

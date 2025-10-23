@@ -12,7 +12,7 @@
         <PackageReference Include="xunit.runner.visualstudio"/>
         <PackageReference Include="TngTech.ArchUnitNET.xUnitV3"/>
         <PackageReference Include="FastEndpoints.Testing"/>
-        <PackageReference Include="FluentAssertions"/>
+        <PackageReference Include="AwesomeAssertions"/>
     </ItemGroup>
 
     <ItemGroup>
