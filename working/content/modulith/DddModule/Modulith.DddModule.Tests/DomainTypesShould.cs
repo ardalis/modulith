@@ -1,7 +1,7 @@
 using ArchUnitNET.Domain;
 using ArchUnitNET.Fluent;
 using ArchUnitNET.Loader;
-using ArchUnitNET.xUnit;
+using ArchUnitNET.xUnitV3;
 
 namespace Modulith.DddModule.Tests;
 
@@ -17,14 +17,14 @@ public class DomainTypesShould
   {
     var domainTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Domain.*", true)
+      .ResideInNamespaceMatching("Modulith.DddModule.Domain.*")
       .And()
       .AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
       .As("Domain types");
 
     var apiTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Api.*", true)
+      .ResideInNamespaceMatching("Modulith.DddModule.Api.*")
       .As("Api types");
 
     var rule = domainTypes.Should().NotDependOnAny(apiTypes);
@@ -37,14 +37,14 @@ public class DomainTypesShould
   {
     var domainTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Domain.*", true)
+      .ResideInNamespaceMatching("Modulith.DddModule.Domain.*")
       .And()
       .AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
       .As("Domain types");
 
     var apiTypes = ArchRuleDefinition.Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.Infrastructure.*", true)
+      .ResideInNamespaceMatching("Modulith.DddModule.Infrastructure.*")
       .As("Api types");
 
     var rule = domainTypes.Should().NotDependOnAny(apiTypes);

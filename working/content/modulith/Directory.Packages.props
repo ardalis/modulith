@@ -1,37 +1,32 @@
 <Project>
-    <PropertyGroup>
-        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    </PropertyGroup>
-
-    <!-- Centralized Package Versions -->
-    <ItemGroup>
-        <!-- Web & API Packages -->
-        <PackageVersion Include="FastEndpoints" Version="5.30.0"/>
-        <PackageVersion Include="FastEndpoints.Security" Version="5.30.0"/>
-        <PackageVersion Include="FastEndpoints.Swagger" Version="5.30.0"/>
-        <PackageVersion Include="FastEndpoints.Testing" Version="5.30.0"/>
-        <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-rc.2.25502.107"/>
-        <PackageVersion Include="Swashbuckle.AspNetCore" Version="7.2.0"/>
-        
-        <!-- MediatR -->
-        <PackageVersion Include="MediatR" Version="12.4.1"/>
-        
-        <!-- Blazor & UI Packages -->
-        <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-rc.2.25502.107"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.0-rc.2.25502.107"/>
-        <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0-rc.2.25502.107"/>
-        <PackageVersion Include="MudBlazor" Version="7.7.0"/>
-        
-        <!-- Microsoft Extensions -->
-        <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0-rc.2.25502.107"/>
-        <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0-rc.2.25502.107"/>
-        
-        <!-- Testing Packages -->
-        <PackageVersion Include="coverlet.collector" Version="6.0.2"/>
-        <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.0"/>
-        <PackageVersion Include="xunit" Version="2.9.0"/>
-        <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2"/>
-        <PackageVersion Include="tngtech.archunitnet.xunit" Version="0.11.0"/>
-        <PackageVersion Include="FluentAssertions" Version="6.12.1"/>
-    </ItemGroup>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <!-- Centralized Package Versions -->
+  <ItemGroup>
+    <!-- Web & API Packages -->
+    <PackageVersion Include="FastEndpoints" Version="7.0.1" />
+    <PackageVersion Include="FastEndpoints.Security" Version="7.0.1" />
+    <PackageVersion Include="FastEndpoints.Swagger" Version="7.0.1" />
+    <PackageVersion Include="FastEndpoints.Testing" Version="7.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0-rc.2.25502.107" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <!-- MediatR -->
+    <PackageVersion Include="MediatR" Version="13.0.0" />
+    <!-- Blazor & UI Packages -->
+    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-rc.2.25502.107" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.0-rc.2.25502.107" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0-rc.2.25502.107" />
+    <PackageVersion Include="MudBlazor" Version="7.7.0" />
+    <!-- Microsoft Extensions -->
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0-rc.2.25502.107" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0-rc.2.25502.107" />
+    <!-- Testing Packages -->
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.0" />
+    <PackageVersion Include="xunit.v3" Version="3.1.0" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageVersion Include="TngTech.ArchUnitNET.xUnitV3" Version="0.12.3" />
+    <PackageVersion Include="FluentAssertions" Version="8.8.0" />
+  </ItemGroup>
 </Project>

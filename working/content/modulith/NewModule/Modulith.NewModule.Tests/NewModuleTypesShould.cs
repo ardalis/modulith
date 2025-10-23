@@ -1,6 +1,6 @@
 using ArchUnitNET.Domain;
 using ArchUnitNET.Loader;
-using ArchUnitNET.xUnit;
+using ArchUnitNET.xUnitV3;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace Modulith.NewModule.Tests;
@@ -17,7 +17,7 @@ public class NewModuleTypesShould
   {
     var domainTypes = Types()
       .That()
-      .ResideInNamespace("Modulith.NewModule.*", true)
+      .ResideInNamespaceMatching("Modulith.NewModule.*")
       .And()
       .AreNot([typeof(AssemblyInfo), typeof(NewModuleModuleServiceRegistrar)])
       .And()

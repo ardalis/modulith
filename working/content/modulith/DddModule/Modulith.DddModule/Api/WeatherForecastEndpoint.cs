@@ -20,8 +20,6 @@ internal class WeatherForecastEndpoint(IWeatherForecastService weatherForecastSe
       "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     ];
 
-    var forecasts = weatherForecastService.GetWeatherForecast(summaries);
-
-    await SendOkAsync(forecasts, ct);
+    Response = weatherForecastService.GetWeatherForecast(summaries);
   }
 }

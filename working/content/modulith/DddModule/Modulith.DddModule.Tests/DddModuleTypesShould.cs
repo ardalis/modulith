@@ -1,6 +1,6 @@
 using ArchUnitNET.Domain;
 using ArchUnitNET.Loader;
-using ArchUnitNET.xUnit;
+using ArchUnitNET.xUnitV3;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
 
 namespace Modulith.DddModule.Tests;
@@ -17,7 +17,7 @@ public class DddModuleTypesShould
   {
     var domainTypes = Types()
       .That()
-      .ResideInNamespace("Modulith.DddModule.*", true)
+      .ResideInNamespaceMatching("Modulith.DddModule.*")
       .And()
       .AreNot([typeof(AssemblyInfo), typeof(DddModuleServiceRegistrar)])
       .As("Module types");
