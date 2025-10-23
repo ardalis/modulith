@@ -20,6 +20,7 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Swashbuckle.AspNetCore"/>
         <PackageReference Include="FastEndpoints"/>
+        <PackageReference Include="Mediator.Abstractions"/>
     </ItemGroup>
 
     <ItemGroup>

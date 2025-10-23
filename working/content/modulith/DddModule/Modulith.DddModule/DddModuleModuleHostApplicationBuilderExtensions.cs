@@ -12,8 +12,6 @@ public class DddModuleServiceRegistrar : IRegisterModuleServices
   public static IServiceCollection ConfigureServices(IServiceCollection services, IConfiguration configuration)
   {
     var logger = GetLogger(services);
-    services.AddMediatR(
-      c => c.RegisterServicesFromAssemblies(typeof(AssemblyInfo).Assembly));
 
     services.AddScoped<IWeatherForecastService, WeatherForecastService>();
     services.AddScoped<ITemperatureService, FakeTemperatureService>();

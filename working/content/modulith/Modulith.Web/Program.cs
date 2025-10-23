@@ -1,6 +1,7 @@
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
+using Mediator;
 #if (WithUi)
 using Modulith.UI;
 using MudBlazor.Services;
@@ -18,6 +19,9 @@ builder.Services.AddSwaggerGen();
 
 // Or use the discover method below to try and find the services for your modules`
 builder.Services.DiscoverAndRegisterModules();
+
+// TODO: Configure Mediator when handlers are implemented
+// builder.Services.AddSingleton<IMediator, Mediator>();
 
 #if (WithUi)
 builder.Services.AddBlazorAssemblyDiscovery();
