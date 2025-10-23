@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/NewModule/">
+    <Project Path="NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj" />
+    <Project Path="NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj" />
+    <Project Path="NewModule/Modulith.NewModule/Modulith.NewModule.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj" />
+  </Folder>
+  <Project Path="Modulith.Web/Modulith.Web.csproj" />
+</Solution>
