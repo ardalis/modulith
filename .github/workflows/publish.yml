@@ -9,8 +9,8 @@ on:
     types: [published]
 
 env:
-  SOLUTION_FILE: Clean.Architecture.slnx
-  NUSPEC_FILE: CleanArchitecture.nuspec
+  SOLUTION_FILE: working/Ardalis.Modulith.csproj
+  NUSPEC_FILE: working/Ardalis.Modulith.csproj
   PACK_OUTPUT: artifacts/package/release
 
 jobs:
