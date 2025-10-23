@@ -12,7 +12,7 @@ profile:
   name: qodana.starter
 
 dotnet:
-    solution: working/content/modulith/TestModulith.sln
+    solution: working/content/modulith/TestModulith.slnx
 #Enable inspections
 #include:
 #  - name: <SomeEnabledInspectionId>

@@ -1,0 +1,19 @@
+<Solution>
+  <Folder Name="/DddModule/">
+    <Project Path="DddModule/Modulith.DddModule.Contracts/Modulith.DddModule.Contracts.csproj" />
+    <Project Path="DddModule/Modulith.DddModule.Tests/Modulith.DddModule.Tests.csproj" />
+    <Project Path="DddModule/Modulith.DddModule/Modulith.DddModule.csproj" />
+  </Folder>
+  <Folder Name="/NewModule/">
+    <Project Path="NewModule/Modulith.NewModule.Contracts/Modulith.NewModule.Contracts.csproj" />
+    <Project Path="NewModule/Modulith.NewModule.HttpModels/Modulith.NewModule.HttpModels.csproj" />
+    <Project Path="NewModule/Modulith.NewModule.Tests/Modulith.NewModule.Tests.csproj" />
+    <Project Path="NewModule/Modulith.NewModule.UI/Modulith.NewModule.UI.csproj" />
+    <Project Path="NewModule/Modulith.NewModule/Modulith.NewModule.csproj" />
+  </Folder>
+  <Folder Name="/Shared/">
+    <Project Path="Shared/Modulith.SharedKernel/Modulith.SharedKernel.csproj" />
+    <Project Path="Shared/Modulith.UI/Modulith.UI.csproj" />
+  </Folder>
+  <Project Path="Modulith.Web/Modulith.Web.csproj" />
+</Solution>

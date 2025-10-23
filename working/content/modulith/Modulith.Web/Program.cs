@@ -1,6 +1,8 @@
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
+using Mediator;
+using Scalar.AspNetCore;
 #if (WithUi)
 using Modulith.UI;
 using MudBlazor.Services;
@@ -9,15 +11,14 @@ using Modulith.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
 // Call the method where you are registering services for each module:
 // NewModuleModuleServiceRegistrar.ConfigureServices(builder.Services, builder.Configuration);
 
 // Or use the discover method below to try and find the services for your modules`
 builder.Services.DiscoverAndRegisterModules();
+
+// TODO: Configure Mediator when handlers are implemented
+// builder.Services.AddSingleton<IMediator, Mediator>();
 
 #if (WithUi)
 builder.Services.AddBlazorAssemblyDiscovery();
@@ -57,6 +58,9 @@ app.UseAuthentication()
 #endif
   .UseFastEndpoints()
   .UseSwaggerGen();
+
+// Map Scalar API documentation
+app.MapScalarApiReference();
 
 #if (WithUi)
 app.AddBlazorModulesAdditionalAssemblies();

@@ -5,7 +5,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="MediatR"/>
+        <PackageReference Include="Mediator.Abstractions"/>
         <PackageReference Include="FastEndpoints"/>
     </ItemGroup>
 

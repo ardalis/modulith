@@ -41,7 +41,7 @@
         }
       ],
       "defaultValue": "solution",
-      "description": "The type of authentication to use"
+      "description": "The type of template to create"
     },
     "IsSolution": {
       "type": "computed",
@@ -111,7 +111,7 @@
         ".gitignore",
         "Directory.Build.props",
         "Directory.Packages.props",
-        "Modulith.sln",
+        "Modulith.slnx",
         "Shared/**/*"
       ],
       "modifiers": [
