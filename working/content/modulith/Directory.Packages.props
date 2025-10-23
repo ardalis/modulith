@@ -9,6 +9,7 @@
     <PackageVersion Include="FastEndpoints.Security" Version="7.0.1" />
     <PackageVersion Include="FastEndpoints.Swagger" Version="7.0.1" />
     <PackageVersion Include="FastEndpoints.Testing" Version="7.0.1" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.9.0" />
     <!-- Mediator -->
     <PackageVersion Include="Mediator.Abstractions" Version="3.0.1" />
     <PackageVersion Include="Mediator.SourceGenerator" Version="3.0.1" />

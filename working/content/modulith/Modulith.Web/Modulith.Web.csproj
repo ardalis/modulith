@@ -19,6 +19,7 @@
         <PackageReference Include="FastEndpoints.Swagger"/>
         <PackageReference Include="FastEndpoints"/>
         <PackageReference Include="Mediator.Abstractions"/>
+        <PackageReference Include="Scalar.AspNetCore"/>
     </ItemGroup>
 
     <ItemGroup>

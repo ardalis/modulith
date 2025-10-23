@@ -2,6 +2,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Mediator;
+using Scalar.AspNetCore;
 #if (WithUi)
 using Modulith.UI;
 using MudBlazor.Services;
@@ -57,6 +58,9 @@ app.UseAuthentication()
 #endif
   .UseFastEndpoints()
   .UseSwaggerGen();
+
+// Map Scalar API documentation
+app.MapScalarApiReference();
 
 #if (WithUi)
 app.AddBlazorModulesAdditionalAssemblies();
