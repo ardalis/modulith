@@ -1,0 +1,10 @@
+title: modulith
+description: Modulith is a dotnet new template for Modular Monoliths. It streamlines the creation of new .Net solutions and the addition of modules to existing ones.
+theme: just-the-docs
+plugins:
+  - jekyll-feed
+
+url: https://github.com/ardalis/modulith.github.io
+
+aux_links:
+  Template Repository: https://github.com/ardalis/modulith/
